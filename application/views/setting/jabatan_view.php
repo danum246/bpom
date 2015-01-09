@@ -14,19 +14,23 @@
 	                        <tr> 
 	                        	<th>No</th>
 	                            <th>Jabatan</th>
+	                            <th>Lembaga</th>
 	                            <th width="80">Aksi</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
+							<?php $no = 1; foreach($jabatan as $row){?>
 	                        <tr>
-	                        	<td>1</td>
-	                        	<td>Admin</td>
+	                        	<td><?php echo $no;?></td>
+	                        	<td><?php echo $row->jabatan;?></td>
+	                        	<td><?php echo $row->kode_lembaga;?></td>
 	                        	<td class="td-actions">
 									<!--a class="btn btn-small btn-success" href="#"><i class="btn-icon-only icon-ok"> </i></a-->
 									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/jabatan/del_jabatan/<?php echo $row->id_jabatan;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
+							<?php } ?>
 	                      
 	                    </tbody>
 	               	</table>
@@ -43,12 +47,23 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url();?>setting/jabatan/save_jabatan" method="post">
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
                         <label class="control-label">Jabatan</label>
                         <div class="controls">
                             <input type="text" class="span4" name="jabatan" placeholder="Input Jabatan" class="form-control" value="" required/>
+                        </div>
+                    </div>
+					<div class="control-group" id="">
+                        <label class="control-label">Lembaga</label>
+                        <div class="controls">
+                            <select name="lembaga">
+							<option> -- </option>
+							<?php foreach($lembaga as $row){?>
+							<option value="<?php echo $row->id_lembaga;?>"><?php echo $row->kode_lembaga;?></option>
+							<?php } ?>
+							</select>
                         </div>
                     </div>
                 </div> 

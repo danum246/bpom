@@ -14,6 +14,25 @@ class app_model extends CI_Model {
 		$q = $this->db->insert($table, $data);
 		return $q;
 	}
+	
+	function get_lembaga(){
+		return $this->db->get('tbl_lembaga')->result();
+	}
+	
+	function get_kabupaten(){
+		return $this->db->get('tbl_kabupaten')->result();
+	}
+	
+	function get_kelurahan(){
+		return $this->db->get('tbl_kelurahan')->result();
+	}
+	
+	function get_jabatan(){
+		$this->db->select('a.*,b.kode_lembaga');
+		$this->db->from('tbl_jabatan a');
+		$this->db->join('tbl_lembaga b','a.lembaga_id = b.id_lembaga');
+		return $this->db->get()->result();
+	}
 
 	function getdetail($table,$pk,$value,$key,$order)
 	{
@@ -35,6 +54,19 @@ class app_model extends CI_Model {
 		$this->db->where($pk,$value);
 		$q = $this->db->delete($table);
 		return $q;
+	}
+	
+	function getlistjab($id){
+		$this->db->where('lembaga_id',$id);
+		return $this->db->get('tbl_jabatan')->result();
+	}
+	
+	function get_karyawan(){
+		$this->db->select('a.*,b.jabatan,c.kode_lembaga');
+		$this->db->from('tbl_karyawan a');
+		$this->db->join('tbl_jabatan b','a.jabatan_id = b.id_jabatan');
+		$this->db->join('tbl_lembaga c','b.lembaga_id = c.id_lembaga');
+		return $this->db->get()->result();
 	}
 
 }

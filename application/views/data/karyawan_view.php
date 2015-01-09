@@ -15,25 +15,28 @@
 	                        	<th>No</th>
                                 <th>NIK</th>
                                 <th>Nama</th>
-                                <th>Phone</th>
+                                <th>Telepon</th>
+                                <th>Lembaga</th>
                                 <th>Jabatan</th>
 	                            <th width="120">Aksi</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
+							<?php $no = 1; foreach($karyawan as $row){?>
 	                        <tr>
-	                        	<td>1</td>
-	                        	<td>201110225043</td>
-	                        	<td>Danu Mahendra</td>
-	                        	<td>+6287781042439</td>
-                                <td>SuperAdmin</td>
+	                        	<td><?php echo $no;?></td>
+	                        	<td><?php echo $row->nik;?></td>
+	                        	<td><?php echo $row->nama;?></td>
+	                        	<td><?php echo $row->hp;?></td>
+                                <td><?php echo $row->kode_lembaga;?></td>
+                                <td><?php echo $row->jabatan;?></td>
 	                        	<td class="td-actions">
 									<a class="btn btn-small btn-success" href="#"><i class="btn-icon-only icon-ok"> </i></a>
 									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/karyawan/del_karyawan/<?php echo $row->id_kary;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
-	                      
+							<?php $no++; } ?>
 	                    </tbody>
 	               	</table>
 				</div>
@@ -47,64 +50,85 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">FORM DATA</h4>
+                <h4 class="modal-title">Tambah Data Karyawan</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post" enctype="multipart/form-data">
+            <form class ='form-horizontal' action="<?php echo base_url();?>data/karyawan/save_karyawan" method="post" enctype="multipart/form-data">
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
                         <label class="control-label">NIK</label>
                         <div class="controls">
-                            <input type="text" class="span4" name="jabatan" placeholder="Input NIK" class="form-control" value="" required/>
+                            <input type="text" class="span4" name="nik" placeholder="Input NIK" class="form-control" value="" required/>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Name</label>
+                        <label class="control-label">Nama</label>
                         <div class="controls">
-                            <input type="text" class="span4" name="jabatan" placeholder="Input Name" class="form-control" value="" required/>
+                            <input type="text" class="span4" name="nama" placeholder="Input Nama" class="form-control" value="" required/>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Gender</label>
+                        <label class="control-label">Jenis Kelamin</label>
                         <div class="controls">
                             <label class="radio inline">
-                                <input type="radio" name="radiobtns" value="p"/>
-                                Man
+                                <input type="radio" name="jk" value="P"/>
+                                Pria
                             </label>
                             <label class="radio inline">
-                                <input type="radio" name="radiobtns" value="w"/>
-                                Woman
+                                <input type="radio" name="jk" value="W"/>
+                                Wanita
                             </label>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Phone</label>
+                        <label class="control-label">Telepon</label>
                         <div class="controls">
-                            +62 ( <input type="text" class="span3" name="jabatan" placeholder="Input Phone" class="form-control" value="" required/> ) 
+                            +62 ( <input type="text" class="span3" name="telepon" placeholder="Input Telepon" class="form-control" value="" required/> ) 
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Email</label>
                         <div class="controls">
-                            <input type="text" class="span4" name="jabatan" placeholder="Input Email" class="form-control" value="" required/>
+                            <input type="text" class="span4" name="email" placeholder="Input Email" class="form-control" value="" required/>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Address</label>
+                        <label class="control-label">Alamat</label>
                         <div class="controls">
-                            <textarea class="span4" name="jabatan" placeholder="Input Address" class="form-control" value="" required></textarea>
+                            <textarea class="span4" name="alamat" placeholder="Input Alamat" class="form-control" value="" required></textarea>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Images</label>
+                        <label class="control-label">Foto</label>
                         <div class="controls">
-                            <input type="file" class="span4" name="userfile" class="form-control" required/>
+                            <input type="file" class="span4" name="foto" class="form-control" required/>
+                        </div>
+                    </div>
+					<script>
+					$(document).ready(function(){
+					$('#lembaga').change(function(){
+					$.post('<?php echo base_url();?>data/karyawan/get_listjab/'+$(this).val(),{},function(get){
+					$('#jabatan').html(get);
+					});
+					});
+					});
+					</script>
+					</script>
+					<div class="control-group" id="">
+                        <label class="control-label">Lembaga</label>
+                        <div class="controls">
+                            <select class="span4" name="lembaga" id="lembaga" class="form-control" value="" required>
+                                <option> -- </option>
+								<?php foreach($lembaga as $row){?>
+								<option value="<?php echo $row->id_lembaga;?>"><?php echo $row->kode_lembaga;?></option>
+								<?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Position</label>
+                        <label class="control-label">Jabatan</label>
                         <div class="controls">
-                            <select class="span4" name="jabatan" class="form-control" value="" required>
-                                <option> -- Choose -- </option>
+                            <select class="span4" name="jabatan" id="jabatan" class="form-control" value="" required>
+                               
                             </select>
                         </div>
                     </div>
@@ -112,19 +136,19 @@
                         <label class="control-label">Status</label>
                         <div class="controls">
                             <label class="radio inline">
-								<input type="radio" name="radiobtns" value="1"/>
-								Active
+								<input type="radio" name="status" value="1"/>
+								Aktif
 							</label>
 							<label class="radio inline">
-								<input type="radio" name="radiobtns" value="0"/>
-								Not
+								<input type="radio" name="status" value="0"/>
+								Tidak Aktif
 							</label>
                         </div>
                     </div>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Save changes"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->

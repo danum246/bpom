@@ -55,7 +55,7 @@
 			
 			<div class="login-fields">
 				
-				<p>Please provide your details account</p>
+				<p>Please provide your details</p>
 				
 				<div class="field">
 					<label for="username">Username</label>
@@ -72,7 +72,7 @@
 			<div class="login-actions">
 				
 				<span class="login-checkbox">
-					<input id="Field" name="keep" type="checkbox" class="field login-checkbox" value="1" tabindex="4" />
+					<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="1" tabindex="4" />
 					<label class="choice" for="Field">Keep me signed in</label>
 				</span>
 									

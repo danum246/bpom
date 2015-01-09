@@ -22,7 +22,6 @@ class auth extends CI_Controller {
 				$session['nik'] = $row->nik;
 				$session['username'] = $row->username;
 				$session['id_user'] = $row->id_user;
-				$session['keep'] = $this->input->post('keep');
 				$this->session->set_userdata('sess_login',$session);
 				$this->index();
 			}

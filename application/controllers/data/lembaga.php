@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class karyawan extends CI_Controller {
+class lembaga extends CI_Controller {
 
 	function __construct()
 	{
@@ -12,9 +12,10 @@ class karyawan extends CI_Controller {
 
 	function index()
 	{	
-		$data['karyawan'] = $this->app_model->get_karyawan();
+		$data['kelurahan'] = $this->app_model->get_kelurahan();
+		$data['kabupaten'] = $this->app_model->get_kabupaten();
 		$data['lembaga'] = $this->app_model->get_lembaga();
-		$data['page'] = 'data/karyawan_view';
+		$data['page'] = 'data/lembaga_view';
 		$this->load->view('template',$data);
 	}
 	
@@ -53,10 +54,35 @@ class karyawan extends CI_Controller {
 		document.location.href='".base_url()."data/karyawan';</script>";
 	}
 	
-	function del_karyawan($id){
-		$this->app_model->deletedata('tbl_karyawan','id_kary',$id);
+	function save_lembaga(){
+		if($this->input->post('level')==1){
+		$data = array(
+		'kode_lembaga'	=> $this->input->post('kode'),
+		'lembaga'		=> $this->input->post('lembaga'),
+		'level'			=> $this->input->post('level'),
+		'kelurahan_id'	=> $this->input->post('kelurahan'),
+		'kabupaten_id'	=> $this->input->post('kabupaten'),
+		'pusat'			=> 1
+		);
+		}else{
+		$data = array(
+		'kode_lembaga'	=> $this->input->post('kode'),
+		'lembaga'		=> $this->input->post('lembaga'),
+		'level'			=> $this->input->post('level'),
+		'kelurahan_id'	=> $this->input->post('kelurahan'),
+		'kabupaten_id'	=> $this->input->post('kabupaten'),
+		'pusat'			=> 0
+		);
+		}
+		$this->db->insert('tbl_lembaga',$data);
 		echo "<script>alert('Berhasil');
-		document.location.href='".base_url()."data/karyawan';</script>";
+		document.location.href='".base_url()."data/lembaga';</script>";
+	}
+	
+	function del_lembaga($id){
+		$this->app_model->deletedata('tbl_lembaga','id_lembaga',$id);
+		echo "<script>alert('Berhasil');
+		document.location.href='".base_url()."data/lembaga';</script>";
 	}
 
 }
