@@ -9,7 +9,7 @@ class karyawan extends CI_Controller {
 		 	redirect('auth','refresh');
 		}
 	}
-
+	//tete
 	function index()
 	{
 		$data['page'] = 'data/karyawan_view';
