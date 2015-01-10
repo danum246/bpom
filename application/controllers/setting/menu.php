@@ -52,7 +52,13 @@ class menu extends CI_Controller {
 
 	function update()
 	{
-		
+
+	}
+
+	function list_icon()
+	{
+		$data['page'] = 'extra/icon';
+		$this->load->view('template',$data);
 	}
 
 }
