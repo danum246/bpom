@@ -13,7 +13,7 @@ class login_model extends CI_Model {
 		$this->db->where('a.password', sha1(md5($pass).key));
 		$this->db->where('a.status', 1);
 		$this->db->where('b.status', 1);
-
+		
 		$q = $this->db->get();
 		return $q;
 	}

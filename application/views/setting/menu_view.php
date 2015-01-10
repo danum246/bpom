@@ -66,18 +66,18 @@
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Icon</label>
+                        <label class="control-label">Logo</label>
                         <div class="controls">
                             <input type="text" class="span4" name="icon" placeholder="Icon" class="form-control" required/>
                             <a href="<?php echo base_url();?>setting/menu/list_icon" target="blank">List Icon</a>
                         </div>
                     </div>
                     <div class="control-group" id="">
-                        <label class="control-label">Parent Menu</label>
+                        <label class="control-label">Menu Utama</label>
                         <div class="controls">
                             <select class="span4" name="parent" class="form-control" required>
-                                <option> -- Choose -- </option>
-                                <option value="0"> -- Parent -- </option>
+                                <option> -- Pilih -- </option>
+                                <option value="0"> -- Utama -- </option>
                                  <?php foreach ($menu as $row) { if($row->parent_menu == 0) { ?>
                             	 <option value="<?php echo $row->id_menu;?>"> <?php echo $row->menu?> </option>
                                 <?php }} ?>
