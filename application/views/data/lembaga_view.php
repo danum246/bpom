@@ -71,6 +71,7 @@
                         </div>
                     </div>
 					<script>
+					$(document).ready(function(){
 					$('#kabupaten').hide();
 					$('#kelurahan').hide();
 					
@@ -87,6 +88,7 @@
 					$('#puskesmas').click(function(){
 					$('#kabupaten').hide();
 					$('#kelurahan').show();
+					});
 					});
 					</script>
                     <div class="control-group" id="">
@@ -117,7 +119,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="control-group" id="Kelurahan">
+                    <div class="control-group" id="kelurahan">
                         <label class="control-label">Kelurahan</label>
                         <div class="controls">
                             <select class="span4" name="kelurahan" id="kelurahan" class="form-control" value="" required>
