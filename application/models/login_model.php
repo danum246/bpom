@@ -23,7 +23,7 @@ class login_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tbl_menu a');
 		$this->db->join('tbl_role_access b', 'a.id_menu = b.menu_id');
-		$this->db->join('tbl_karyawan c', 'b.jabatan_id = c.jabatan_id');
+		$this->db->join('tbl_karyawan c', 'b.lembaga_id = c.lembaga_id');
 		$this->db->where('a.parent_menu', 0);
 		$this->db->where('c.nik', $nik);
 		$this->db->order_by('a.menu', 'asc');
@@ -39,7 +39,7 @@ class login_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tbl_menu a');
 		$this->db->join('tbl_role_access b', 'a.id_menu = b.menu_id');
-		$this->db->join('tbl_karyawan c', 'b.jabatan_id = c.jabatan_id');
+		$this->db->join('tbl_karyawan c', 'b.lembaga_id = c.lembaga_id');
 		$this->db->where('a.parent_menu', $id);
 		$this->db->where('c.nik', $nik);
 

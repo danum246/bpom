@@ -16,6 +16,20 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_bppom` /*!40100 DEFAULT CHARACTER SE
 
 USE `db_bppom`;
 
+/*Table structure for table `tbl_gejala` */
+
+DROP TABLE IF EXISTS `tbl_gejala`;
+
+CREATE TABLE `tbl_gejala` (
+  `id_gejala` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_gejala` varchar(50) NOT NULL,
+  `gejala` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kd_gejala`),
+  KEY `id_gejala` (`id_gejala`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_gejala` */
+
 /*Table structure for table `tbl_jabatan` */
 
 DROP TABLE IF EXISTS `tbl_jabatan`;
@@ -44,7 +58,7 @@ CREATE TABLE `tbl_kabupaten` (
 
 /*Data for the table `tbl_kabupaten` */
 
-insert  into `tbl_kabupaten`(`id_kabupaten`,`kabupaten_kota`,`provinsi_id`) values (1,'Jakarta_Timur',1);
+insert  into `tbl_kabupaten`(`id_kabupaten`,`kabupaten_kota`,`provinsi_id`) values (1,'Jakarta Timur',1);
 
 /*Table structure for table `tbl_karyawan` */
 
@@ -83,6 +97,26 @@ CREATE TABLE `tbl_kecamatan` (
 
 insert  into `tbl_kecamatan`(`id_kecamatan`,`kecamatan`,`kabupaten_id`) values (1,'Matraman',1);
 
+/*Table structure for table `tbl_keluhan_pasien` */
+
+DROP TABLE IF EXISTS `tbl_keluhan_pasien`;
+
+CREATE TABLE `tbl_keluhan_pasien` (
+  `id_keluhan` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_keluhan` varchar(100) NOT NULL,
+  `pasien` varchar(100) NOT NULL,
+  `tgl_kejadian` date NOT NULL,
+  `waktu_awal` datetime NOT NULL,
+  `waktu_terjadi` datetime NOT NULL,
+  `kd_gejala` varchar(100) NOT NULL COMMENT 'isian ny array . ex: 1,2,3,4',
+  `alamat` text,
+  `lembaga_id` int(11) NOT NULL,
+  PRIMARY KEY (`kd_keluhan`),
+  KEY `id_keluhan` (`id_keluhan`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_keluhan_pasien` */
+
 /*Table structure for table `tbl_kelurahan` */
 
 DROP TABLE IF EXISTS `tbl_kelurahan`;
@@ -112,11 +146,11 @@ CREATE TABLE `tbl_lembaga` (
   `pusat` int(11) NOT NULL COMMENT '1 = yes , 0 = no',
   PRIMARY KEY (`kode_lembaga`),
   KEY `id_lembaga` (`id_lembaga`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_lembaga` */
 
-insert  into `tbl_lembaga`(`id_lembaga`,`kode_lembaga`,`lembaga`,`level`,`kelurahan_id`,`kabupaten_id`,`pusat`) values (1,'BPOM','Badan Pengawas Obat Dan Makanan',1,NULL,NULL,1);
+insert  into `tbl_lembaga`(`id_lembaga`,`kode_lembaga`,`lembaga`,`level`,`kelurahan_id`,`kabupaten_id`,`pusat`) values (1,'BPOM-Super','Badan Pengawas Obat Dan Makanan',1,NULL,NULL,1);
 
 /*Table structure for table `tbl_menu` */
 
@@ -149,6 +183,37 @@ CREATE TABLE `tbl_provinsi` (
 
 insert  into `tbl_provinsi`(`id_provinsi`,`provinsi`) values (1,'Jakarta');
 
+/*Table structure for table `tbl_racun` */
+
+DROP TABLE IF EXISTS `tbl_racun`;
+
+CREATE TABLE `tbl_racun` (
+  `id_racun` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_racun` varchar(50) NOT NULL,
+  `racun` varchar(100) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `inkubasi_rata` int(11) DEFAULT NULL,
+  `inkubasi_pendek` int(11) DEFAULT NULL,
+  `inkubasi_tinggi` int(11) DEFAULT NULL,
+  PRIMARY KEY (`kd_racun`),
+  KEY `id_racun` (`id_racun`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_racun` */
+
+/*Table structure for table `tbl_racun_gejala` */
+
+DROP TABLE IF EXISTS `tbl_racun_gejala`;
+
+CREATE TABLE `tbl_racun_gejala` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_racun` varchar(50) DEFAULT NULL,
+  `kd_gejala` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_racun_gejala` */
+
 /*Table structure for table `tbl_role_access` */
 
 DROP TABLE IF EXISTS `tbl_role_access`;
@@ -156,13 +221,13 @@ DROP TABLE IF EXISTS `tbl_role_access`;
 CREATE TABLE `tbl_role_access` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(11) NOT NULL,
-  `jabatan_id` int(11) NOT NULL,
+  `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_role`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_role_access` */
 
-insert  into `tbl_role_access`(`id_role`,`menu_id`,`jabatan_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(15,14,1),(16,15,1),(17,16,1),(18,17,1),(19,18,1);
+insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(15,14,1),(16,15,1),(17,16,1),(18,17,1),(19,18,1);
 
 /*Table structure for table `tbl_user_login` */
 
