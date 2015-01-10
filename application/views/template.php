@@ -23,7 +23,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">BPOM </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="#">E-Monev KLB Keracunan Pangan </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -92,7 +92,7 @@
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span12"> &copy; <?php echo date('Y'); ?> - <a target="_blank" href="http://www.pom.go.id/">Badan Pengawasan Obat dan Makanan</a>. </div>
+        <div class="span12"> &copy; <?php echo date('Y'); ?> - <a target="_blank" href="http://www.pom.go.id/">Direktorat Jenderal PP dan PL</a>. </div>
         <!-- /span12 --> 
       </div>
       <!-- /row --> 
