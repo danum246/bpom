@@ -7,6 +7,8 @@ class login_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tbl_user_login a');
 		$this->db->join('tbl_karyawan b', 'a.nik = b.nik');
+		$this->db->join('tbl_jabatan c', 'b.jabatan_id = c.id_jabatan');
+		$this->db->join('tbl_lembaga d', 'c.lembaga_id = d.id_lembaga');
 		$this->db->where('a.username', $user);
 		$this->db->where('a.password', sha1(md5($pass).key));
 		$this->db->where('a.status', 1);
