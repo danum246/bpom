@@ -163,11 +163,11 @@ CREATE TABLE `tbl_menu` (
   `parent_menu` int(11) NOT NULL,
   `icon` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_menu`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_menu` */
 
-insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (1,'Dashboard','dashboard',0,'icon-home '),(2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',3,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','-',0,'icon-fire '),(14,'Provinsi','#',13,NULL),(15,'Kabupaten/Kota','#',13,NULL),(16,'Kecamatan','#',13,NULL),(17,'Kelurahan','#',13,NULL),(18,'Lembaga','#',7,NULL);
+insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (1,'Dashboard','dashboard',0,'icon-home '),(2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',3,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','-',3,NULL),(20,'Gejala','#',7,NULL),(19,'Racun','#',7,NULL),(18,'Lembaga','#',7,NULL);
 
 /*Table structure for table `tbl_provinsi` */
 
@@ -223,11 +223,11 @@ CREATE TABLE `tbl_role_access` (
   `menu_id` int(11) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_role_access` */
 
-insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(15,14,1),(16,15,1),(17,16,1),(18,17,1),(19,18,1);
+insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(19,18,1),(20,19,1),(21,20,1);
 
 /*Table structure for table `tbl_user_login` */
 
