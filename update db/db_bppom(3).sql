@@ -39,11 +39,11 @@ CREATE TABLE `tbl_jabatan` (
   `jabatan` varchar(100) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_jabatan`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_jabatan` */
 
-insert  into `tbl_jabatan`(`id_jabatan`,`jabatan`,`lembaga_id`) values (1,'Superadmin',1);
+insert  into `tbl_jabatan`(`id_jabatan`,`jabatan`,`lembaga_id`) values (1,'Superadmin',1),(3,'baru',3),(4,'Operator',4);
 
 /*Table structure for table `tbl_kabupaten` */
 
@@ -76,11 +76,11 @@ CREATE TABLE `tbl_karyawan` (
   `pictures` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`nik`),
   KEY `id_kary` (`id_kary`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_karyawan` */
 
-insert  into `tbl_karyawan`(`id_kary`,`nik`,`nama`,`alamat`,`hp`,`email`,`jabatan_id`,`status`,`pictures`) values (1,'201110225043','danu','matraman','+6287781042439','danum246@gmail.com',1,1,NULL);
+insert  into `tbl_karyawan`(`id_kary`,`nik`,`nama`,`alamat`,`hp`,`email`,`jabatan_id`,`status`,`pictures`) values (1,'201110225043','Superadmin','matraman','+6287781042439','danum246@gmail.com',1,1,NULL),(2,'11111111111','Danu Mahendra','alamat','+621212121212','email@email.com',3,1,NULL),(3,'213897281947','Fata Aisy Salim','alamat','+621212121212','email@email.com',4,1,NULL);
 
 /*Table structure for table `tbl_kecamatan` */
 
@@ -146,11 +146,11 @@ CREATE TABLE `tbl_lembaga` (
   `pusat` int(11) NOT NULL COMMENT '1 = yes , 0 = no',
   PRIMARY KEY (`kode_lembaga`),
   KEY `id_lembaga` (`id_lembaga`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_lembaga` */
 
-insert  into `tbl_lembaga`(`id_lembaga`,`kode_lembaga`,`lembaga`,`level`,`kelurahan_id`,`kabupaten_id`,`pusat`) values (1,'BPOM-Super','Badan Pengawas Obat Dan Makanan',1,NULL,NULL,1),(3,'Puskesmas','Puskesmas',3,1,1,0);
+insert  into `tbl_lembaga`(`id_lembaga`,`kode_lembaga`,`lembaga`,`level`,`kelurahan_id`,`kabupaten_id`,`pusat`) values (1,'BPOM-Super','Badan Pengawas Obat Dan Makanan',1,NULL,NULL,1),(3,'Puskesmas','Puskesmas',3,1,1,0),(4,'DK-Jaktim','Dinas Kesehatan Jakarta Timur',2,0,1,0);
 
 /*Table structure for table `tbl_menu` */
 
@@ -167,7 +167,7 @@ CREATE TABLE `tbl_menu` (
 
 /*Data for the table `tbl_menu` */
 
-insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (1,'Dashboard','dashboard',0,'icon-home '),(2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',3,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','-',3,NULL),(20,'Gejala','data/gejala',7,NULL),(19,'Racun','data/racun',7,NULL),(18,'Lembaga','data/lembaga',7,NULL),(24,'apapapapa','',3,NULL);
+insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',7,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','setting/region',3,NULL),(20,'Gejala','data/gejala',7,NULL),(19,'Racun','data/racun',7,NULL),(18,'Lembaga','data/lembaga',7,NULL),(24,'apapapapa','',3,NULL);
 
 /*Table structure for table `tbl_provinsi` */
 
@@ -223,11 +223,11 @@ CREATE TABLE `tbl_role_access` (
   `menu_id` int(11) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_role_access` */
 
-insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(19,18,1),(20,19,1),(21,20,1);
+insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(10,9,1),(11,10,1),(12,11,1),(13,12,1),(14,13,1),(24,9,4),(23,2,3),(19,18,1),(20,19,1),(21,20,1);
 
 /*Table structure for table `tbl_user_login` */
 
@@ -241,11 +241,11 @@ CREATE TABLE `tbl_user_login` (
   `nik` varchar(50) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1 = aktif , 0 = tidak',
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_user_login` */
 
-insert  into `tbl_user_login`(`id_user`,`username`,`password`,`password_plain`,`nik`,`status`) values (1,'admin','8dcc4d9a7d48fc06c0bdf66b295699bb1f0829ff','admin','201110225043',1);
+insert  into `tbl_user_login`(`id_user`,`username`,`password`,`password_plain`,`nik`,`status`) values (1,'admin','8dcc4d9a7d48fc06c0bdf66b295699bb1f0829ff','admin','201110225043',1),(4,'admin-pkm','4b024ea6d105498e1b261507edff2f482ffd1660','123456','11111111111',1),(5,'admin-dk','4b024ea6d105498e1b261507edff2f482ffd1660','123456','213897281947',1);
 
 /*Table structure for table `view_daerah` */
 
