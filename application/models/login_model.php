@@ -46,7 +46,6 @@ class login_model extends CI_Model {
 		$this->db->join('tbl_karyawan d', 'c.id_jabatan = d.jabatan_id');
 		$this->db->where('a.parent_menu', $id);
 		$this->db->where('b.lembaga_id', $lembaga);
-
 		$q = $this->db->get();
 		return $q;	
 	}

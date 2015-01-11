@@ -47,6 +47,7 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
+        <li class="active" ><a href="<?php echo base_url();?>dashboard"><i class="icon-home"></i><span >Dashboard</span> </a>
         <?php $q = $this->login_model->getparentmenu()->result(); foreach ($q as $menu) { if (($menu->url) == '-') { ?>
             <li class="dropdown active"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
         <?php } elseif (($menu->url) == '#') { ?>

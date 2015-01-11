@@ -89,7 +89,6 @@
 												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
-				                      
 				                    </tbody>
 				               	</table>
 							</div>
@@ -119,8 +118,7 @@
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
-				                        </tr>
-				                      
+				                        </tr>		                      
 				                    </tbody>
 				               	</table>
 							</div>
@@ -131,3 +129,151 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="myProv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FORM DATA</h4>
+            </div>
+            <form class ='form-horizontal' action="#" method="post">
+                <div class="modal-body" style="margin-left: -60px;">    
+                    <div class="control-group" id="">
+                        <label class="control-label">Provinsi</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="provinsi" placeholder="Input Provinsi" class="form-control" required/>
+                        </div>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myKota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FORM DATA</h4>
+            </div>
+            <form class ='form-horizontal' action="#" method="post">
+                <div class="modal-body">    
+                    <div class="control-group" id="">
+                        <label class="control-label">Kabupaten / Kota</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="kota" placeholder="Input Kota" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Provinsi</label>
+                        <div class="controls">
+                            <select class="span4" name="provinsi" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myCamat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FORM DATA</h4>
+            </div>
+            <form class ='form-horizontal' action="#" method="post">
+                <div class="modal-body">    
+                    <div class="control-group" id="">
+                        <label class="control-label">Kecamatan</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="camat" placeholder="Input Kecamatan" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Provinsi</label>
+                        <div class="controls">
+                            <select class="span4" name="provinsi" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Kabupaten / Kota</label>
+                        <div class="controls">
+                            <select class="span4" name="kota" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myLurah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FORM DATA</h4>
+            </div>
+            <form class ='form-horizontal' action="#" method="post">
+                <div class="modal-body">    
+                    <div class="control-group" id="">
+                        <label class="control-label">Kelurahan</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="camat" placeholder="Input Kelurahan" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Provinsi</label>
+                        <div class="controls">
+                            <select class="span4" name="provinsi" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Kabupaten / Kota</label>
+                        <div class="controls">
+                            <select class="span4" name="kota" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Kecamatan</label>
+                       <div class="controls">
+                            <select class="span4" name="camat" class="form-control" required>
+                                <option> -- Pilih -- </option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
