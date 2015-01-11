@@ -14,7 +14,7 @@
 	                        <tr> 
 	                        	<th>No</th>
 	                        	<th>Lembaga</th>
-                                <th width="120"></th>
+                                <th width="40">Aksi</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -23,8 +23,7 @@
 	                        	<td><?php echo $no ;?></td>
 	                        	<td><?php echo $row->kode_lembaga ;?></td>
 	                        	<td class="td-actions">
-									<a data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
-									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+									<a data-toggle="modal" class="btn btn-small btn-success" href="#edit"><i class="btn-icon-only icon-ok"> </i></a>
 								</td>
 	                        </tr>
                             <?php $no++; } ?>   
@@ -78,15 +77,15 @@
                     </div>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Save changes"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -111,12 +110,12 @@
                                     <input type="checkbox" name="" value="">
                                 </td>
                             </tr>
-                          
                         </tbody>
                     </table>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->
