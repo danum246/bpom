@@ -15,36 +15,36 @@
 					<div class="tab-content">
 						<div class="tab-pane active" id="formcontrols">
 							<b><center>LAPORAN KEWASPADAAN KERACUNAN PANGAN</center></b><br>
-							<form id="edit-profile" class="form-horizontal" method="post" action="#">
+							<form id="edit-profile" class="form-horizontal" method="post" action="<?php echo base_url();?>form/form01/save_n_gen">
 								<fieldset>
 									<div class="control-group  pull-right" style="margin-right:100px;">											
 										<label class="control-label">No : </label>
 										<div class="controls">
-											<input type="text" style="text-align:center;" class="span3 disable" id="" placeholder="Pelapor" value="PPL/2015/MTR/01/0001" disabled>
+											<input type="text" style="text-align:center;" name="kode" class="span3 disable" id="" placeholder="Pelapor" value="PPL-<?php echo date('Y');?>-MTR-<?php echo date('m');?>-<?php echo $count;?>" readonly>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Pelapor</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Pelapor" value="">
+											<input type="text" class="span4" id="" name="pelapor" placeholder="Pelapor" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
-									<div class="control-group">											
+									<!--div class="control-group">											
 										<label class="control-label">No Tlp</label>
 										<div class="controls">
 											<input type="text" class="span4" id="" placeholder="Tlp" value="">
 										</div> <!-- /controls -->				
-									</div> <!-- /control-group -->
+									<!--/div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Alamat</label>
 										<div class="controls">
-											<textarea class="span4" id="" placeholder="Alamat" value=""></textarea>
+											<textarea class="span4" id="" name="alamat" placeholder="Alamat" value=""></textarea>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
-										<label class="control-label">Waktu Kejadian</label>
+										<label class="control-label">Waktu Awal Kejadian</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="dd/mm/yyyy hh:ii" value="">
+											<input type="text" class="span4" id="" name="tgl_kejadian" placeholder="dd/mm/yyyy" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="span12">
@@ -55,49 +55,69 @@
 											<div class="control-group">											
 										<label class="control-label">Lokasi</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Lokasi" value="">
+											<input type="text" class="span4" id="" name="lokasi" placeholder="Lokasi" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Kelurahan</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Kelurahan" value="">
+											<select name="kelurahan">
+											<option></option>
+											<?php foreach($kelurahan as $kel){?>
+											<option value="<?php echo $kel->id_kelurahan;?>"><?php echo $kel->kelurahan;?></option>
+											<?php } ?>
+											</select>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Kecamatan</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Kecamatan" value="">
+											<select name="kecamatan">
+											<option></option>
+											<?php foreach($kecamatan as $kec){?>
+											<option value="<?php echo $kec->id_kecamatan;?>"><?php echo $kec->kecamatan;?></option>
+											<?php } ?>
+											</select>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Kabupaten / Kota</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Kabupaten / Kota" value="">
+											<select name="kabupaten">
+											<option></option>
+											<?php foreach($kabupaten as $kab){?>
+											<option value="<?php echo $kab->id_kabupaten;?>"><?php echo $kab->kabupaten_kota;?></option>
+											<?php } ?>
+											</select>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Provinsi</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Provinsi" value="">
+											<select name="provinsi">
+											<option></option>
+											<?php foreach($provinsi as $pro){?>
+											<option value="<?php echo $pro->id_provinsi;?>"><?php echo $pro->provinsi;?></option>
+											<?php } ?>
+											</select>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">Pangan Dugaan Penyebab</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" placeholder="Dugaan" value="">
+											<input type="text" class="span4" id="" name="dugaan_pangan" placeholder="Dugaan" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">a. Jumlah Korban Sakit</label>
 										<div class="controls">
-											<input type="text" class="span3" id="" placeholder="Sakit" value=""> orang
+											<input type="text" class="span3" id="" name="pas_skt" placeholder="Sakit" value=""> orang
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label">b. Jumlah Korban Meninggal</label>
 										<div class="controls">
-											<input type="text" class="span3" id="" placeholder="Meninggal" value=""> orang
+											<input type="text" class="span3" id="" name="pas_mgl" placeholder="Meninggal" value=""> orang
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 										</div>
@@ -106,22 +126,20 @@
 											<label class="control-label">Gejala</label>
 	                                        <div class="controls">
 	                                        	<table>
+													<tr>
+													<?php $no = 1; foreach($gejala as $gej){?>
+	                                        			<td><input type="checkbox" name="gejala<?php echo $no;?>" value="<?php echo $gej->kd_gejala;?>" style="margin-top:-2px">&nbsp;<span style=""><?php echo $gej->gejala;?></span>&nbsp;</td>
+	                                        		<?php
+													if($no%4==0){?>
+													</tr>
+													<tr>
+													<?php } $no++; }  ?>
+													</tr>
 	                                        		<tr>
-	                                        			<td><input type="checkbox"> Opt 01 </td>
-	                                        			<td><input type="checkbox"> Opt 02 </td>
-	                                        			<td><input type="checkbox"> Opt 03 </td>
-	                                        			<td><input type="checkbox"> Opt 04 </td>
+	                                        			<!--td><input type="checkbox" name="lain" id="lain"> Lainnya</td-->
+	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Lainnya" value="" name="lainnya"></td>
 	                                        		</tr>
-	                                        		<tr>
-	                                        			<td><input type="checkbox"> Opt 05 </td>
-	                                        			<td><input type="checkbox"> Opt 06 </td>
-	                                        			<td><input type="checkbox"> Opt 07 </td>
-	                                        			<td><input type="checkbox"> Opt 08 </td>
-	                                        		</tr>
-	                                        		<tr>
-	                                        			<td><input type="checkbox"> Lainnya</td>
-	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Lainnya" value=""></td>
-	                                        		</tr>
+													<input type="hidden" name="grow" value="<?php echo $no-1;?>">
 	                                        	</table>
 	                                        </div>		<!-- /controls -->		
 										</div> <!-- /control-group -->
@@ -142,29 +160,28 @@
 				                	<thead>
 				                        <tr> 
 				                        	<th>No</th>
+				                        	<th>Kode Keluhan</th>
 				                        	<th>Tanggal</th>
 				                        	<th>Nama Pelapor</th>
 				                        	<th>Lokasi</th>
-				                        	<th>Kelurahan</th>
-				                        	<th>Kecamatan</th>
 			                                <th width="120"></th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+										<?php $no = 1; foreach($keluhan as $row){?>
 				                        <tr>
-				                        	<td>PPL/2015/MTR/01/0001</td>
-				                        	<td>05-01-2015</td>
-				                        	<td>Danu</td>
-				                        	<td>Jakarta</td>
-				                        	<td>Palmeriam</td>
-				                        	<td>Matraman</td>
+				                        	<td><?php echo $no;?></td>
+				                        	<td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>"><?php echo $row->kd_keluhan;?></a></td>
+				                        	<td><?php echo $row->tgl_laporan;?></td>
+				                        	<td><?php echo $row->pelapor;?></td>
+				                        	<td><?php echo $row->lokasi;?></td>
 				                        	<td class="td-actions">
 												<a  data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
-				                      
+										<?php $no++; } ?>
 				                    </tbody>
 				               	</table>
 							</div>

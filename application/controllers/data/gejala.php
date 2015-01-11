@@ -12,7 +12,24 @@ class gejala extends CI_Controller {
 
 	function index()
 	{	
+		$data['gejala'] = $this->db->get('tbl_gejala')->result();
 		$data['page'] = 'data/gejala_view';
 		$this->load->view('template',$data);
+	}
+	
+	function save_gejala(){
+		$data = array(
+		'kd_gejala'	=> $this->input->post('kode'),
+		'gejala'	=> $this->input->post('gejala')
+		);
+		$this->db->insert('tbl_gejala',$data);
+		echo "<script>alert('Sukses');
+		document.location.href='".base_url()."data/gejala';</script>";
+	}
+	
+	function del_gejala($id){
+		$this->app_model->deletedata('tbl_gejala','id_gejala',$id);
+		echo "<script>alert('Berhasil');
+		document.location.href='".base_url()."data/gejala';</script>";
 	}
 }
