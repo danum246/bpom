@@ -46,6 +46,7 @@ class form01 extends CI_Controller {
 		$data_gjl[] = 'GL-'.$countgl;
 		}
 		$kd_gjl = implode(', ',$data_gjl);
+		$kode = $this->input->post('kode');
 		$data = array(
 		'kd_keluhan'		=> $this->input->post('kode'),
 		'pelapor'			=> $this->input->post('pelapor'),
@@ -84,7 +85,7 @@ class form01 extends CI_Controller {
 			}
 			}
 		}	
-		redirect('form/form01/result/',$this->input->post('kode'));
+		redirect('form/form01/result/'.$kode);
 	}
 	
 	function result($kode){
