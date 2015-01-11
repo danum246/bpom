@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="<?php echo base_url();?>assets/js/jquery-ui/css/ui-lightness/jquery-ui-1.9.2.custom.css">
+<script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script>
+$(function() {
+$( "#datepicker" ).datepicker({ dateFormat:'yy-mm-dd' });
+});
+</script>
 <div class="row">
   	<div class="span12">      		
   		<div class="widget ">
@@ -44,7 +51,7 @@
 									<div class="control-group">											
 										<label class="control-label">Waktu Awal Kejadian</label>
 										<div class="controls">
-											<input type="text" class="span4" id="" name="tgl_kejadian" placeholder="dd/mm/yyyy" value="">
+											<input type="text" class="span4" id="datepicker" name="tgl_kejadian" placeholder="Waktu Kejadian" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="span12">
@@ -164,7 +171,7 @@
 				                        	<th>Tanggal</th>
 				                        	<th>Nama Pelapor</th>
 				                        	<th>Lokasi</th>
-			                                <th width="120"></th>
+			                                <th width="120">Aksi</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
@@ -178,7 +185,8 @@
 				                        	<td class="td-actions">
 												<a  data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+												<a class="btn btn-danger btn-small" onclick="return confirm('Apakah Anda Yakin?')" href="<?php echo base_url();?>form/form01/del_keluhan/<?php echo $row->kd_keluhan;?>">
+												<i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
 										<?php $no++; } ?>
