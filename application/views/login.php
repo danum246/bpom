@@ -23,25 +23,16 @@
 	
 	<div class="navbar navbar-fixed-top">
 	
-	<div class="navbar-inner">
+		<div class="navbar-inner">
 		
-		<div class="container">
-			
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			
-			<a class="brand">
-				BPOM				
-			</a>	
-	
-		</div> <!-- /container -->
+			<div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+	                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="#"><img src="<?php echo base_url();?>assets/logo.png" style="width:30px;float:left;margin-top:-8px;margin-bottom:-13px">
+						<span style="margin-left:10px;line-height:-15px">E-Monev KLB Keracunan Pangan</span></a>
+	    	</div> <!-- /container -->
 		
-	</div> <!-- /navbar-inner -->
-	
-</div> <!-- /navbar -->
+		</div> <!-- /navbar-inner -->
+		
+	</div> <!-- /navbar -->
 
 
 

@@ -13,21 +13,20 @@
 	                	<thead>
 	                        <tr> 
 	                        	<th>No</th>
-	                        	<th>Jabatan</th>
-                                <th width="120"></th>
+	                        	<th>Lembaga</th>
+                                <th width="40">Aksi</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
+                            <?php $no = 1; foreach ($lembaga as $row) { ?>
 	                        <tr>
-	                        	<td>1</td>
-	                        	<td>Superadmin</td>
+	                        	<td><?php echo $no ;?></td>
+	                        	<td><?php echo $row->kode_lembaga ;?></td>
 	                        	<td class="td-actions">
-									<a  data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
-									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+									<a data-toggle="modal" class="btn btn-small btn-success" href="#edit"><i class="btn-icon-only icon-ok"> </i></a>
 								</td>
 	                        </tr>
-	                      
+                            <?php $no++; } ?>   
 	                    </tbody>
 	               	</table>
 				</div>
@@ -43,35 +42,50 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+
+            <script language="javascript">
+                $(document).ready(function() {
+                    $("#lembaga").change(function() {
+                        $.post("<?php echo base_url(); ?>setting/role/list_menu/" + $('#lembaga').val(), {}, function(obj) {
+                            $('#menu').html(obj);
+                        });
+                    });
+                });
+            </script>
+
+            <form class ='form-horizontal' action="<?php echo base_url();?>setting/role/save" method="post">
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
-                        <label class="control-label">Position</label>
+                        <label class="control-label">Lembaga</label>
                         <div class="controls">
-                            <select class="span4" name="jabatan" class="form-control" value="" required>
-                            	<option> -- Choose -- </option>
+                            <select class="span4" name="lembaga" id="lembaga" class="form-control" required>
+                            	<option> -- Pilih -- </option>
+                                <?php foreach ($lembaga as $row) { ?>
+                                    <option value="<?php echo $row->id_lembaga; ?>"> <?php echo $row->kode_lembaga; ?> </option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Menu</label>
                         <div class="controls">
-                            <select class="span4" name="menu" class="form-control" value="" required>
+                            <select class="span4" name="menu" id="menu" class="form-control" required>
                                 <option> -- Choose -- </option>
                             </select>
+                            <p>* = Parent Menu</p>
                         </div>
                     </div>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Save changes"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -96,12 +110,12 @@
                                     <input type="checkbox" name="" value="">
                                 </td>
                             </tr>
-                          
                         </tbody>
                     </table>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->
