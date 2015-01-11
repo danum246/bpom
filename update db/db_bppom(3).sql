@@ -167,7 +167,7 @@ CREATE TABLE `tbl_menu` (
 
 /*Data for the table `tbl_menu` */
 
-insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (1,'Dashboard','dashboard',0,'icon-home '),(2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',3,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','-',3,NULL),(20,'Gejala','data/gejala',7,NULL),(19,'Racun','data/racun',7,NULL),(18,'Lembaga','#',7,NULL),(24,'apapapapa','',3,NULL);
+insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (1,'Dashboard','dashboard',0,'icon-home '),(2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','setting/jabatan',3,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','-',3,NULL),(20,'Gejala','data/gejala',7,NULL),(19,'Racun','data/racun',7,NULL),(18,'Lembaga','data/lembaga',7,NULL),(24,'apapapapa','',3,NULL);
 
 /*Table structure for table `tbl_provinsi` */
 
