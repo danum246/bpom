@@ -26,7 +26,7 @@
 	                        	<td><?php echo $row->racun;?></td>
 	                        	<td><?php echo $row->jml_row;?></td>
 	                        	<td><?php echo $row->jml_identifikasi;?></td>
-                                <td><?php echo $row->jml_identifikasi/$totrow*100;?>&nbsp; %</td>
+                                <td><?php echo number_format($row->jml_identifikasi/$totrow*100,2);?>&nbsp; %</td>
 	                        </tr>
 							<?php $no++; } ?>
 	                    </tbody>
