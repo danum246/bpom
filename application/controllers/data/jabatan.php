@@ -15,7 +15,7 @@ class jabatan extends CI_Controller {
 	{
 		$data['lembaga'] = $this->app_model->get_lembaga();
 		$data['jabatan'] = $this->app_model->get_jabatan();
-		$data['page'] = 'setting/jabatan_view';
+		$data['page'] = 'data/jabatan_view';
 		$this->load->view('template',$data);
 	}
 	
@@ -26,13 +26,13 @@ class jabatan extends CI_Controller {
 		);
 		$this->app_model->insertdata('tbl_jabatan',$data);
 		echo "<script>alert('Sukses');
-		document.location.href='".base_url()."/setting/jabatan';</script>";
+		document.location.href='".base_url()."data/jabatan';</script>";
 	}
 	
 	function del_jabatan($id){
 		$this->app_model->deletedata('tbl_jabatan','id_jabatan',$id);
 		echo "<script>alert('Sukses');
-		document.location.href='".base_url()."setting/jabatan'</script>";
+		document.location.href='".base_url()."data/jabatan'</script>";
 	}
 
 }

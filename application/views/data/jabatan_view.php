@@ -27,7 +27,7 @@
 	                        	<td class="td-actions">
 									<!--a class="btn btn-small btn-success" href="#"><i class="btn-icon-only icon-ok"> </i></a-->
 									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/jabatan/del_jabatan/<?php echo $row->id_jabatan;?>"><i class="btn-icon-only icon-remove"> </i></a>
+									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/jabatan/del_jabatan/<?php echo $row->id_jabatan;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
 							<?php } ?>
@@ -47,7 +47,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="<?php echo base_url();?>setting/jabatan/save_jabatan" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url();?>data/jabatan/save_jabatan" method="post">
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
                         <label class="control-label">Jabatan</label>

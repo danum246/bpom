@@ -24,7 +24,7 @@
 	                        	<td><?php echo $row->gejala;?></td>
 	                        	<td class="td-actions">
 									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/gejala/del_gejala/<?php echo $row->id_gejala;?>"><i class="btn-icon-only icon-remove"> </i></a>
+									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>master/gejala/del_gejala/<?php echo $row->id_gejala;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
 							<?php $no++;} ?>
@@ -43,7 +43,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Tambah Data Gejala</h4>
             </div>
-            <form class ='form-horizontal' action="<?php echo base_url();?>data/gejala/save_gejala" method="post" enctype="multipart/form-data">
+            <form class ='form-horizontal' action="<?php echo base_url();?>master/gejala/save_gejala" method="post" enctype="multipart/form-data">
                 <div class="modal-body" style="margin-left: -60px;">  
 					<div class="control-group" id="">
                         <label class="control-label">Kode Gejala</label>

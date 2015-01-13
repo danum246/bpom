@@ -38,7 +38,7 @@ return implode(', ',$data);
 	                        	<td class="td-actions">
 									<a class="btn btn-small btn-success" href="#"><i class="btn-icon-only icon-ok"> </i></a>
 									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/racun/del_racun/<?php echo $row->kd_racun;?>"><i class="btn-icon-only icon-remove"> </i></a>
+									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>master/racun/del_racun/<?php echo $row->kd_racun;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
 							<?php $no++;} ?>
@@ -57,7 +57,7 @@ return implode(', ',$data);
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Tambah Data Racun</h4>
             </div>
-            <form class ='form-horizontal' action="<?php echo base_url();?>data/racun/save_racun" method="post" enctype="multipart/form-data">
+            <form class ='form-horizontal' action="<?php echo base_url();?>master/racun/save_racun" method="post" enctype="multipart/form-data">
                 <div class="modal-body">  
 					<div class="control-group" id="">
                         <label class="control-label">Kode Racun</label>
