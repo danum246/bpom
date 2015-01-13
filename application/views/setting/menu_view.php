@@ -31,7 +31,7 @@
                                 <?php } ?>
 	                        	<td><?php echo $row->icon; ?> </td>
 	                        	<td class="td-actions">
-									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+									<a class="btn btn-primary btn-small" href="<?php echo base_url();?>setting/menu/edit/<?php echo $row->id_menu; ?>"><i class="btn-icon-only icon-pencil"> </i></a>
 									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/menu/delete/<?php echo $row->id_menu; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>

@@ -30,6 +30,16 @@ class pangan extends CI_Controller {
 		}
 	}
 
+	function delete($id)
+	{
+		$delete = $this->app_model->deletedata('tbl_pangan','id_pangan',$id);
+		if ($delete == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."master/pangan';</script>";
+		} else {
+			echo "<script>alert('Gagal Hapus Data');history.go(-1);</script>";
+		}
+	}
+
 }
 
 /* End of file pangan.php */
