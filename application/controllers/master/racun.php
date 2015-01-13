@@ -14,7 +14,7 @@ class racun extends CI_Controller {
 	{	
 		$data['racun'] = $this->db->get('tbl_racun')->result();
 		$data['gejala'] = $this->db->get('tbl_gejala')->result();
-		$data['page'] = 'data/racun_view';
+		$data['page'] = 'master/racun_view';
 		$this->load->view('template',$data);
 	}
 	
@@ -40,7 +40,7 @@ class racun extends CI_Controller {
 			}
 		}
 		echo "<script>alert('Sukses');
-		document.location.href='".base_url()."data/racun';</script>";
+		document.location.href='".base_url()."master/racun';</script>";
 	}
 	
 	function del_racun($id){
@@ -49,6 +49,6 @@ class racun extends CI_Controller {
 		$this->db->where('kd_racun',$id);
 		$this->db->delete('tbl_racun_gejala');
 		echo "<script>alert('Berhasil');
-		document.location.href='".base_url()."data/racun';</script>";
+		document.location.href='".base_url()."master/racun';</script>";
 	}
 }
