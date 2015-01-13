@@ -22,19 +22,20 @@
 				                        <tr> 
 				                        	<th>No</th>
 				                        	<th>Provinsi</th>
-			                                <th width="80"></th>
+			                                <th width="80">Aksi</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+                                        <?php $no = 1; foreach ($provinsi as $row) { ?>  
 				                        <tr>
-				                        	<td>1</td>
-				                        	<td>DKI Jakarta</td>
+				                        	<td><?php echo $no; ?></td>
+				                        	<td><?php echo $row->provinsi; ?></td>
 				                        	<td class="td-actions">
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_prov/<?php echo $row->id_provinsi; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
-				                      
+				                        <? $no++; } ?>
 				                    </tbody>
 				               	</table>
 							</div>
@@ -48,19 +49,22 @@
 				                        	<th>No</th>
 				                        	<th>Kabupaten / Kota</th>
 				                        	<th>Provinsi</th>
-			                                <th width="80"></th>
+			                                <th width="80">Aksi</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+                                        <?php $no = 1; foreach ($kabupaten as $row) { ?>
 				                        <tr>
-				                        	<td>1</td>
-				                        	<td>Jakarta Timur</td>
-				                        	<td>DKI Jakarta</td>
+				                        	<td><?php echo $no; ?></td>
+				                        	<td><?php echo $row->kabupaten_kota; ?></td>
+                                            <?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$row->provinsi_id,'id_provinsi','asc')->row(); ?>
+				                        	<td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kab/<?php echo $row->id_kabupaten; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
+                                        <? $no++; } ?>
 				                    </tbody>
 				               	</table>
 							</div>
@@ -75,20 +79,24 @@
 				                        	<th>Kecamatan</th>
 				                        	<th>Kabupaten/Kota</th>
 				                        	<th>Provinsi</th>
-			                                <th width="80"></th>
+			                                <th width="80">Aksi</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+                                        <?php $no = 1; foreach ($kecamatan as $row) { ?>
 				                        <tr>
-				                        	<td>1</td>
-				                        	<td>Matraman</td>
-				                        	<td>Jakarta Timur</td>
-				                        	<td>DKI Jakarta</td>
+				                        	<td><?php echo $no; ?></td>
+				                        	<td><?php echo $row->kecamatan; ?></td>
+				                        	<?php $kab = $this->app_model->getdetail('tbl_kabupaten','id_kabupaten',$row->kabupaten_id,'id_kabupaten','asc')->row(); ?>
+                                            <td><?php echo $kab->kabupaten_kota; ?></td>
+				                        	<?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$kab->provinsi_id,'id_provinsi','asc')->row(); ?>
+                                            <td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kec/<?php echo $row->id_kecamatan; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
+                                        <? $no++; } ?>
 				                    </tbody>
 				               	</table>
 							</div>
@@ -108,17 +116,22 @@
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+                                        <?php $no = 1; foreach ($kelurahan as $row) { ?>
 				                        <tr>
-				                        	<td>1</td>
-				                        	<td>Palmeriam</td>
-				                        	<td>Matraman</td>
-				                        	<td>Jakarta Timur</td>
-				                        	<td>DKI Jakarta</td>
+				                        	<td><?php echo $no; ?></td>
+				                        	<td><?php echo $row->kelurahan; ?></td>
+				                        	<?php $kec = $this->app_model->getdetail('tbl_kecamatan','id_kecamatan',$row->kecamatan_id,'id_kecamatan','asc')->row(); ?>
+                                            <td><?php echo $kec->kecamatan; ?></td>
+				                        	<?php $kab = $this->app_model->getdetail('tbl_kabupaten','id_kabupaten',$kec->kabupaten_id,'id_kabupaten','asc')->row(); ?>
+                                            <td><?php echo $kab->kabupaten_kota; ?></td>
+                                            <?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$kab->provinsi_id,'id_provinsi','asc')->row(); ?>
+                                            <td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" href="#"><i class="btn-icon-only icon-remove"> </i></a>
+												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kel/<?php echo $row->id_kelurahan; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
-				                        </tr>		                      
+				                        </tr>		
+                                        <? $no++; } ?>                      
 				                    </tbody>
 				               	</table>
 							</div>
@@ -130,6 +143,26 @@
 	</div>
 </div>
 
+<script>
+$(document).ready(function() {
+    $("#prov").change(function() {
+        $.post("<?php echo base_url(); ?>setting/getchangedata/getkabupaten/" + $('#prov').val(), {}, function(obj) {
+            $('#kab').html(obj);
+        });
+    });
+   $("#prov1").change(function() {
+        $.post("<?php echo base_url(); ?>setting/getchangedata/getkabupaten/" + $('#prov1').val(), {}, function(obj) {
+            $('#kab1').html(obj);
+        });
+    });
+    $("#kab1").change(function() {
+        $.post("<?php echo base_url(); ?>setting/getchangedata/getkecamatan/" + $('#kab1').val(), {}, function(obj) {
+            $('#kec').html(obj);
+        });
+    });
+});
+</script>
+
 <div class="modal fade" id="myProv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -137,7 +170,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>setting/region/save_prov" method="post">
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
                         <label class="control-label">Provinsi</label>
@@ -162,7 +195,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>setting/region/save_kab" method="post">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Kabupaten / Kota</label>
@@ -175,6 +208,9 @@
                         <div class="controls">
                             <select class="span4" name="provinsi" class="form-control" required>
                                 <option> -- Pilih -- </option>
+                                <?php foreach ($provinsi as $row) {
+                                    echo "<option value='".$row->id_provinsi."'> ".$row->provinsi." </option>";
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -195,7 +231,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>setting/region/save_kec" method="post">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Kecamatan</label>
@@ -206,15 +242,18 @@
                     <div class="control-group" id="">
                         <label class="control-label">Provinsi</label>
                         <div class="controls">
-                            <select class="span4" name="provinsi" class="form-control" required>
+                            <select class="span4" name="provinsi" id="prov" class="form-control" required>
                                 <option> -- Pilih -- </option>
+                                <?php foreach ($provinsi as $row) {
+                                    echo "<option value='".$row->id_provinsi."'> ".$row->provinsi." </option>";
+                                } ?>
                             </select>
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Kabupaten / Kota</label>
                         <div class="controls">
-                            <select class="span4" name="kota" class="form-control" required>
+                            <select class="span4" name="kota" id="kab" class="form-control" required>
                                 <option> -- Pilih -- </option>
                             </select>
                         </div>
@@ -236,26 +275,29 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>setting/region/save_kel" method="post">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Kelurahan</label>
                         <div class="controls">
-                            <input type="text" class="span4" name="camat" placeholder="Input Kelurahan" class="form-control" required/>
+                            <input type="text" class="span4" name="lurah" placeholder="Input Kelurahan" class="form-control" required/>
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Provinsi</label>
                         <div class="controls">
-                            <select class="span4" name="provinsi" class="form-control" required>
+                            <select class="span4" name="provinsi" id="prov1" class="form-control" required>
                                 <option> -- Pilih -- </option>
+                                <?php foreach ($provinsi as $row) {
+                                    echo "<option value='".$row->id_provinsi."'> ".$row->provinsi." </option>";
+                                } ?>
                             </select>
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Kabupaten / Kota</label>
                         <div class="controls">
-                            <select class="span4" name="kota" class="form-control" required>
+                            <select class="span4" name="kota" id="kab1" class="form-control" required>
                                 <option> -- Pilih -- </option>
                             </select>
                         </div>
@@ -263,7 +305,7 @@
                     <div class="control-group" id="">
                         <label class="control-label">Kecamatan</label>
                        <div class="controls">
-                            <select class="span4" name="camat" class="form-control" required>
+                            <select class="span4" name="camat" id="kec" class="form-control" required>
                                 <option> -- Pilih -- </option>
                             </select>
                         </div>
