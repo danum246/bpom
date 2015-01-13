@@ -69,6 +69,17 @@ class app_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	function getlistmenu($id){
+		$this->db->where('lembaga_id', $id);
+		$getmenu = $this->db->get('tbl_role_access')->result();
+		foreach ($getmenu as $row) {
+			$menu[] = $row->menu_id;
+		}
+		$this->db->where_not_in('id_menu', $menu);
+		$q = $this->db->get('tbl_menu');
+		return $q;
+	}
+
 }
 
 /* End of file app_model.php */

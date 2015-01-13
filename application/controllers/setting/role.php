@@ -20,7 +20,8 @@ class role extends CI_Controller {
 	function list_menu($id)
 	{
 		$tmp = '';
-		$list = $this->app_model->getdetail('view_role','lembaga_id !=',$id,'menu','asc')->result();
+		$list = $this->app_model->getlistmenu($id)->result();
+		
 		if (!empty($list)) {
             $tmp .= "<option value=''> -- Pilih -- </option>";
             foreach ($list as $row) {
