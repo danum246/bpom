@@ -1,3 +1,24 @@
+<link rel="stylesheet" href="<?php echo base_url();?>assets/js/jquery-ui/css/ui-lightness/jquery-ui-1.9.2.custom.css">
+<script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script>
+$(function() {
+  $( "#from" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 2,
+    onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+    }
+  });
+  $( "#to" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 2,
+    onClose: function( selectedDate ) {
+      $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+});
+</script>
+
 <div class="row">
   <div class="span12">
     <div class="widget">
@@ -12,13 +33,13 @@
             <div class="control-group pull-right" style="margin-right:270px;">                     
               <label class="control-label">TO</label>
               <div class="controls">
-                <input type="text" class="span3" id="" placeholder="From" value="">
+                <input type="text" class="span3" id="to" placeholder="TO" value="">
               </div> <!-- /controls -->       
             </div> <!-- /control-group -->
             <div class="control-group">                     
               <label class="control-label">FROM</label>
               <div class="controls">
-                <input type="text" class="span3" id="" placeholder="To" value="">
+                <input type="text" class="span3" id="from" placeholder="FROM" value="">
               </div> <!-- /controls -->       
             </div> <!-- /control-group -->
             <div class="form-actions" style="margin-bottom: -30px;">
