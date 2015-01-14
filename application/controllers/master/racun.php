@@ -12,6 +12,7 @@ class racun extends CI_Controller {
 
 	function index()
 	{	
+		$data['organ'] = $this->db->get('tbl_organ')->result();
 		$data['racun'] = $this->db->get('tbl_racun')->result();
 		$data['gejala'] = $this->db->get('tbl_gejala')->result();
 		$data['page'] = 'master/racun_view';
@@ -23,6 +24,7 @@ class racun extends CI_Controller {
 		'kd_racun'		=> $this->input->post('kode'),
 		'racun'			=> $this->input->post('racun'),
 		'keterangan'	=> $this->input->post('ket'),
+		'organ_id'		=> $this->input->post('organ'),
 		'inkubasi_rata'	=> $this->input->post('in_rat'),
 		'inkubasi_pendek'=> $this->input->post('in_min'),
 		'inkubasi_tinggi'=> $this->input->post('in_max')

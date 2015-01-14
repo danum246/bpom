@@ -11,22 +11,35 @@ class form01 extends CI_Controller {
 	}
 
 	function index()
-	{	
-		//var_dump($this->session->all_userdata());exit;
-		$data['keluhan']   = $this->db->get('tbl_keluhan_pasien')->result();
-		$data['kelurahan'] = $this->db->get('tbl_kelurahan')->result();
+	{	$this->db->select('a.*,b.nama as pelapor');
+		$this->db->from('tbl_resume_keluhan a');
+		$this->db->join('tbl_karyawan b','a.nik_pelapor = b.nik');
+		$data['keluhan']   = $this->db->get()->result();
+		$data['organ'] = $this->db->get('tbl_organ')->result();
+		/*$data['kelurahan'] = $this->db->get('tbl_kelurahan')->result();
 		$data['kecamatan'] = $this->db->get('tbl_kecamatan')->result();
 		$data['kabupaten'] = $this->db->get('tbl_kabupaten')->result();
-		$data['provinsi']  = $this->db->get('tbl_provinsi')->result();
+		$data['provinsi']  = $this->db->get('tbl_provinsi')->result();*/
 		$data['gejala']    = $this->db->get('tbl_gejala')->result();
 		$this->db->select('count(*) as total');
-		$this->db->from('tbl_keluhan_pasien');
+		$this->db->where('flag',1);
+		$this->db->from('tbl_resume_keluhan');
 		$data['count'] = (int)$this->db->get()->row()->total+1;
+		// Cek Status Kejadian
+		$check_kejadian = $this->db->query("select count(*) as total from tbl_resume_keluhan where flag = 0")->row()->total;
+		if($check_kejadian == 0){
+		$data['page'] = 'form/add_kejadian_form01_view';
+		$this->load->view('template',$data);
+		}else{
+		$this->db->select('kd_keluhan');
+		$this->db->where('flag',0);
+		$data['kode'] = $this->db->get('tbl_resume_keluhan')->row()->kd_keluhan;
 		$data['page'] = 'form/form01_view';
 		$this->load->view('template',$data);
+		}
 	}
 	
-	function save_n_gen(){
+	/*function save_n_gen(){
 		$sesslog = $this->session->userdata('sess_login');
 		if($this->input->post('lainnya')!=""){
 		$countgl = (int)$this->db->query("select count(*) as total from tbl_gejala where kd_gejala like 'GL-%'")->row()->total+1;
@@ -86,12 +99,13 @@ class form01 extends CI_Controller {
 			}
 		}	
 		redirect('form/form01/result/'.$kode);
-	}
+	}*/
 	
 	function result($kode){
-		$sql = "select a.*,b.racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where a.kd_keluhan = '$kode'";
-		$data['result'] = $this->db->query($sql)->result();
-		$data['totrow'] = $this->db->query("select sum(jml_row) as jml_row from tbl_analisa where kd_keluhan = '$kode'")->row()->jml_row;
+		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
+		$data['racun'] = $sql->result();
+		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
+		$data['kode'] = $kode;
 		$data['page'] = 'form/result_form01_view';
 		$this->load->view('template',$data);
 	}
@@ -99,6 +113,89 @@ class form01 extends CI_Controller {
 	function del_keluhan($kode){
 		$this->app_model->deletedata('tbl_keluhan_pasien','id_keluhan',$kode);
 		$this->app_model->deletedata('tbl_analisa','kd_keluhan',$kode);
+		echo "<script>alert('Sukses');
+		document.location.href='".base_url()."form/form01';</script>";
+	}
+	
+	function generate_result(){
+		$this->db->select('kd_keluhan,total_pasien');
+		$this->db->where('flag',0);
+		$tbl = $this->db->get('tbl_resume_keluhan')->row();
+		$kode = $tbl->kd_keluhan;
+		$totpas = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan = '$kode'")->row()->total;
+		$racun = $this->db->query("SELECT a . * , b.organ_id FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
+		foreach($racun as $row){
+		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_gejala like '%".$row->kd_gejala."%' and organ_id = '".$row->organ_id."'")->row()->total;
+		if($count!=0){
+		$data = array(
+		'kd_keluhan'	=> $kode,
+		'kd_racun'		=> $row->kd_racun,
+		'kd_gejala'		=> $row->kd_gejala,
+		'organ_id'		=> $row->organ_id,
+		'total_pasien'	=> $totpas,
+		'jml_identifikasi' => $count,
+		'persentase'	=> number_format($count/$totpas*100,2)
+		);
+		$this->db->insert('tbl_analisa',$data);
+		}
+		}
+		$this->db->query("update tbl_resume_keluhan set flag = 1 where kd_keluhan = '$kode'");
+		$this->db->query("update tbl_keluhan_pasien set flag = 1 where kd_keluhan = '$kode'");
+		redirect('form/form01/result/'.$kode);
+	}
+	
+	function save_kejadian(){
+		$sess = $this->session->userdata('sess_login');
+		//var_dump($sess);exit;
+		$data = array(
+		'kd_keluhan'		=> $this->input->post('kode'),
+		'nama_kejadian'		=> $this->input->post('kejadian'),
+		'nik_pelapor'		=> $sess['nik'],
+		'waktu_lapor'		=> date('Y-m-d h:i:s'),
+		'gejala_umum'		=> $this->input->post('gejala_umum'),
+		'total_pasien'		=> (int) $this->input->post('ps_normal')+(int) $this->input->post('ps_sakit')+(int) $this->input->post('ps_meninggal'),
+		'total_normal'		=> (int) $this->input->post('ps_normal'),
+		'total_sakit'		=> (int) $this->input->post('ps_sakit'),
+		'total_meninggal'	=> (int) $this->input->post('ps_meninggal'),
+		'lembaga_id'		=> $sess['lembaga_id'],
+		'flag'				=> 0
+		);
+		$this->db->insert('tbl_resume_keluhan',$data);
+		redirect('form/form01');
+	}
+	
+	function save_keluhan(){
+		$sess = $this->session->userdata('sess_login');
+		if($this->input->post('lainnya')!=""){
+		$countgl = (int)$this->db->query("select count(*) as total from tbl_gejala where kd_gejala like 'GL-%'")->row()->total+1;
+		$data = array(
+		'kd_gejala'		=> 'GL-'.$countgl,
+		'gejala'		=> $this->input->post('lainnya')
+		);
+		$this->db->insert('tbl_gejala',$data);
+		}
+		$grow = (int)$this->input->post('grow');
+		for($no=1;$no<=$grow;$no++){
+		if($this->input->post('gejala'.$no)){
+		$data_gjl[] = $this->input->post('gejala'.$no);
+		}
+		}
+		if($this->input->post('lainnya')!=""){
+		$data_gjl[] = 'GL-'.$countgl;
+		}
+		$kd_gjl = implode(',',$data_gjl);
+		$data = array(
+		'pasien'		=> $this->input->post('pasien'),
+		'waktu_awal'	=> $this->input->post('awal_kejadian')." ".$this->input->post('h_awal').":".$this->input->post('m_awal'),
+		'waktu_terjadi'	=> $this->input->post('mulai_kejadian')." ".$this->input->post('h_kej').":".$this->input->post('m_kej'),
+		'kd_gejala'		=> $kd_gjl,
+		'organ_id'		=> $this->input->post('organ'),
+		'lokasi'		=> $this->input->post('lokasi'),
+		'kd_keluhan'	=> $this->input->post('kode'),
+		'lembaga_id'	=> $sess['lembaga_id'],
+		'flag'			=> 0
+		);
+		$this->db->insert('tbl_keluhan_pasien',$data);
 		echo "<script>alert('Sukses');
 		document.location.href='".base_url()."form/form01';</script>";
 	}

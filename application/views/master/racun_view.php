@@ -77,6 +77,17 @@ return implode(', ',$data);
                             <input type="text" class="span3" name="ket" placeholder="Input Keterangan" class="form-control" value="" required/>
                         </div>
                     </div>
+					<div class="control-group" id="">
+                        <label class="control-label">Organ Terlibat</label>
+                        <div class="controls">
+                            <select name="organ">
+							<option></option>
+							<?php foreach($organ as $row){?>
+							<option value="<?php echo $row->id_organ;?>"><?php echo $row->organ_terlibat;?></option>
+							<?php } ?>
+							</select>
+                        </div>
+                    </div>
                     <div class="control-group" id="">
                         <label class="control-label">Inkubasi Rata<sup>2</sup></label>
                         <div class="controls">

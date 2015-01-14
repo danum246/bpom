@@ -1,3 +1,11 @@
+<?php
+function persentase($racun,$totrow,$kode){
+	$sql = mysql_query("select count(*) as total from tbl_analisa where kd_racun = '$racun' and kd_keluhan = '$kode' and persentase >=50");
+	$row = mysql_fetch_array($sql);
+	$jml_row = $row['total'];
+	return number_format($jml_row/$totrow*100,2);
+}
+?>
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
@@ -13,20 +21,18 @@
 	                	<thead>
 	                        <tr> 
 	                        	<th>No</th>
-                                <th>Racun</th>
-                                <th>Total Gejala</th>
-                                <th>Gejala Teridentifikasi</th>
-                                <th>Nilai Persentase</th>
+                                <th>Kode Racun</th>
+                                <th>Nama Racun</th>
+                                <th>Persentase Kemungkinan Racun</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-							<?php $no = 1; foreach($result as $row){?>
+							<?php $no = 1; foreach($racun as $row){?>
 	                        <tr>
 	                        	<td><?php echo $no;?></td>
+	                        	<td><?php echo $row->kd_racun;?></td>
 	                        	<td><?php echo $row->racun;?></td>
-	                        	<td><?php echo $row->jml_row;?></td>
-	                        	<td><?php echo $row->jml_identifikasi;?></td>
-                                <td><?php echo number_format($row->jml_identifikasi/$totrow*100,2);?>&nbsp; %</td>
+                                <td><?php echo persentase($row->kd_racun,$totrow,$kode);?>&nbsp; %</td>
 	                        </tr>
 							<?php $no++; } ?>
 	                    </tbody>
