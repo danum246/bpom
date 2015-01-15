@@ -30,7 +30,7 @@
 									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/jabatan/del_jabatan/<?php echo $row->id_jabatan;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
-							<?php } ?>
+							<?php $no++;} ?>
 	                      
 	                    </tbody>
 	               	</table>
