@@ -1,3 +1,23 @@
+<?php
+function show_gjl($kode){
+$gjl = explode(',',$kode);
+$gjl_length = sizeof($gjl);
+for($no = 0; $no<=$gjl_length-1; $no++){
+$sql = mysql_query("select gejala from tbl_gejala where kd_gejala = '".$gjl[$no]."'");
+$row = mysql_fetch_array($sql);
+$gejala[] = $row['gejala'];
+}
+return implode(', ',$gejala);
+}
+date_default_timezone_set('asia/jakarta');
+$hour = array('01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24');
+$min = array('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25',
+			 '26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50',
+			 '51','52','53','54','55','56','57','58','59');
+$lhour = sizeof($hour);
+$lmin = sizeof($min);
+
+?>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/js/jquery-ui/css/ui-lightness/jquery-ui-1.9.2.custom.css">
 <script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 <script>
@@ -6,15 +26,7 @@ $( "#date_1" ).datepicker({ dateFormat:'yy-mm-dd' });
 $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 });
 </script>
-<?php
-date_default_timezone_set('asia/jakarta');
-$hour = array('01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24');
-$min = array('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25',
-			 '26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50',
-			 '51','52','53','54','55','56','57','58','59');
-$lhour = sizeof($hour);
-$lmin = sizeof($min);
-?>
+
 <div class="row">
   	<div class="span12">      		
   		<div class="widget ">
@@ -218,7 +230,7 @@ $lmin = sizeof($min);
 				                        	<td><?php echo $row->nama_kejadian;?></td>
 				                        	<td><?php echo $row->waktu_lapor;?></td>
 				                        	<td><?php echo $row->pelapor;?></td>
-				                        	<td><?php echo $row->gejala_umum;?></td>
+				                        	<td><?php echo show_gjl($row->gejala_umum);?></td>
 				                        	<td class="td-actions">
 												<a  data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>

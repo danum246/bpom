@@ -12,6 +12,7 @@ class form01 extends CI_Controller {
 
 	function index()
 	{	$this->db->select('a.*,b.nama as pelapor');
+		$this->db->where('flag',1);
 		$this->db->from('tbl_resume_keluhan a');
 		$this->db->join('tbl_karyawan b','a.nik_pelapor = b.nik');
 		$data['keluhan']   = $this->db->get()->result();
@@ -104,6 +105,8 @@ class form01 extends CI_Controller {
 	function result($kode){
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
+		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
+		//die($data['gejala_umum']);
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
 		$data['kode'] = $kode;
 		$data['page'] = 'form/result_form01_view';
@@ -124,7 +127,7 @@ class form01 extends CI_Controller {
 		$kode = $tbl->kd_keluhan;
 		$totpas = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan = '$kode'")->row()->total;
 		$racun = $this->db->query("SELECT a . * , b.organ_id FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
-		foreach($racun as $row){
+		foreach($racun as $row){ 
 		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_gejala like '%".$row->kd_gejala."%' and organ_id = '".$row->organ_id."'")->row()->total;
 		if($count!=0){
 		$data = array(
@@ -139,7 +142,12 @@ class form01 extends CI_Controller {
 		$this->db->insert('tbl_analisa',$data);
 		}
 		}
-		$this->db->query("update tbl_resume_keluhan set flag = 1 where kd_keluhan = '$kode'");
+		$gejala_umum = $this->db->query("select distinct(kd_gejala)as kd_gejala from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->result();
+		foreach($gejala_umum as $row){
+		$gejala[] = $row->kd_gejala;
+		}
+		$gu = implode(',',$gejala);
+		$this->db->query("update tbl_resume_keluhan set flag = 1,gejala_umum = '$gu' where kd_keluhan = '$kode'");
 		$this->db->query("update tbl_keluhan_pasien set flag = 1 where kd_keluhan = '$kode'");
 		redirect('form/form01/result/'.$kode);
 	}
@@ -152,11 +160,11 @@ class form01 extends CI_Controller {
 		'nama_kejadian'		=> $this->input->post('kejadian'),
 		'nik_pelapor'		=> $sess['nik'],
 		'waktu_lapor'		=> date('Y-m-d h:i:s'),
-		'gejala_umum'		=> $this->input->post('gejala_umum'),
-		'total_pasien'		=> (int) $this->input->post('ps_normal')+(int) $this->input->post('ps_sakit')+(int) $this->input->post('ps_meninggal'),
-		'total_normal'		=> (int) $this->input->post('ps_normal'),
-		'total_sakit'		=> (int) $this->input->post('ps_sakit'),
-		'total_meninggal'	=> (int) $this->input->post('ps_meninggal'),
+		//'gejala_umum'		=> $this->input->post('gejala_umum'),
+		'total_pasien'		=> 0,
+		'total_normal'		=> 0,
+		'total_sakit'		=> 0,
+		'total_meninggal'	=> 0,
 		'lembaga_id'		=> $sess['lembaga_id'],
 		'flag'				=> 0
 		);

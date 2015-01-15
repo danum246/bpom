@@ -50,30 +50,30 @@ $( "#datepicker" ).datepicker({ dateFormat:'yy-mm-dd' });
 												<input type="text" class="span4" id="" name="kejadian" placeholder="Nama Kejadian" value="">
 											</div> <!-- /controls -->				
 										</div>
-									<div class="control-group">											
+									<!--div class="control-group">											
 										<label class="control-label">Gejala Umum</label>
 										<div class="controls">
 											<textarea class="span4" id="" name="gejala_umum" placeholder="Gejala Umum" value=""></textarea>
 										</div> <!-- /controls -->				
-									</div>
+									<!--/div>
 									<div class="control-group">											
 										<label class="control-label">Pasien Normal</label>
 										<div class="controls">
 											<input type="text" class="span4"  name="ps_normal" placeholder="Pasien Normal" value=""> Orang
 										</div> <!-- /controls -->				
-									</div>
+									<!--/div>
 									<div class="control-group">											
 										<label class="control-label">Pasien Sakit</label>
 										<div class="controls">
 											<input type="text" class="span4"  name="ps_sakit" placeholder="Pasien Sakit" value=""> Orang
 										</div> <!-- /controls -->				
-									</div>
+									<!--/div>
 									<div class="control-group">											
 										<label class="control-label">Pasien Meninggal</label>
 										<div class="controls">
 											<input type="text" class="span4"  name="ps_meninggal" placeholder="Pasien Meninggal" value=""> Orang
 										</div> <!-- /controls -->				
-									</div>
+									<!--/div-->
 									
 										</div>
 										

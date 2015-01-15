@@ -5,6 +5,17 @@ function persentase($racun,$totrow,$kode){
 	$jml_row = $row['total'];
 	return number_format($jml_row/$totrow*100,2);
 }
+
+function show_gjl($kode){
+$gjl = explode(',',$kode);
+$gjl_length = sizeof($gjl);
+for($no = 0; $no<=$gjl_length-1; $no++){
+$sql = mysql_query("select gejala from tbl_gejala where kd_gejala = '".$gjl[$no]."'");
+$row = mysql_fetch_array($sql);
+$gejala[] = $row['gejala'];
+}
+return implode(', ',$gejala);
+}
 ?>
 <div class="row">
 	<div class="span12">      		  		
@@ -35,6 +46,10 @@ function persentase($racun,$totrow,$kode){
                                 <td><?php echo persentase($row->kd_racun,$totrow,$kode);?>&nbsp; %</td>
 	                        </tr>
 							<?php $no++; } ?>
+							<tr>
+	                        	<th>Gejala Umum</th>
+	                        	<td colspan=3><?php echo show_gjl($gjl_umum);?></td>
+	                        </tr>
 	                    </tbody>
 	               	</table>
 				</div>
