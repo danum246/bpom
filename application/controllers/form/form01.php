@@ -114,8 +114,10 @@ class form01 extends CI_Controller {
 	}
 	
 	function del_keluhan($kode){
-		$this->app_model->deletedata('tbl_keluhan_pasien','id_keluhan',$kode);
+	//die($kode);
+		$this->app_model->deletedata('tbl_keluhan_pasien','kd_keluhan',$kode);
 		$this->app_model->deletedata('tbl_analisa','kd_keluhan',$kode);
+		$this->app_model->deletedata('tbl_resume_keluhan','kd_keluhan',$kode);
 		echo "<script>alert('Sukses');
 		document.location.href='".base_url()."form/form01';</script>";
 	}
