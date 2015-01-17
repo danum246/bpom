@@ -25,7 +25,7 @@
 	                        	<td><?php echo $row->pangan;?></td>
 	                        	<td><?php echo $row->keterangan;?></td>
 	                        	<td class="td-actions">
-									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+									<a class="btn btn-primary btn-small" href="<?php echo base_url();?>master/pangan/edit/<?php echo $row->id_pangan;?>"><i class="btn-icon-only icon-pencil"> </i></a>
 									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>master/pangan/delete/<?php echo $row->id_pangan;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
