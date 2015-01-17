@@ -72,8 +72,9 @@ textarea {
 .navbar-inner {
 	padding: 7px 0;
 	
-	background: #00ba8b !important;
-	
+	background: #4682B4 !important;
+	/*background: #00ba8b !important;*/
+
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;

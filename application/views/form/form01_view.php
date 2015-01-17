@@ -38,11 +38,8 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 				<div class="tabbable">
 					<ul class="nav nav-tabs">
 					  <li class="active"><a href="#formcontrols" data-toggle="tab">Form</a></li>
-					  <li><a href="#data" data-toggle="tab">Data</a></li>
-					  <li><a href="#report" data-toggle="tab">Report</a></li>
 					</ul>
 					<div class="tab-content">
-						
 						<div class="tab-pane active" id="formcontrols">
 							<b><center>LAPORAN KEWASPADAAN KERACUNAN PANGAN</center></b><br>
 							<form id="edit-profile" class="form-horizontal" method="post" action="<?php echo base_url();?>form/form01/save_keluhan">
@@ -204,63 +201,6 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									<div class="form-actions">
 										<input type="submit" class="btn btn-primary" value="Simpan"/> 
 										<a href="<?php echo base_url();?>form/form01/generate_result"><input type="button" class="btn btn-warning" value="Selesai / Tampilkan Hasil"/></a>
-									</div> <!-- /form-actions -->
-								</fieldset>
-							</form>
-						</div>
-						<div class="tab-pane" id="data">
-							<div class="span11">
-								<table id="example1" class="table table-bordered table-striped">
-				                	<thead>
-				                        <tr> 
-				                        	<th>No</th>
-				                        	<th>Kode Keluhan</th>
-				                        	<th>Nama Kejadian</th>
-				                        	<th>Tanggal</th>
-				                        	<th>Nama Pelapor</th>
-				                        	<th>Gejala Umum</th>
-			                                <th width="120">Aksi</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-										<?php $no = 1; foreach($keluhan as $row){?>
-				                        <tr>
-				                        	<td><?php echo $no;?></td>
-				                        	<td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>"><?php echo $row->kd_keluhan;?></a></td>
-				                        	<td><?php echo $row->nama_kejadian;?></td>
-				                        	<td><?php echo $row->waktu_lapor;?></td>
-				                        	<td><?php echo $row->pelapor;?></td>
-				                        	<td><?php echo show_gjl($row->gejala_umum);?></td>
-				                        	<td class="td-actions">
-												<a  data-toggle="modal" class="btn btn-small btn-success" href="#menu"><i class="btn-icon-only icon-ok"> </i></a>
-												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
-												<a class="btn btn-danger btn-small" onclick="return confirm('Apakah Anda Yakin?')" href="<?php echo base_url();?>form/form01/del_keluhan/<?php echo $row->kd_keluhan;?>">
-												<i class="btn-icon-only icon-remove"> </i></a>
-											</td>
-				                        </tr>
-										<?php $no++; } ?>
-				                    </tbody>
-				               	</table>
-							</div>
-						</div>
-						<div class="tab-pane" id="report">
-							<form id="edit-profile" class="form-horizontal" method="post" action="#">
-								<fieldset>
-									<div class="control-group">											
-										<label class="control-label" for="username">From</label>
-										<div class="controls">
-											<input type="text" class="span6" id="tgl1" placeholder="dd/mm/yyyy" value="">
-										</div> <!-- /controls -->				
-									</div> <!-- /control-group -->
-									<div class="control-group">											
-										<label class="control-label" for="firstname">To</label>
-										<div class="controls">
-											<input type="text" class="span6" id="tgl2" placeholder="dd/mm/yyyy" value="">
-										</div> <!-- /controls -->				
-									</div> <!-- /control-group -->
-									<div class="form-actions">
-										<input type="submit" class="btn btn-primary" value="Save"/> 
-										<input type="reset" class="btn btn-warning" value="Reset"/>
 									</div> <!-- /form-actions -->
 								</fieldset>
 							</form>
