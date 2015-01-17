@@ -119,7 +119,7 @@ class form01 extends CI_Controller {
 		$this->app_model->deletedata('tbl_analisa','kd_keluhan',$kode);
 		$this->app_model->deletedata('tbl_resume_keluhan','kd_keluhan',$kode);
 		echo "<script>alert('Sukses');
-		document.location.href='".base_url()."form/form01';</script>";
+		document.location.href='".base_url()."form/resume';</script>";
 	}
 	
 	function generate_result(){

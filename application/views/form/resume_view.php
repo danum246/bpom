@@ -1,3 +1,24 @@
+
+<script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script>
+$(function() {
+  $( "#from" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 2,
+    onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+    }
+  });
+  $( "#to" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 2,
+    onClose: function( selectedDate ) {
+      $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+});
+</script>
+
 <div class="row">
   	<div class="span12">      		
   		<div class="widget ">
@@ -51,13 +72,13 @@
 									<div class="control-group">											
 										<label class="control-label" for="username">From</label>
 										<div class="controls">
-											<input type="text" class="span6" id="tgl1" placeholder="dd/mm/yyyy" value="">
+											<input type="text" class="span6" id="from" placeholder="dd/mm/yyyy" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="control-group">											
 										<label class="control-label" for="firstname">To</label>
 										<div class="controls">
-											<input type="text" class="span6" id="tgl2" placeholder="dd/mm/yyyy" value="">
+											<input type="text" class="span6" id="to" placeholder="dd/mm/yyyy" value="">
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 									<div class="form-actions">

@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url();?>assets/js/jquery-ui/css/ui-lightness/jquery-ui-1.9.2.custom.css">
 <script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 <script>
 $(function() {
