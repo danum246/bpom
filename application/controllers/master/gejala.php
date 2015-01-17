@@ -32,4 +32,26 @@ class gejala extends CI_Controller {
 		echo "<script>alert('Berhasil');
 		document.location.href='".base_url()."master/gejala';</script>";
 	}
+
+	function edit($id)
+	{
+		$data['detail'] = $this->app_model->getdetail('tbl_gejala','id_gejala',$id,'id_gejala','asc')->row();
+		$data['page'] = 'master/gejala_edit';
+		$this->load->view('template',$data);
+	}
+
+	function update($id)
+	{
+		$old = $this->app_model->getdetail('tbl_gejala','id_gejala',$id,'id_gejala','asc')->row();
+		$data['kd_gejala']= $this->input->post('kode', TRUE);
+		$data['gejala']= $this->input->post('gejala', TRUE);
+		$new['kd_gejala']= $data['kd_gejala'];
+		$update1 = $this->app_model->updatedata('tbl_gejala','id_gejala',$id,$data);
+		$update2 = $this->app_model->updatedata('tbl_racun_gejala','kd_gejala',$old->kd_gejala,$new);
+		if (($update1 == TRUE) and ($update2 == TRUE)){
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."master/gejala';</script>";
+		} else {
+			echo "<script>alert('Gagal Simpan Data');history.go(-1);</script>";
+		}
+	}
 }
