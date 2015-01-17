@@ -35,6 +35,24 @@ class jabatan extends CI_Controller {
 		document.location.href='".base_url()."data/jabatan'</script>";
 	}
 
+	function edit($id)
+	{
+		$data['detail'] = $this->app_model->getdetail('tbl_jabatan','id_jabatan',$id,'id_jabatan','asc')->row();
+		$data['page'] = 'data/jabatan_edit';
+		$this->load->view('template',$data);
+	}
+
+	function update($id)
+	{
+		$data['jabatan']= $this->input->post('jabatan', TRUE);
+		$update = $this->app_model->updatedata('tbl_jabatan','id_jabatan',$id,$data);
+		if ($update == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."data/jabatan';</script>";
+		} else {
+			echo "<script>alert('Gagal Simpan Data');history.go(-1);</script>";
+		}
+	}
+
 }
 
 /* End of file jabatan.php */

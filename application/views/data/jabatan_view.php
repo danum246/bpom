@@ -26,7 +26,7 @@
 	                        	<td><?php echo $row->kode_lembaga;?></td>
 	                        	<td class="td-actions">
 									<!--a class="btn btn-small btn-success" href="#"><i class="btn-icon-only icon-ok"> </i></a-->
-									<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+									<a class="btn btn-primary btn-small" href="<?php echo base_url();?>data/jabatan/edit/<?php echo $row->id_jabatan; ?>"><i class="btn-icon-only icon-pencil"> </i></a>
 									<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>data/jabatan/del_jabatan/<?php echo $row->id_jabatan;?>"><i class="btn-icon-only icon-remove"> </i></a>
 								</td>
 	                        </tr>
