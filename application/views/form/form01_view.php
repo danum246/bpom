@@ -94,12 +94,10 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									<div class="control-group">											
 										<label class="control-label">Waktu Makan</label>
 										<div class="controls">
-<<<<<<< HEAD
-											<input type="text" class="span4" id="date_1" name="awal_kejadian" placeholder="Waktu Makan" value="" style="float:left;width:200px">
-=======
-											<input type="text" class="span3" id="date_1" name="awal_kejadian" placeholder="Waktu Awal Kejadian" value="" style="float:left;width:200px">
->>>>>>> f705dfdc6b57caf673593dc1008058bcf8c0abde
-											<select name="h_awal" style="float:left;width:50px">
+
+											<input type="text" class="span3" id="date_1" name="awal_kejadian" placeholder="Waktu Makan" value="" style="float:left;width:200px">
+
+										<select name="h_awal" style="float:left;width:50px">
 											<?php for($no = 0;$no <= $lhour;$no++){?>
 											<option value="<?php echo $hour[$no];?>" <?php if(date('h')==$hour[$no]){ echo 'selected'; }?>><?php echo $hour[$no];?></option>
 											<?php } ?>
@@ -114,11 +112,9 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									<div class="control-group">											
 										<label class="control-label">Waktu Gejala</label>
 										<div class="controls">
-<<<<<<< HEAD
+
 											<input type="text" class="span4" id="date_2" name="mulai_kejadian" placeholder="Waktu Gejala" value="" style="float:left;width:200px">
-=======
-											<input type="text" class="span3" id="date_2" name="mulai_kejadian" placeholder="Waktu Mulai Kejadian" value="" style="float:left;width:200px">
->>>>>>> f705dfdc6b57caf673593dc1008058bcf8c0abde
+
 											<select name="h_kej" style="float:left;width:50px">
 											<?php for($no = 0;$no <= $lhour;$no++){?>
 											<option value="<?php echo $hour[$no];?>" <?php if(date('h')==$hour[$no]){ echo 'selected'; }?>><?php echo $hour[$no];?></option>
