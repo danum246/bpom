@@ -12,9 +12,16 @@ class role extends CI_Controller {
 
 	function index()
 	{
+		$data['parent'] = $this->db->query("select * from tbl_menu where parent_menu = 0")->result();
 		$data['lembaga'] = $this->app_model->get_lembaga();
 		$data['page'] = 'setting/role_view';
 		$this->load->view('template',$data);
+	}
+	
+	function getdataedit($id_lembaga){
+		$data['parent'] = $this->db->query("select * from tbl_menu where parent_menu = 0")->result();
+		$data['lembaga'] = $id_lembaga;
+		$this->load->view('setting/edit_role_view',$data);
 	}
 
 	function list_menu($id)
@@ -47,6 +54,35 @@ class role extends CI_Controller {
 		} else {
 			echo "<script>alert('Gagal Simpan Data');history.go(-1);</script>";
 		}
+	}
+	
+	function edit_role(){
+		$trows = $this->input->post('trows');
+		$prows = $this->input->post('prows');
+		$lembaga = $this->input->post('id_lembaga');
+		//die($trows." ".$lembaga);
+		$this->db->query("delete from tbl_role_access where lembaga_id = '$lembaga'");
+		for($no = 1; $no <= $trows; $no++){
+			$menu = $this->input->post('menu'.$no);
+			if($menu == 1){
+			$data = array(
+			'menu_id'	=> $this->input->post('kode'.$no),
+			'lembaga_id'=> $lembaga
+			);
+			$this->db->insert('tbl_role_access',$data);
+			}
+		}
+		for($no = 1; $no <= $prows; $no++){
+			$menu = $this->input->post('parent'.$no);
+			if($menu == 1){
+			$data = array(
+			'menu_id'	=> $this->input->post('parmen'.$no),
+			'lembaga_id'=> $lembaga
+			);
+			$this->db->insert('tbl_role_access',$data);
+			}
+		}
+		redirect('setting/role');
 	}
 
 }

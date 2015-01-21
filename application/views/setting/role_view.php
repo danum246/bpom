@@ -1,3 +1,12 @@
+<script>
+function edit(id){
+$('#editrole').load('<?php echo base_url();?>setting/role/getdataedit/'+id);
+}
+</script>
+<?php
+function($id){
+}
+?>
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
@@ -21,9 +30,10 @@
                             <?php $no = 1; foreach ($lembaga as $row) { ?>
 	                        <tr>
 	                        	<td><?php echo $no ;?></td>
-	                        	<td><?php echo $row->kode_lembaga ;?></td>
+	                        	<td><?php echo $row->kode_lembaga ;?>
+								</td>
 	                        	<td class="td-actions">
-									<a data-toggle="modal" class="btn btn-small btn-success" href="#edit"><i class="btn-icon-only icon-ok"> </i></a>
+									<a data-toggle="modal" class="btn btn-small btn-success" href="#edit" onclick="edit(<?php echo $row->id_lembaga;?>)"><i class="btn-icon-only icon-ok"> </i></a>
 								</td>
 	                        </tr>
                             <?php $no++; } ?>   
@@ -87,37 +97,8 @@
 
 <div class="modal fade" id="edit" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">MENU</h4>
-            </div>
-            <form class ='form-horizontal' action="#" method="post">
-                <div class="modal-body">    
-                    <table id="example2" class="table table-bordered table-striped">
-                        <thead>
-                            <tr> 
-                                <th>No</th>
-                                <th>Menu</th>
-                                <th>Access</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Dashboard</td>
-                                <td class="td-actions">
-                                    <input type="checkbox" name="" value="">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-                    <input type="submit" class="btn btn-primary" value="Simpan"/>
-                </div>
-            </form>
+        <div class="modal-content" id="editrole">
+            
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

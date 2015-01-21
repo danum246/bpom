@@ -76,7 +76,14 @@
 	</div> <!-- /content -->
 	
 </div> <!-- /account-container -->
-
+<br>
+<br>
+<center style="color:black;font-weight:bold;font-family:arial;font-size:12pt">
+DIREKTORAT PENYEHATAN LINGKUNGAN<BR>
+	DIREKTORAT JENDERAL PP DAN PL<BR>
+	KEMENTRIAN KESEHATAN RI<br>
+	TAHUN <?php echo date('Y');?>
+	</center>
 <script src="<?php echo base_url();?>assets/js/jquery-1.7.2.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
 

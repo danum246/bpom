@@ -84,6 +84,12 @@ class lembaga extends CI_Controller {
 		echo "<script>alert('Berhasil');
 		document.location.href='".base_url()."data/lembaga';</script>";
 	}
+	
+	function get_detail_lembaga($id){
+		$this->db->where('id_lembaga',$id);
+		$data = $this->db->get('tbl_lembaga')->row();
+		die(json_encode($data));
+	}
 
 }
 

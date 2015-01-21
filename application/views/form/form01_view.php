@@ -76,10 +76,25 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 												<input type="hidden" class="span4" id="" name="kode" value="<?php echo $kode;?>">
 											</div> <!-- /controls -->				
 										</div>
+										<div class="control-group">											
+											<label class="control-label">Jenis Kelamin</label>
+											<div class="controls">
+												<input type="radio" name="jk" value="Pria" style="margin-top:-3px">Pria &nbsp;&nbsp;&nbsp;
+												<input type="radio" name="jk" value="Wanita" style="margin-top:-3px">Wanita
+											</div> <!-- /controls -->				
+										</div>
+										<div class="control-group">											
+											<label class="control-label">Pekerjaan</label>
+											<div class="controls">
+												<select name="pekerjaan" style="width:310px">
+												<option></option>
+												</select>
+											</div> <!-- /controls -->				
+										</div>
 									<div class="control-group">											
 										<label class="control-label">Waktu Makan</label>
 										<div class="controls">
-											<input type="text" class="span4" id="date_1" name="awal_kejadian" placeholder="Waktu Awal Kejadian" value="" style="float:left;width:200px">
+											<input type="text" class="span4" id="date_1" name="awal_kejadian" placeholder="Waktu Makan" value="" style="float:left;width:200px">
 											<select name="h_awal" style="float:left;width:50px">
 											<?php for($no = 0;$no <= $lhour;$no++){?>
 											<option value="<?php echo $hour[$no];?>" <?php if(date('h')==$hour[$no]){ echo 'selected'; }?>><?php echo $hour[$no];?></option>
@@ -95,7 +110,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									<div class="control-group">											
 										<label class="control-label">Waktu Gejala</label>
 										<div class="controls">
-											<input type="text" class="span4" id="date_2" name="mulai_kejadian" placeholder="Waktu Mulai Kejadian" value="" style="float:left;width:200px">
+											<input type="text" class="span4" id="date_2" name="mulai_kejadian" placeholder="Waktu Gejala" value="" style="float:left;width:200px">
 											<select name="h_kej" style="float:left;width:50px">
 											<?php for($no = 0;$no <= $lhour;$no++){?>
 											<option value="<?php echo $hour[$no];?>" <?php if(date('h')==$hour[$no]){ echo 'selected'; }?>><?php echo $hour[$no];?></option>
