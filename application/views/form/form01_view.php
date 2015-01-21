@@ -40,7 +40,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="formcontrols">
-							<b><center>LAPORAN KEWASPADAAN KERACUNAN PANGAN</center></b><br>
+							<b><center>LAPORAN KEJADIAN KLB / KERACUNAN PANGAN</center></b><br>
 							<form id="edit-profile" class="form-horizontal" method="post" action="<?php echo base_url();?>form/form01/save_keluhan">
 								<fieldset>
 									<!--div class="control-group  pull-right" style="margin-right:100px;">											
@@ -77,7 +77,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											</div> <!-- /controls -->				
 										</div>
 									<div class="control-group">											
-										<label class="control-label">Waktu Awal Kejadian</label>
+										<label class="control-label">Waktu Makan</label>
 										<div class="controls">
 											<input type="text" class="span4" id="date_1" name="awal_kejadian" placeholder="Waktu Awal Kejadian" value="" style="float:left;width:200px">
 											<select name="h_awal" style="float:left;width:50px">
@@ -93,7 +93,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 										</div> <!-- /controls -->				
 									</div>
 									<div class="control-group">											
-										<label class="control-label">Waktu Mulai Kejadian</label>
+										<label class="control-label">Waktu Gejala</label>
 										<div class="controls">
 											<input type="text" class="span4" id="date_2" name="mulai_kejadian" placeholder="Waktu Mulai Kejadian" value="" style="float:left;width:200px">
 											<select name="h_kej" style="float:left;width:50px">
