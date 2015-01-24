@@ -16,6 +16,17 @@ $gejala[] = $row['gejala'];
 }
 return implode(', ',$gejala);
 }
+
+function show_pgn($kode){
+$pgn = explode(',',$kode);
+$plength = sizeof($kode)-1;
+for($n = 0; $n <= $plength; $n++){
+$sql = mysql_query("select pangan from tbl_pangan where kd_pangan = '".$pgn[$n]."'");
+$row = mysql_fetch_array($sql);
+$pangan[] = $row['pangan'];
+}
+return implode(', ',$pangan);
+}
 ?>
 <div class="row">
 	<div class="span12">      		  		
@@ -49,6 +60,10 @@ return implode(', ',$gejala);
 							<tr>
 	                        	<th>Gejala Umum</th>
 	                        	<td colspan=3><?php echo show_gjl($gjl_umum);?></td>
+	                        </tr>
+							<tr>
+	                        	<th>Pangan Umum</th>
+	                        	<td colspan=3><?php echo show_pgn($pangan);?></td>
 	                        </tr>
 	                    </tbody>
 	               	</table>

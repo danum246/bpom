@@ -86,8 +86,11 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 										<div class="control-group">											
 											<label class="control-label">Pekerjaan</label>
 											<div class="controls">
-												<select name="pekerjaan" style="width:310px">
+												<select name="pekerjaan">
 												<option></option>
+												<?php foreach($pekerjaan as $row){?>
+												<option value="<?php echo $row->id_pekerjaan;?>"><?php echo $row->pekerjaan;?></option>
+												<?php } ?>
 												</select>
 											</div> <!-- /controls -->				
 										</div>
@@ -188,7 +191,14 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											</select>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
-									
+									<div class="control-group">											
+											<label class="control-label">Status Pasien</label>
+											<div class="controls">
+												<input type="radio" name="status" value="0" style="margin-top:-3px">Sehat &nbsp;&nbsp;&nbsp;
+												<input type="radio" name="status" value="1" style="margin-top:-3px">Sakit &nbsp;&nbsp;&nbsp;
+												<input type="radio" name="status" value="2" style="margin-top:-3px">Meninggal
+											</div> <!-- /controls -->				
+										</div>
 										</div>
 										<div class="span7">
 											<div class="control-group">											
@@ -212,7 +222,35 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 	                                        	</table>
 	                                        </div>		<!-- /controls -->		
 										</div> <!-- /control-group -->
+										
 										</div>
+										<div class="span7">
+											<div class="control-group">											
+											<label class="control-label">Pangan</label>
+	                                        <div class="controls">
+	                                        	<table>
+													<tr>
+													<?php $no = 1; foreach($pangan as $pan){?>
+	                                        			<td><input type="checkbox" name="pangan<?php echo $no;?>" value="<?php echo $pan->kd_pangan;?>" style="margin-top:-2px">&nbsp;<span style=""><?php echo $pan->pangan;?></span>&nbsp;</td>
+	                                        		<?php
+													if($no%4==0){?>
+													</tr>
+													<tr>
+													<?php } $no++; }  ?>
+													</tr>
+	                                        		<tr>
+	                                        			<!--td><input type="checkbox" name="lain" id="lain"> Lainnya</td-->
+	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Lainnya" value="" name="panglainnya"></td>
+	                                        		</tr>
+													<input type="hidden" name="prow" value="<?php echo $no-1;?>">
+	                                        	</table>
+	                                        </div>		<!-- /controls -->		
+										</div> <!-- /control-group -->
+										
+										</div>
+										</div>
+										
+										
 									</div>
 								
 									
