@@ -4,6 +4,21 @@ $.getJSON('<?php echo base_url();?>data/lembaga/get_detail_lembaga/'+id,function
 $('#kode_e').val(get.kode_lembaga);
 $('#lembaga_e').val(get.lembaga);
 $('#kabupaten_e').val();
+var lev = get.level;
+if(lev==1){
+$('#kabupaten_ed').hide();
+$('#kelurahan_ed').hide();
+$('#pusat_e').attr('checked','checked');
+}else if(lev==2){
+$('#kabupaten_ed').show();
+$('#kelurahan_ed').hide();
+$('#dinas_e').attr('checked','checked');
+}
+else if(lev==3){
+$('#kabupaten_ed').hide();
+$('#kelurahan_ed').show();
+$('#puskesmas_e').attr('checked','checked');
+}
 });
 }
 </script>
@@ -107,7 +122,7 @@ $('#kabupaten_e').val();
                                 Pusat
                             </label>
                             <label class="radio inline">
-                                <input type="radio" name="level" value="2" id="dinas"/>
+                                <input type="radio" name="level" value="2" id="dinas" />
                                 Dinas Kesehatan Kabupaten
                             </label>
 							<label class="radio inline">
@@ -185,7 +200,7 @@ $('#kabupaten_e').val();
                             </label>
                         </div>
                     </div>
-					<div class="control-group" id="kabupaten">
+					<div class="control-group" id="kabupaten_ed">
                         <label class="control-label">Kabupaten</label>
                         <div class="controls">
                             <select class="span4" name="kabupaten_edit" id="kabupaten_e" class="form-control" value="" required>
@@ -196,7 +211,7 @@ $('#kabupaten_e').val();
                             </select>
                         </div>
                     </div>
-                    <div class="control-group" id="kelurahan">
+                    <div class="control-group" id="kelurahan_ed">
                         <label class="control-label">Kelurahan</label>
                         <div class="controls">
                             <select class="span4" name="kelurahan_edit" id="kelurahan_e" class="form-control" value="" required>

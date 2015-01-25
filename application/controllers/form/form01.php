@@ -140,7 +140,7 @@ class form01 extends CI_Controller {
 		'jml_identifikasi' => $count,
 		'persentase'	=> number_format($count/$totpas*100,2)
 		);
-		//$this->db->insert('tbl_analisa',$data);
+		$this->db->insert('tbl_analisa',$data);
 		}
 		}
 		$gejala_umum = $this->db->query("select distinct(kd_gejala)as kd_gejala from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->result();

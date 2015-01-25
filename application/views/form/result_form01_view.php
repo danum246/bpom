@@ -19,7 +19,7 @@ return implode(', ',$gejala);
 
 function show_pgn($kode){
 $pgn = explode(',',$kode);
-$plength = sizeof($kode)-1;
+$plength = sizeof($pgn)-1;
 for($n = 0; $n <= $plength; $n++){
 $sql = mysql_query("select pangan from tbl_pangan where kd_pangan = '".$pgn[$n]."'");
 $row = mysql_fetch_array($sql);
