@@ -129,7 +129,7 @@ class form01 extends CI_Controller {
 		$totpas = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan = '$kode'")->row()->total;
 		$racun = $this->db->query("SELECT a.* , b.organ_id,b.inkubasi_pendek,b.inkubasi_tinggi FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
 		foreach($racun as $row){ 
-		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_gejala like '%".$row->kd_gejala."%' and organ_id = '".$row->organ_id."' and (minute(waktu_awal-waktu_terjadi)>= '".$row->inkubasi_pendek."' and minute(waktu_awal-waktu_terjadi)<= '".$row->inkubasi_tinggi."')")->row()->total;
+		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and (organ_id = '".$row->organ_id."') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
 		if($count!=0){
 		$data = array(
 		'kd_keluhan'	=> $kode,
