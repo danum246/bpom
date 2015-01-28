@@ -2,7 +2,7 @@
         <div class="span6">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Calendar Activty</h3>
+              <h3>Tanggal Kejadian KLB Keracunan Pangan</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
@@ -16,7 +16,7 @@
         <div class="span6">
            <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Resume Keluhan</h3>
+              <h3> Resume Laporan KLB Keracunan Pangan</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content" style="padding:30px">

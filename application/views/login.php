@@ -3,7 +3,7 @@
   
 <head>
     <meta charset="utf-8">
-    <title>Form Login</title>
+    <title>E-Monev KLB Keracunan Pangan</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
@@ -78,9 +78,13 @@
 </div> <!-- /account-container -->
 <br>
 <br>
+<br>
+<br>
+<br>
 <center style="color:black;font-weight:bold;font-family:arial;font-size:12pt">
+SUB DIREKTORAT HIGIENE SANITASI PANGAN<BR>
 DIREKTORAT PENYEHATAN LINGKUNGAN<BR>
-	DIREKTORAT JENDERAL PP DAN PL<BR>
+	DIREKTORAT JENDERAL PENGENDALIAN PENYAKIT DAN PENYEHATAN LINGKUNGAN<BR>
 	KEMENTRIAN KESEHATAN RI<br>
 	TAHUN <?php echo date('Y');?>
 	</center>

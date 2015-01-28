@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Dashboard - BPPOM</title>
+    <title>Dashboard - E Monev KLB Keracunan Pangan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -95,7 +95,7 @@
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span12"> &copy; <?php echo date('Y'); ?> - <a target="_blank" href="http://www.pom.go.id/">Direktorat Jenderal PP dan PL</a>. </div>
+        <div class="span12"> &copy; <?php echo date('Y'); ?> - <a target="_blank" href="http://www.pppl.depkes.go.id/">Direktorat Jenderal PP dan PL</a>. </div>
         <!-- /span12 --> 
       </div>
       <!-- /row --> 
