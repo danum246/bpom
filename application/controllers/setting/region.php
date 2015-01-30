@@ -33,6 +33,23 @@ class region extends CI_Controller {
 		}
 	}
 
+	function edit_prov($id)
+	{
+		$data['detail'] = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$id,'id_provinsi','asc')->row();
+		$this->load->view('setting/region_provinsi_edit', $data);
+	}
+
+	function update_prov($id)
+	{
+		$data['provinsi']= $this->input->post('provinsi', TRUE);
+		$update = $this->app_model->updatedata('tbl_provinsi','id_provinsi',$id,$data);
+		if ($update == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."setting/region';</script>";
+		} else {
+			echo "<script>alert('Gagal Edit Data');history.go(-1);</script>";
+		}
+	}
+
 	function delete_prov($id)
 	{
 		$delete = $this->app_model->deletedata('tbl_provinsi','id_provinsi',$id);

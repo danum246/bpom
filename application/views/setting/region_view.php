@@ -14,6 +14,11 @@
 					  <li><a href="#lurah" data-toggle="tab">Kelurahan</a></li>
 					</ul>
 					<div class="tab-content">
+                        <script>
+                            function editprovinsi(id){
+                                $('#editprov').load('<?php echo base_url();?>setting/region/edit_prov/'+id);
+                            }
+                        </script>
 						<div class="tab-pane active" id="provinsi">
 							<div class="span11">
 								<a data-toggle="modal" href="#myProv" class="btn btn-primary"> Data Baru </a><br><hr>
@@ -31,7 +36,7 @@
 				                        	<td><?php echo $no; ?></td>
 				                        	<td><?php echo $row->provinsi; ?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+												<a data-toggle="modal" class="btn btn-small btn-success" href="#edit" onclick="editprovinsi(<?php echo $row->id_provinsi;?>)"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_prov/<?php echo $row->id_provinsi; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
@@ -316,6 +321,14 @@ $(document).ready(function() {
                     <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="editprov">
+            
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
