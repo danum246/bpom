@@ -1,19 +1,19 @@
 <div class="row">
-        <div class="span6">
+        <!--div class="span6">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3>Tanggal Kejadian KLB Keracunan Pangan</h3>
             </div>
-            <!-- /widget-header -->
+            <!-- /widget-header >
             <div class="widget-content">
               <div id='calendar'>
               </div>
             </div>
-            <!-- /widget-content --> 
+            <!-- /widget-content > 
           </div>
-        </div>
+        </div-->
         <!-- /span6 -->
-        <div class="span6">
+        <div class="span12">
            <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3> Resume Laporan KLB Keracunan Pangan</h3>
@@ -24,19 +24,29 @@
 				                	<thead>
 				                        <tr> 
 				                        	<th>No</th>
-				                        	<th>Kode Keluhan</th>
+				                        	<th>Kabupaten</th>
+                                  <th>Kecamatan</th>
+                                  <th>Kelurahan</th>
 				                        	<th>Nama Kejadian</th>
 				                        	<th>Tanggal</th>
+                                  <th>Jumlah Korban</th>
+                                  <th>Meninggal</th>
+                                  <th>Hasil Analisa</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
 										<?php $no = 1; foreach($keluhan as $row){?>
 				                        <tr>
 				                        	<td><?php echo $no;?></td>
-				                        	<td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>"><?php echo $row->kd_keluhan;?></a></td>
+				                        	<!--td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>"><?php echo $row->kd_keluhan;?></a></td-->
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
 				                        	<td><?php echo $row->nama_kejadian;?></td>
 				                        	<td><?php echo $row->waktu_lapor;?></td>
-				                        	
+				                        	<td></td>
+                                  <td></td>
+                                  <td><a href="#">Lihat</a></td>
 				                        </tr>
 										<?php $no++; } ?>
 				                    </tbody>
