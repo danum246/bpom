@@ -45,6 +45,11 @@
 				               	</table>
 							</div>
 						</div>
+                        <script>
+                            function editkabupaten(id){
+                                $('#editprov').load('<?php echo base_url();?>setting/region/edit_kab/'+id);
+                            }
+                        </script>
 						<div class="tab-pane" id="kota">
 							<div class="span11">
 								<a data-toggle="modal" href="#myKota" class="btn btn-primary"> Data Baru </a><br><hr>
@@ -65,7 +70,7 @@
                                             <?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$row->provinsi_id,'id_provinsi','asc')->row(); ?>
 				                        	<td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+												<a data-toggle="modal" class="btn btn-small btn-success" href="#edit" onclick="editkabupaten(<?php echo $row->id_kabupaten;?>)"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kab/<?php echo $row->id_kabupaten; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
@@ -74,6 +79,11 @@
 				               	</table>
 							</div>
 						</div>
+                        <script>
+                            function editkecamatan(id){
+                                $('#editprov').load('<?php echo base_url();?>setting/region/edit_kec/'+id);
+                            }
+                        </script>
 						<div class="tab-pane" id="camat">
 							<div class="span11">
 								<a data-toggle="modal" href="#myCamat" class="btn btn-primary"> Data Baru </a><br><hr>
@@ -97,7 +107,7 @@
 				                        	<?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$kab->provinsi_id,'id_provinsi','asc')->row(); ?>
                                             <td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+												<a data-toggle="modal" class="btn btn-small btn-success" href="#edit" onclick="editkecamatan(<?php echo $row->id_kecamatan;?>)"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kec/<?php echo $row->id_kecamatan; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>
@@ -106,6 +116,11 @@
 				               	</table>
 							</div>
 						</div>
+                        <script>
+                            function editkelurahan(id){
+                                $('#editprov').load('<?php echo base_url();?>setting/region/edit_kel/'+id);
+                            }
+                        </script>
 						<div class="tab-pane" id="lurah">
 							<div class="span11">
 								<a data-toggle="modal" href="#myLurah" class="btn btn-primary"> Data Baru </a><br><hr>
@@ -132,7 +147,7 @@
                                             <?php $prov = $this->app_model->getdetail('tbl_provinsi','id_provinsi',$kab->provinsi_id,'id_provinsi','asc')->row(); ?>
                                             <td><?php echo $prov->provinsi; ?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
+												<a data-toggle="modal" class="btn btn-small btn-success" href="#edit" onclick="editkelurahan(<?php echo $row->id_kelurahan;?>)"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-danger btn-small" href="<?php echo base_url();?>setting/region/delete_kel/<?php echo $row->id_kelurahan; ?>"><i class="btn-icon-only icon-remove"> </i></a>
 											</td>
 				                        </tr>		
@@ -158,6 +173,11 @@ $(document).ready(function() {
    $("#prov1").change(function() {
         $.post("<?php echo base_url(); ?>setting/getchangedata/getkabupaten/" + $('#prov1').val(), {}, function(obj) {
             $('#kab1').html(obj);
+        });
+    });
+   $("#prov2").change(function() {
+        $.post("<?php echo base_url(); ?>setting/getchangedata/getkabupaten/" + $('#prov1').val(), {}, function(obj) {
+            $('#kab2').html(obj);
         });
     });
     $("#kab1").change(function() {

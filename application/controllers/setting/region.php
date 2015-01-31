@@ -74,6 +74,25 @@ class region extends CI_Controller {
 		}
 	}
 
+	function edit_kab($id)
+	{
+		$data['provinsi'] = $this->app_model->getdata('tbl_provinsi','provinsi','asc')->result();
+		$data['detail'] = $this->app_model->getdetail('tbl_kabupaten','id_kabupaten',$id,'id_kabupaten','asc')->row();
+		$this->load->view('setting/region_kabupaten_edit', $data);
+	}
+
+	function update_kab($id)
+	{
+		$data['kabupaten_kota']= $this->input->post('kabupaten', TRUE);
+		$data['provinsi_id']= $this->input->post('provinsi', TRUE);
+		$update = $this->app_model->updatedata('tbl_kabupaten','id_kabupaten',$id,$data);
+		if ($update == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."setting/region';</script>";
+		} else {
+			echo "<script>alert('Gagal Edit Data');history.go(-1);</script>";
+		}
+	}
+
 	function delete_kab($id)
 	{
 		$delete = $this->app_model->deletedata('tbl_kabupaten','id_kabupaten',$id);
@@ -98,6 +117,27 @@ class region extends CI_Controller {
 		}
 	}
 
+	function edit_kec($id)
+	{
+		$data['kabupaten'] = $this->app_model->getdata('tbl_kabupaten','kabupaten_kota','asc')->result();
+		$data['provinsi'] = $this->app_model->getdata('tbl_provinsi','provinsi','asc')->result();
+		$this->db->distinct();
+		$data['detail'] = $this->app_model->getdetail('view_daerah','kecamatan_id',$id,'kecamatan_id','asc')->row();
+		$this->load->view('setting/region_kecamatan_edit', $data);
+	}
+
+	function update_kec($id)
+	{
+		$data['kecamatan']= $this->input->post('camat', TRUE);
+		$data['kabupaten_id']= $this->input->post('kota', TRUE);
+		$update = $this->app_model->updatedata('tbl_kecamatan','id_kecamatan',$id,$data);
+		if ($update == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."setting/region';</script>";
+		} else {
+			echo "<script>alert('Gagal Edit Data');history.go(-1);</script>";
+		}
+	}
+
 	function delete_kec($id)
 	{
 		$delete = $this->app_model->deletedata('tbl_kecamatan','id_kecamatan',$id);
@@ -119,6 +159,27 @@ class region extends CI_Controller {
 			echo "<script>alert('Berhasil');document.location.href='".base_url()."setting/region';</script>";
 		} else {
 			echo "<script>alert('Gagal Simpan Data');history.go(-1);</script>";
+		}
+	}
+
+	function edit_kel($id)
+	{
+		$data['kabupaten'] = $this->app_model->getdata('tbl_kabupaten','kabupaten_kota','asc')->result();
+		$data['kecamatan'] = $this->app_model->getdata('tbl_kecamatan','kecamatan','asc')->result();
+		$data['provinsi'] = $this->app_model->getdata('tbl_provinsi','provinsi','asc')->result();
+		$data['detail'] = $this->app_model->getdetail('view_daerah','id_kelurahan',$id,'id_kelurahan','asc')->row();
+		$this->load->view('setting/region_kelurahan_edit', $data);
+	}
+
+	function update_kel($id)
+	{
+		$data['kecamatan_id']= $this->input->post('camat', TRUE);
+		$data['kelurahan']= $this->input->post('lurah', TRUE);
+		$update = $this->app_model->updatedata('tbl_kelurahan','id_kelurahan',$id,$data);
+		if ($update == TRUE) {
+			echo "<script>alert('Berhasil');document.location.href='".base_url()."setting/region';</script>";
+		} else {
+			echo "<script>alert('Gagal Edit Data');history.go(-1);</script>";
 		}
 	}
 

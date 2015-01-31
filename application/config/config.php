@@ -14,7 +14,10 @@
 | path to your installation.
 |
 */
+#upload
 $config['base_url']	= 'http://localhost/depkes/';
+#local
+//$config['base_url']	= 'http://localhost:8080/depkes-up/';
 
 /*
 |--------------------------------------------------------------------------
