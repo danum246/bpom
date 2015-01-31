@@ -5,6 +5,7 @@ class resume extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('Cfpdf');
 		if ($this->session->userdata('sess_login') != TRUE) {
 		 	redirect('auth','refresh');
 		}
@@ -20,6 +21,11 @@ class resume extends CI_Controller {
 		$data['page'] = 'form/resume_view';
 		$this->load->view('template',$data);
 	}
+
+	function print_laporan($id)
+	{
+		$this->load->view('form/print/report_pencatatan');
+	}	
 
 }
 
