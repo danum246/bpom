@@ -38,7 +38,38 @@ return implode(', ',$pangan);
 			
 			<div class="widget-content">
 				<div class="span11">
-					<!--a data-toggle="modal" href="#myModal" class="btn btn-primary"> New Data </a><br><hr-->
+					<table>
+						<tr>
+							<td>Nama Kejadian</td>
+							<td>:</td>
+							<td>Ini Kejadian</td>
+							<td>Puskesmas</td>
+							<td>:</td>
+							<td>Puskesmas Matraman (nama kelurahannya)</td>
+						</tr>
+						<tr>
+							<td>Jumlah Korban</td>
+							<td>:</td>
+							<td>7</td>
+							<td>Kecamatan</td>
+							<td>:</td>
+							<td>Matraman</td>
+						</tr>	
+						<tr>
+							<td>Jumlah Meninggal</td>
+							<td>:</td>
+							<td>7</td>
+							<td>Kabupaten / Provinsi</td>
+							<td>:</td>
+							<td>Jaktim / Jakarta</td>
+						</tr>
+						<tr>
+							<td>Hasil Lab</td>
+							<td>:</td>
+							<td>- (kalo udah ada, document ny tampil dan bisa di download ex : hasil.pdf)</td>
+						</tr>
+					</table>
+					<a data-toggle="modal" href="#myModal" class="pull-right btn btn-primary"> Upload Hasil Lab </a><br><hr>
 					<table id="example1" class="table table-bordered table-striped">
 	                	<thead>
 	                        <tr> 
