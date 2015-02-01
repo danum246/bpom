@@ -42,6 +42,11 @@ class resume extends CI_Controller {
 		$this->load->view('form/print/report_form4');
 	}
 
+	function print_form5()
+	{
+		$this->load->view('form/print/report_form5');	
+	}
+
 }
 
 /* End of file form01.php */
