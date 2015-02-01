@@ -248,7 +248,7 @@ $config['encryption_key'] = 'U06039BUk5mk6p6fXhZjauqJn2xSQemQ';
 |
 */
 $config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 600;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;

@@ -47,6 +47,41 @@ class resume extends CI_Controller {
 		$this->load->view('form/print/report_form5');	
 	}
 
+	function print_form6()
+	{
+		$this->load->view('form/print/report_form6');
+	}
+
+	function print_form7()
+	{
+		$this->load->view('form/print/report_form7');	
+	}
+
+	function print_form8()
+	{
+		$this->load->view('form/print/report_form8');	
+	}
+
+	function print_form9()
+	{
+		$this->load->view('form/print/report_form9');	
+	}
+
+	function print_form10()
+	{
+		$this->load->view('form/print/report_form10');	
+	}
+
+	function print_form11()
+	{
+		$this->load->view('form/print/report_form11');	
+	}
+
+	function print_form12()
+	{
+		$this->load->view('form/print/report_form12');	
+	}
+
 }
 
 /* End of file form01.php */
