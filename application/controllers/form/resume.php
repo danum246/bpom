@@ -22,10 +22,25 @@ class resume extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 
-	function print_laporan($id)
+	function print_form1($id)
 	{
-		$this->load->view('form/print/report_pencatatan');
+		$this->load->view('form/print/report_form1');
 	}	
+
+	function print_form2()
+	{
+		$this->load->view('form/print/report_form2');
+	}
+
+	function print_form3()
+	{
+		$this->load->view('form/print/report_form3');
+	}
+
+	function print_form4()
+	{
+		$this->load->view('form/print/report_form4');
+	}
 
 }
 

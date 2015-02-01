@@ -55,7 +55,7 @@ $(function() {
 				                        	<td><?php echo $row->waktu_lapor;?></td>
 				                        	<td><?php echo $row->pelapor;?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-small btn-success" target="blank" href="<?php echo base_url(); ?>form/resume/print_laporan/<?php echo $row->kd_keluhan; ?>"><i class="btn-icon-only icon-print"> </i></a>
+												<a class="btn btn-small btn-success" target="blank" href="<?php echo base_url(); ?>form/resume/print_form1/<?php echo $row->kd_keluhan; ?>"><i class="btn-icon-only icon-print"> </i></a>
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a class="btn btn-danger btn-small" onclick="return confirm('Apakah Anda Yakin?')" href="<?php echo base_url();?>form/form01/del_keluhan/<?php echo $row->kd_keluhan;?>">
 												<i class="btn-icon-only icon-remove"> </i></a>
