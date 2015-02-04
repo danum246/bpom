@@ -79,6 +79,32 @@ class lembaga extends CI_Controller {
 		document.location.href='".base_url()."data/lembaga';</script>";
 	}
 	
+	function edit_lembaga(){
+		if($this->input->post('level_edit')==1){
+		$data = array(
+		'kode_lembaga'	=> $this->input->post('kode_edit'),
+		'lembaga'		=> $this->input->post('lembaga_edit'),
+		'level'			=> $this->input->post('level_edit'),
+		'kelurahan_id'	=> $this->input->post('kelurahan_edit'),
+		'kabupaten_id'	=> $this->input->post('kabupaten_edit'),
+		'pusat'			=> 1
+		);
+		}else{
+		$data = array(
+		'kode_lembaga'	=> $this->input->post('kode_edit'),
+		'lembaga'		=> $this->input->post('lembaga_edit'),
+		'level'			=> $this->input->post('level_edit'),
+		'kelurahan_id'	=> $this->input->post('kelurahan_edit'),
+		'kabupaten_id'	=> $this->input->post('kabupaten_edit'),
+		'pusat'			=> 0
+		);
+		}
+		$this->db->where('id_lembaga',$this->input->post('id_lembaga'));
+		$this->db->update('tbl_lembaga',$data);
+		echo "<script>alert('Berhasil');
+		document.location.href='".base_url()."data/lembaga';</script>";
+	}
+	
 	function del_lembaga($id){
 		$this->app_model->deletedata('tbl_lembaga','id_lembaga',$id);
 		echo "<script>alert('Berhasil');

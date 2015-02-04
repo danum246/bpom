@@ -18,6 +18,11 @@ class karyawan extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 	
+	function load_edit($idk){
+		$data['row'] = $this->db->query("select * from tbl_karyawan where id_kary = '$idk'")->row();
+		$this->load->view('data/karyawan_edit',$data);
+	}
+	
 	function upload_photo($data,$name){
 		$file = $data;
 		$folder = "./assets/upload/photos/";

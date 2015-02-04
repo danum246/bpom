@@ -45,6 +45,14 @@ class racun extends CI_Controller {
 		document.location.href='".base_url()."master/racun';</script>";
 	}
 	
+	function getracun($racun){ 
+		$data['row'] = $this->db->query("select * from tbl_racun where kd_racun = '$racun'")->row();
+		$data['gejala'] = $this->db->query("select * from tbl_gejala")->result();
+		$data['organ'] = $this->db->query("select * from tbl_organ")->result();
+		$data['kd_racun'] = $racun;
+		$this->load->view('master/racun_edit_view',$data);
+	}
+	
 	function del_racun($id){
 		$this->db->where('kd_racun',$id);
 		$this->db->delete('tbl_racun');

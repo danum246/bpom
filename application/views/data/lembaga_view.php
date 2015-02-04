@@ -19,9 +19,28 @@ $('#kabupaten_ed').hide();
 $('#kelurahan_ed').show();
 $('#puskesmas_e').attr('checked','checked');
 }
+$('#idl').val(get.id_lembaga);
 });
 }
 </script>
+					<script>
+					$(document).ready(function(){
+					$('#pusat_e').click(function(){
+					$('#kabupaten_ed').hide();
+					$('#kelurahan_ed').hide();
+					});
+					
+					$('#dinas_e').click(function(){
+					$('#kabupaten_ed').show();
+					$('#kelurahan_ed').hide();
+					});
+					
+					$('#puskesmas_e').click(function(){
+					$('#kabupaten_ed').hide();
+					$('#kelurahan_ed').show();
+					});
+					});
+					</script>
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
@@ -224,6 +243,7 @@ $('#puskesmas_e').attr('checked','checked');
                     </div>
                 </div> 
                 <div class="modal-footer">
+				<input type="hidden" name="id_lembaga" id="idl">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                     <input type="submit" class="btn btn-primary" value="Simpan Perubahan"/>
                 </div>

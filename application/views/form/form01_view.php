@@ -229,7 +229,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											<label class="control-label">Pangan</label>
 	                                        <div class="controls">
 	                                        	<table>
-													<tr>
+													<!--tr>
 													<?php $no = 1; foreach($pangan as $pan){?>
 	                                        			<td><input type="checkbox" name="pangan<?php echo $no;?>" value="<?php echo $pan->kd_pangan;?>" style="margin-top:-2px">&nbsp;<span style=""><?php echo $pan->pangan;?></span>&nbsp;</td>
 	                                        		<?php
@@ -237,10 +237,10 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 													</tr>
 													<tr>
 													<?php } $no++; }  ?>
-													</tr>
+													</tr-->
 	                                        		<tr>
 	                                        			<!--td><input type="checkbox" name="lain" id="lain"> Lainnya</td-->
-	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Lainnya" value="" name="panglainnya"></td>
+	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Pangan" value="" name="pangan"></td>
 	                                        		</tr>
 													<input type="hidden" name="prow" value="<?php echo $no-1;?>">
 	                                        	</table>

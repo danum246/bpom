@@ -6,6 +6,16 @@ function persentase($racun,$totrow,$kode){
 	return number_format($jml_row/$totrow*100,2);
 }
 
+function total($kd_keluhan,$flag){
+	if($flag=='all'){
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
+	}else{
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and status_pasien='$flag'");
+	}
+	$row = mysql_fetch_array($sql);
+	return $row['total'];
+}
+
 function show_gjl($kode){
 $gjl = explode(',',$kode);
 $gjl_length = sizeof($gjl);
@@ -42,7 +52,7 @@ return implode(', ',$pangan);
 						<tr>
 							<td>Nama Kejadian</td>
 							<td>:</td>
-							<td>Ini Kejadian</td>
+							<td><?php echo $kejadian->nama_kejadian;?></td>
 							<td>Puskesmas</td>
 							<td>:</td>
 							<td>Puskesmas Matraman (nama kelurahannya)</td>
@@ -50,7 +60,7 @@ return implode(', ',$pangan);
 						<tr>
 							<td>Jumlah Korban</td>
 							<td>:</td>
-							<td>7</td>
+							<td><?php echo total($kejadian->kd_keluhan,'all');?></td>
 							<td>Kecamatan</td>
 							<td>:</td>
 							<td>Matraman</td>
@@ -58,7 +68,7 @@ return implode(', ',$pangan);
 						<tr>
 							<td>Jumlah Meninggal</td>
 							<td>:</td>
-							<td>7</td>
+							<td><?php echo total($kejadian->kd_keluhan,'2');?></td>
 							<td>Kabupaten / Provinsi</td>
 							<td>:</td>
 							<td>Jaktim / Jakarta</td>
@@ -66,7 +76,7 @@ return implode(', ',$pangan);
 						<tr>
 							<td>Hasil Lab</td>
 							<td>:</td>
-							<td>- (kalo udah ada, document ny tampil dan bisa di download ex : hasil.pdf)</td>
+							<td><a href="<?php echo base_url();?>assets/upload/data/<?php echo $kejadian->file;?>"><?php echo $kejadian->file;?></a></td>
 						</tr>
 					</table>
 					<a data-toggle="modal" href="#myModal" class="pull-right btn btn-primary"> Upload Hasil Lab </a><br><hr>
@@ -111,12 +121,13 @@ return implode(', ',$pangan);
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM DATA</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url();?>form/form01/upload" method="post" enctype='multipart/form-data'>
                 <div class="modal-body" style="margin-left: -60px;">    
                     <div class="control-group" id="">
                         <label class="control-label">Hasil Lab</label>
                         <div class="controls">
                             <input type="file" class="span4" name="userfile" placeholder="Input Jabatan" class="form-control" required/>
+                            <input type="hidden" class="span4" name="kode" value="<?php echo $this->uri->segment(4);?>" required/>
                         </div>
                     </div>
                 </div> 

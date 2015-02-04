@@ -1,3 +1,15 @@
+<?php
+function total($kd_keluhan,$flag){
+	if($flag=='all'){
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
+	}else{
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and status_pasien='$flag'");
+	}
+	$file = $this->db->query('select file from tbl_resume_keluhan where kd_keluhan = '$kd_keluhan' ');
+	$row = mysql_fetch_array($sql);
+	return $row['total'];
+}
+?> 
 <div class="row">
         <!--div class="span6">
           <div class="widget widget-nopad">
@@ -30,6 +42,8 @@
 				                        	<th>Nama Kejadian</th>
 				                        	<th>Tanggal</th>
                                   <th>Jumlah Korban</th>
+                                  <th>Sehat</th>
+                                  <th>Sakit</th>
                                   <th>Meninggal</th>
                                   <th>Hasil Analisa</th>
 				                        </tr>
@@ -43,10 +57,13 @@
                                   <td></td>
                                   <td></td>
 				                        	<td><?php echo $row->nama_kejadian;?></td>
+											
 				                        	<td><?php echo $row->waktu_lapor;?></td>
-				                        	<td></td>
-                                  <td></td>
-                                  <td><a href="#">Lihat</a></td>
+				                  <td><?php echo total($row->kd_keluhan,'all');?></td>
+				                  <td><?php echo total($row->kd_keluhan,'0');?></td>
+				                  <td><?php echo total($row->kd_keluhan,'1');?></td>
+                                  <td><?php echo total($row->kd_keluhan,'2');?></td>
+                                  <td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>">Lihat</a></td>
 				                        </tr>
 										<?php $no++; } ?>
 				                    </tbody>

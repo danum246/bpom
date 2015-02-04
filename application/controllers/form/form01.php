@@ -38,6 +38,21 @@ class form01 extends CI_Controller {
 		}
 	}
 	
+	function uploads($data,$name){
+		$file = $data;
+		$folder = "./assets/upload/data/";
+		$folder = $folder . basename($name);
+		move_uploaded_file($data['tmp_name'], $folder);	
+	}
+	
+	function upload(){
+		$kode = $this->input->post('kode');
+		$userfile = date('Ymdhis').'_'.$_FILES['userfile']['name'];
+		$this->uploads($_FILES['userfile'],$userfile);
+		$this->db->query("update tbl_resume_keluhan set file = '$userfile'");
+		redirect('form/form01/result/'.$kode);
+	}
+	
 	/*function save_n_gen(){
 		$sesslog = $this->session->userdata('sess_login');
 		if($this->input->post('lainnya')!=""){
@@ -103,6 +118,7 @@ class form01 extends CI_Controller {
 	function result($kode){
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
+		$data['kejadian'] = $this->db->query("select a.*,b.* from tbl_resume_keluhan a join tbl_lembaga b on a.lembaga_id = b.id_lembaga where a.kd_keluhan='$kode'")->row();
 		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
 		//die($data['gejala_umum']);
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
