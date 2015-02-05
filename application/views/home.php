@@ -5,7 +5,7 @@ function total($kd_keluhan,$flag){
 	}else{
 		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and status_pasien='$flag'");
 	}
-	$file = $this->db->query('select file from tbl_resume_keluhan where kd_keluhan = '$kd_keluhan' ');
+	//$file = $this->db->query('select file from tbl_resume_keluhan where kd_keluhan = '$kd_keluhan' );
 	$row = mysql_fetch_array($sql);
 	return $row['total'];
 }

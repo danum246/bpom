@@ -50,12 +50,12 @@ return implode(', ',$pangan);
 				<div class="span11">
 					<table>
 						<tr>
-							<td>Nama Kejadian</td>
+							<td style="width:150px">Nama Kejadian</td>
 							<td>:</td>
-							<td><?php echo $kejadian->nama_kejadian;?></td>
-							<td>Puskesmas</td>
+							<td style="width:300px"><?php echo $kejadian->nama_kejadian;?></td>
+							<td style="width:150px">Puskesmas</td>
 							<td>:</td>
-							<td>Puskesmas Matraman (nama kelurahannya)</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>Jumlah Korban</td>
@@ -63,7 +63,7 @@ return implode(', ',$pangan);
 							<td><?php echo total($kejadian->kd_keluhan,'all');?></td>
 							<td>Kecamatan</td>
 							<td>:</td>
-							<td>Matraman</td>
+							<td></td>
 						</tr>	
 						<tr>
 							<td>Jumlah Meninggal</td>
@@ -71,7 +71,7 @@ return implode(', ',$pangan);
 							<td><?php echo total($kejadian->kd_keluhan,'2');?></td>
 							<td>Kabupaten / Provinsi</td>
 							<td>:</td>
-							<td>Jaktim / Jakarta</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>Hasil Lab</td>
@@ -104,7 +104,8 @@ return implode(', ',$pangan);
 	                        </tr>
 							<tr>
 	                        	<th>Pangan Umum</th>
-	                        	<td colspan=3><?php echo show_pgn($pangan);?></td>
+	                        	<td colspan=3>
+								</td>
 	                        </tr>
 	                    </tbody>
 	               	</table>

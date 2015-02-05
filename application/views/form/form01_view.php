@@ -180,7 +180,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											</select>
 										</div> <!-- /controls >				
 									</div> <!-- /control-group -->
-									<div class="control-group">											
+									<!--div class="control-group">											
 										<label class="control-label">Organ Terlibat</label>
 										<div class="controls">
 											<select name="organ">
@@ -190,7 +190,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											<?php } ?>
 											</select>
 										</div> <!-- /controls -->				
-									</div> <!-- /control-group -->
+									<!--/div> <!-- /control-group -->
 									<div class="control-group">											
 											<label class="control-label">Status Pasien</label>
 											<div class="controls">
@@ -238,9 +238,36 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 													<tr>
 													<?php } $no++; }  ?>
 													</tr-->
+		<script>
+		$(document).ready(function(){
+		
+		$('#pgn').keypress(function(e){  
+		var a = 1;
+		
+		if(e.keyCode==13){ 
+			e.preventDefault();
+			var pangan = $('#pgn').val(); 
+			var items = "<input type='text' class='span2' id='' placeholder='Pangan' value='"+pangan+"' name='pangan[]' style='margin-top:2px'><br>"; 
+			$("#itemlist").append(items);
+			$("#pgn").focus();
+			$("#pgn").val('');
+		}
+		
+	});
+		});
+	</script>
 	                                        		<tr>
 	                                        			<!--td><input type="checkbox" name="lain" id="lain"> Lainnya</td-->
-	                                        			<td colspan="3"><input type="text" class="span2" id="" placeholder="Pangan" value="" name="pangan"></td>
+	                                        			<td colspan="3">
+														<table>
+														<tr>
+															<td id="itemlist"></td>
+														</tr>
+														<tr>
+															<td><input type="text" class="span2" id="pgn" placeholder="Pangan" value="" name=""><span style="color:orangered;font-size:8pt;margin-left:10px">Tekan Enter Untuk Menambah Data</span></td>
+														</tr>
+														</table>
+														</td>
 	                                        		</tr>
 													<input type="hidden" name="prow" value="<?php echo $no-1;?>">
 	                                        	</table>

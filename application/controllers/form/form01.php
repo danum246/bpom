@@ -123,7 +123,7 @@ class form01 extends CI_Controller {
 		//die($data['gejala_umum']);
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
 		$data['kode'] = $kode;
-		$data['pangan'] = $this->db->query("select pangan_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->pangan_umum;
+		//$data['pangan'] = $this->db->query("select pangan_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->pangan_umum;
 		$data['page'] = 'form/result_form01_view';
 		$this->load->view('template',$data);
 	}
@@ -145,7 +145,8 @@ class form01 extends CI_Controller {
 		$totpas = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan = '$kode'")->row()->total;
 		$racun = $this->db->query("SELECT a.* , b.organ_id,b.inkubasi_pendek,b.inkubasi_tinggi FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
 		foreach($racun as $row){ 
-		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and (organ_id = '".$row->organ_id."') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
+		//$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and (organ_id = '".$row->organ_id."') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
+		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
 		if($count!=0){
 		$data = array(
 		'kd_keluhan'	=> $kode,
@@ -164,7 +165,7 @@ class form01 extends CI_Controller {
 		$gejala[] = $row->kd_gejala;
 		}
 		$gu = implode(',',$gejala);
-		$kd_pangan = $this->db->query("select kd_pangan from tbl_pangan")->result();
+		/*$kd_pangan = $this->db->query("select kd_pangan from tbl_pangan")->result();
 		foreach($kd_pangan as $pg){
 		$kd = $pg->kd_pangan;
 		$countp = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_pangan like '%$kd%' and kd_keluhan = '$kode'")->row()->total;
@@ -173,8 +174,9 @@ class form01 extends CI_Controller {
 		$pgn[] = $kd;
 		}
 		}
-		$kdpng = implode(',',$pgn);
-		$this->db->query("update tbl_resume_keluhan set flag = 1,gejala_umum = '$gu',pangan_umum = '$kdpng' where kd_keluhan = '$kode'");
+		$kdpng = implode(',',$pgn);*/
+	//	$this->db->query("update tbl_resume_keluhan set flag = 1,gejala_umum = '$gu',pangan_umum = '$kdpng' where kd_keluhan = '$kode'");
+		$this->db->query("update tbl_resume_keluhan set flag = 1,gejala_umum = '$gu' where kd_keluhan = '$kode'");
 		$this->db->query("update tbl_keluhan_pasien set flag = 1 where kd_keluhan = '$kode'");
 		redirect('form/form01/result/'.$kode);
 	}
@@ -200,6 +202,9 @@ class form01 extends CI_Controller {
 	}
 	
 	function save_keluhan(){
+		$pangan =  $this->input->post('pangan');
+		$pgn = implode(', ',$pangan);
+		
 		$sess = $this->session->userdata('sess_login');
 		if($this->input->post('lainnya')!=""){
 		$countgl = (int)$this->db->query("select count(*) as total from tbl_gejala where kd_gejala like 'GL-%'")->row()->total+1;
@@ -242,12 +247,12 @@ class form01 extends CI_Controller {
 		'waktu_awal'	=> $this->input->post('awal_kejadian')." ".$this->input->post('h_awal').":".$this->input->post('m_awal'),
 		'waktu_terjadi'	=> $this->input->post('mulai_kejadian')." ".$this->input->post('h_kej').":".$this->input->post('m_kej'),
 		'kd_gejala'		=> $kd_gjl,
-		'organ_id'		=> $this->input->post('organ'),
+		//'organ_id'		=> $this->input->post('organ'),
 		'lokasi'		=> $this->input->post('lokasi'),
 		'kd_keluhan'	=> $this->input->post('kode'),
 		'lembaga_id'	=> $sess['lembaga_id'],
 		'pekerjaan_id'	=> $this->input->post('pekerjaan'),
-		'kd_pangan'		=> $dtpangan,
+		'kd_pangan'		=> $pgn,
 		'status_pasien'	=> $this->input->post('status'),
 		'flag'			=> 0
 		);
