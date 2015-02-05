@@ -105,6 +105,7 @@ return implode(', ',$pangan);
 							<tr>
 	                        	<th>Pangan Umum</th>
 	                        	<td colspan=3>
+								<?php echo show_pgn($pangan);?>
 								</td>
 	                        </tr>
 	                    </tbody>
