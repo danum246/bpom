@@ -7,7 +7,7 @@ $pdf->SetFont('Arial','',12);
 $pdf->Cell(190,8,'SURAT PENCABUTAN KLB KERACUNAN PANGAN',0,1,'C');
 $pdf->Ln();
 
-$pdf->MultiCell(190,8,'Sehubungan dengan Laporan Perkembangan Situasi KBL Keracunan Pangan (terlampir) kami terima dari :');
+$pdf->MultiCell(190,8,'Sehubungan dengan Laporan Perkembangan Situasi KLB Keracunan Pangan (terlampir) kami terima dari :');
 $pdf->Ln();
 
 $pdf->Cell(30);
