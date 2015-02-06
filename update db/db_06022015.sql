@@ -195,11 +195,11 @@ CREATE TABLE `tbl_menu` (
   `parent_menu` int(11) NOT NULL,
   `icon` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_menu`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_menu` */
 
-insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','data/jabatan',7,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(25,'Master','-',0,'icon-book '),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Form 1','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','setting/region',3,NULL),(20,'Gejala','master/gejala',25,NULL),(19,'Racun','master/racun',25,NULL),(18,'Lembaga','data/lembaga',7,NULL),(24,'Pangan','master/pangan',25,NULL),(26,'Resume','form/resume',2,NULL);
+insert  into `tbl_menu`(`id_menu`,`menu`,`url`,`parent_menu`,`icon`) values (2,'Form','-',0,'icon-th-list '),(3,'Setting','-',0,'icon-cogs '),(4,'User Apps','setting/user',3,NULL),(5,'Role Menu','setting/role',3,NULL),(6,'Jabatan','data/jabatan',7,NULL),(7,'Data','-',0,'icon-folder-open '),(8,'Karyawan','data/karyawan',7,NULL),(25,'Master','-',0,'icon-book '),(9,'Report','report',0,'icon-list-alt'),(10,'Menu','setting/menu',3,NULL),(11,'Inputan KLB','form/form01',2,NULL),(12,'Form 2','#',2,NULL),(13,'Region','setting/region',3,NULL),(20,'Gejala','master/gejala',25,NULL),(19,'Racun','master/racun',25,NULL),(18,'Lembaga','data/lembaga',7,NULL),(24,'Pangan','master/pangan',25,NULL),(26,'Resume','form/resume',2,NULL),(27,'Penyampaian KLB','form/penyampaian',2,NULL);
 
 /*Table structure for table `tbl_organ` */
 
@@ -331,11 +331,11 @@ CREATE TABLE `tbl_role_access` (
   `menu_id` int(11) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=MyISAM AUTO_INCREMENT=123 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_role_access` */
 
-insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (122,9,1),(121,25,1),(120,7,1),(119,3,1),(118,2,1),(117,19,1),(116,20,1),(115,18,1),(114,8,1),(113,6,1),(112,13,1),(111,10,1),(110,5,1),(24,9,4),(23,2,3),(109,4,1),(108,26,1),(107,12,1),(27,11,3),(106,11,1);
+insert  into `tbl_role_access`(`id_role`,`menu_id`,`lembaga_id`) values (140,9,1),(139,25,1),(138,7,1),(137,3,1),(136,2,1),(135,19,1),(134,20,1),(133,18,1),(132,8,1),(131,6,1),(130,13,1),(129,10,1),(128,5,1),(127,4,1),(24,9,4),(23,2,3),(126,27,1),(125,26,1),(124,12,1),(27,11,3),(123,11,1);
 
 /*Table structure for table `tbl_temp_pangan` */
 
