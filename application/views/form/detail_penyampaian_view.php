@@ -80,17 +80,17 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM PERNYATAAN STATUS KLB</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post" enctype='multipart/form-data'>
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>form/penyampaian/status_klb" method="post">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Pernyataan KLB :</label>
                         <div class="controls">
                             <label class="radio inline">
-								<input type="radio" name="status" value="">
+								<input type="radio" name="status" value="1">
 								Ya (KLB)
 							</label>
 							<label class="radio inline">
-								<input type="radio" name="status" value="">
+								<input type="radio" name="status" value="0">
 								Tidak (Bukan KLB)
 							</label>
                         </div>
@@ -104,7 +104,7 @@
                 </div> 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Upload"/>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->
@@ -118,7 +118,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM PEMBERHENTIAN STATUS KLB</h4>
             </div>
-            <form class ='form-horizontal' action="#" method="post" enctype='multipart/form-data'>
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>form/penyampaian/henti_klb" method="post">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Hentikan Status KLB :</label>
@@ -149,7 +149,7 @@
                 </div> 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Upload"/>
+                    <input type="submit" class="btn btn-primary" value="Simpan"/>
                 </div>
             </form>
         </div><!-- /.modal-content -->

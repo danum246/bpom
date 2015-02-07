@@ -19,6 +19,7 @@
 	                        	<th>Jumlah Meninggal</th>
 	                        	<th width="80">Status</th>
 	                        	<th>Hasil Analisa</th>
+	                        	<th>print</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -32,6 +33,8 @@
 	                        	<td></td>
 	                        	<td></td>
 	                        	<td><a href="<?php echo base_url(); ?>form/penyampaian/detail">Lihat</a></td>
+	                        	<td><a class="btn btn-success btn-small" href="<?php echo base_url(); ?>form/resume/print_form4/'kode'">
+												<i class="btn-icon-only icon-print"> </i></a></td>
 	                        </tr>
 	                    </tbody>
 	               	</table>

@@ -22,6 +22,20 @@ class penyampaian extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 
+	function status_klb()
+	{
+		//proses lalu print form 4
+		$this->load->library('Cfpdf');
+		$this->load->view('form/print/report_form5');
+	}
+
+	function henti_klb()
+	{
+		//proses lalu print form 4
+		$this->load->library('Cfpdf');
+		$this->load->view('form/print/report_form6');	
+	}
+
 }
 
 /* End of file penyampaian.php */
