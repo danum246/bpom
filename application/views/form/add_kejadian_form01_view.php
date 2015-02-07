@@ -50,6 +50,15 @@ $( "#datepicker" ).datepicker({ dateFormat:'yy-mm-dd' });
 												<input type="text" class="span4" id="" name="kejadian" placeholder="Nama Kejadian" value="">
 											</div> <!-- /controls -->				
 										</div>
+										<div class="control-group">											
+											<label class="control-label">Lokasi Kejadian</label>
+											<div class="controls">
+												<select name="kelurahan" class="span4" required>
+													<option value=""> -- Pilih -- </option>
+													
+												</select>
+											</div> <!-- /controls -->				
+										</div>
 									<!--div class="control-group">											
 										<label class="control-label">Gejala Umum</label>
 										<div class="controls">

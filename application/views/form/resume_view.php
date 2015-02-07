@@ -19,6 +19,12 @@ $(function() {
 });
 </script>
 
+<script>
+function print(idk){
+$('#printform').load('<?php echo base_url();?>form/report/puskesmas/'+idk);
+}
+</script>
+
 <div class="row">
   	<div class="span12">      		
   		<div class="widget ">
@@ -55,7 +61,7 @@ $(function() {
 				                        	<td><?php echo $row->waktu_lapor;?></td>
 				                        	<td><?php echo $row->pelapor;?></td>
 				                        	<td class="td-actions">
-												<a class="btn btn-small btn-success" target="blank" href="<?php echo base_url(); ?>form/resume/print_form1/<?php echo $row->kd_keluhan; ?>"><i class="btn-icon-only icon-print"> </i></a>
+												<a data-toggle="modal" href="#editModal" class="btn btn-success btn-small" onclick="print('<?php echo $row->kd_keluhan; ?>')"><i class="btn-icon-only icon-print"> </i></a>
 												<a class="btn btn-primary btn-small" href="#"><i class="btn-icon-only icon-pencil"> </i></a>
 												<a class="btn btn-danger btn-small" onclick="return confirm('Apakah Anda Yakin?')" href="<?php echo base_url();?>form/form01/del_keluhan/<?php echo $row->kd_keluhan;?>">
 												<i class="btn-icon-only icon-remove"> </i></a>
@@ -93,3 +99,11 @@ $(function() {
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="printform">
+            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

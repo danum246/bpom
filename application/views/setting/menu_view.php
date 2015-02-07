@@ -68,7 +68,7 @@
                     <div class="control-group" id="">
                         <label class="control-label">Logo</label>
                         <div class="controls">
-                            <input type="text" class="span4" name="icon" placeholder="Icon" class="form-control" required/>
+                            <input type="text" class="span4" name="icon" placeholder="Icon" class="form-control"/>
                             <a href="<?php echo base_url();?>setting/menu/list_icon" target="blank">List Icon</a>
                         </div>
                     </div>
