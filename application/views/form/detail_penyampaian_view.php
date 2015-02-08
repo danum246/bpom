@@ -78,7 +78,9 @@ return implode(', ',$pangan);
 						<a data-toggle="modal" href="#myModal" class="pull-right btn btn-inverse"> Nyatakan KLB </a><br><hr>
 					<?php } elseif (($status->status_klb) == 1) { ?>
 						<a data-toggle="modal" href="#myModalstop" class="pull-right btn btn-danger"> Hentikan Status KLB </a><br><hr>
-					<?php } else {} ?>
+					<?php } else { ?>
+						<a href="#" class="pull-right btn btn-success"> Status KLB Sudah Dicabut </a><br><hr>
+					<?php } ?>
 					<table id="example1" class="table table-bordered table-striped">
 	                	<thead>
 	                        <tr> 
