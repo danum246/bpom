@@ -39,7 +39,11 @@
 							<td><a href="#"></a></td>
 						</tr>
 					</table>
-					<a data-toggle="modal" href="#myModal" class="pull-right btn btn-inverse"> Nyatakan KLB </a> <a data-toggle="modal" href="#myModalstop" class="pull-right btn btn-danger"> Hentikan Status KLB </a><br><hr>
+					<?php if (($status->status_klb) == '') { ?>
+						<a data-toggle="modal" href="#myModal" class="pull-right btn btn-inverse"> Nyatakan KLB </a><br><hr>
+					<?php } elseif (($status->status_klb) == 1) { ?>
+						<a data-toggle="modal" href="#myModalstop" class="pull-right btn btn-danger"> Hentikan Status KLB </a><br><hr>
+					<?php } else {} ?>
 					<table id="example1" class="table table-bordered table-striped">
 	                	<thead>
 	                        <tr> 
@@ -81,6 +85,7 @@
                 <h4 class="modal-title">FORM PERNYATAAN STATUS KLB</h4>
             </div>
             <form class ='form-horizontal' action="<?php echo base_url(); ?>form/penyampaian/status_klb" method="post">
+            	<input type="hidden" name="no_kejadian" value="<?php echo $status->kd_keluhan; ?>">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Pernyataan KLB :</label>
@@ -98,7 +103,7 @@
                     <div class="control-group" id="">
                         <label class="control-label">Catatan</label>
                         <div class="controls">
-                            <textarea name="" class="span3" required></textarea>
+                            <textarea name="catatan" class="span3" required></textarea>
                         </div>
                     </div>
                 </div> 
@@ -118,32 +123,32 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">FORM PEMBERHENTIAN STATUS KLB</h4>
             </div>
-            <form class ='form-horizontal' action="<?php echo base_url(); ?>form/penyampaian/henti_klb" method="post">
+            <form class ='form-horizontal' action="<?php echo base_url(); ?>form/penyampaian/henti_klb" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="no_kejadian" value="<?php echo $status->kd_keluhan; ?>">
                 <div class="modal-body">    
                     <div class="control-group" id="">
                         <label class="control-label">Hentikan Status KLB :</label>
                         <div class="controls">
                             <label class="radio inline">
-								<input type="radio" name="status" value="">
+								<input type="radio" name="status" value="2">
 								Ya (KLB)
 							</label>
 							<label class="radio inline">
-								<input type="radio" name="status" value="">
-								Tidak (Bukan KLB)
+								<input type="radio" name="status" value="1">
+								Tidak (Tetap KLB)
 							</label>
                         </div>
                     </div> 
-                     <div class="control-group" id="">
+                    <div class="control-group" id="">
                         <label class="control-label">Hasil Lab</label>
                         <div class="controls">
-                            <input type="file" class="span4" name="userfile" placeholder="Input Jabatan" class="form-control" required/>
-                            <input type="hidden" class="span4" name="kode" value="<?php echo $this->uri->segment(4);?>" required/>
+                            <input type="file" class="span4" name="userfile" required/>
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Keterangan</label>
                         <div class="controls">
-                            <textarea name="" class="span3" required></textarea>
+                            <textarea name="catatan" class="span3" required></textarea>
                         </div>
                     </div>
                 </div> 

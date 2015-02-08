@@ -80,6 +80,17 @@ class app_model extends CI_Model {
 		return $q;
 	}
 
+	function getstatusklb($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_resume_keluhan a');
+		$this->db->join('tbl_status_kejadian b', 'a.kd_keluhan = b.no_kejadian', 'left');
+		$this->db->where('a.kd_keluhan', $id);
+
+		$q = $this->db->get();
+		return $q;
+	}
+
 }
 
 /* End of file app_model.php */
