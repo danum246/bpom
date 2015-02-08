@@ -1,3 +1,14 @@
+<?php 
+function total($kd_keluhan,$flag){
+	if($flag=='all'){
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
+	}else{
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and status_pasien='$flag'");
+	}
+	$row = mysql_fetch_array($sql);
+	return $row['total'];
+}
+?>
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
@@ -17,25 +28,26 @@
 	                        	<th>Kecamatan</th>
 	                        	<th>Jumlah Korban</th>
 	                        	<th>Jumlah Meninggal</th>
-	                        	<th width="80">Status</th>
+	                        	<!--th width="80">Status</th-->
 	                        	<th>Hasil Analisa</th>
 	                        	<th>print</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-                           
-	                        <tr>
+                           <?php $no = 1; foreach($keluhan as $row){?>
+						   <tr>
+	                        	<td><?php echo $no;?></td>
+	                        	<td><?php echo $row->nama_kejadian;?></td>
+	                        	<td><?php echo $row->kelurahan;?></td>
 	                        	<td></td>
-	                        	<td></td>
-	                        	<td></td>
-	                        	<td></td>
-	                        	<td></td>
-	                        	<td></td>
-	                        	<td></td>
-	                        	<td><a href="<?php echo base_url(); ?>form/penyampaian/detail">Lihat</a></td>
+	                        	<td><?php echo total($row->kd_keluhan,'All');?></td>
+	                        	<td><?php echo total($row->kd_keluhan,'2');?></td>
+	                        	<!--td></td-->
+	                        	<td><a href="<?php echo base_url(); ?>form/penyampaian/detail/<?php echo $row->kd_keluhan;?>">Lihat</a></td>
 	                        	<td><a class="btn btn-success btn-small" href="<?php echo base_url(); ?>form/resume/print_form4/'kode'">
 												<i class="btn-icon-only icon-print"> </i></a></td>
 	                        </tr>
+							<?php $no++;  } ?>
 	                    </tbody>
 	               	</table>
 				</div>

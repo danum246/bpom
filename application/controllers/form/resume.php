@@ -24,7 +24,8 @@ class resume extends CI_Controller {
 
 	function print_form1($id)
 	{
-		$this->load->view('form/print/report_form1');
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form1',$data);
 	}	
 
 	function print_form2()

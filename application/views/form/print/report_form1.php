@@ -1,5 +1,68 @@
 <?php
 
+function hari($day){
+	$days = array(
+	'Sunday' => 'Minggu',
+	'Monday' => 'Senin',
+	'Tuesday' => 'Selasa',
+	'Wednesday' => 'Rabu',
+	'Thursday' => 'Kamis',
+	'Friday' => 'Jumat',
+	'Saturday' => 'Sabtu'
+	);
+	return $days[$day];
+}
+function  indodate($tgl){
+$tanggal  =  substr($tgl,8,2);
+$bulan	=  getBulan(substr($tgl,5,2));
+$tahun	=  substr($tgl,0,4);
+return  $tanggal.' '.$bulan.' '.$tahun;
+}
+
+function  getBulan($bln){
+switch  ($bln){
+case  1:
+return  "Januari";
+break;
+case  2:
+return  "Februari";
+break;
+case  3:
+return  "Maret";
+break;
+case  4:
+return  "Maret";
+break;
+case  5:
+return  "Mei";
+break;
+case  6:
+return  "Juni";
+break;
+case  7:
+return  "Juli";
+break;
+case  8:
+return  "Agustus";
+break;
+case  9:
+return  "September";
+break;
+case  10:
+return  "Oktober";
+break;
+case  11:
+return  "November";
+break;
+case  12:
+return  "Desember";
+break;
+}
+}
+$rowdata = $this->db->query("SELECT a.kelurahan id as kelid,time(a.waktu_lapor) as wkt,DAYNAME(a.waktu_lapor) AS hari,date(a.waktu_lapor) as tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a JOIN tbl_karyawan b ON a.`nik_pelapor` = b.`nik` 
+JOIN tbl_lembaga c ON c.`id_lembaga` = a.`lembaga_id` 
+where a.kd_keluhan = '$kode'")->row();
+
 $pdf = new FPDF('P','mm','A4');
 $pdf->AliasNbPages();
 $pdf->AddPage();
@@ -13,18 +76,18 @@ $pdf->SetFont('Arial','',11);
 
 $pdf->Cell(70,10,'Nama Pelapor',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
-$pdf->Cell(100,10,'......',0,1,'L');
+$pdf->Cell(100,10,$rowdata->nama,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Nomor Telp',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
-$pdf->Cell(100,10,'......',0,1,'L');
+$pdf->Cell(100,10,$rowdata->hp,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Alamat',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
-$pdf->Cell(100,10,'......',0,1,'L');
+$pdf->Cell(100,10,$rowdata->alamat,0,1,'L');
 $pdf->Ln();
 
-$pdf->MultiCell(190,10,'Melaporkan pada hari ... tanggal ... jam ... (korban pertama sakit) , terdapat kejadian keracunan pangan :');
+$pdf->MultiCell(190,10,'Melaporkan pada hari '.hari($rowdata->hari).', tanggal '.indodate($rowdata->tgl).' jam'.$rowdata->wkt.', terdapat kejadian keracunan pangan :');
 $pdf->Ln(1);
 
 $pdf->Cell(70,10,'Lokasi / Tempat Kejadian',0,0,'L');
