@@ -28,6 +28,7 @@ class form01 extends CI_Controller {
 		$check_kejadian = $this->db->query("select count(*) as total from tbl_resume_keluhan where flag = 0")->row()->total;
 		if($check_kejadian == 0){
 		$data['page'] = 'form/add_kejadian_form01_view';
+		$data['kelurahan'] = $this->db->query("select * from tbl_kelurahan")->result();
 		$this->load->view('template',$data);
 		}else{
 		$this->db->select('kd_keluhan');
@@ -195,6 +196,7 @@ class form01 extends CI_Controller {
 		'total_sakit'		=> 0,
 		'total_meninggal'	=> 0,
 		'lembaga_id'		=> $sess['lembaga_id'],
+		'kelurahan_id' => $this->input->post('kelurahan'),
 		'flag'				=> 0
 		);
 		$this->db->insert('tbl_resume_keluhan',$data);

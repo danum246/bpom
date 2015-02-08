@@ -60,19 +60,19 @@ $(function() {
                <div class="row-fluid stats-box">
                   <div class="span4">
                     <div class="stats-box-title">Total Laporan</div>
-                    <div class="stats-box-all-info"><i class="icon-inbox " style="color:#3366cc;"></i> 100</div>
+                    <div class="stats-box-all-info"><i class="icon-inbox " style="color:#3366cc;"></i> <?php echo $total;?></div>
                     <div class="wrap-chart"><div id="visitor-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart1" class="chart-holder" height="150" width="325"></canvas></div></div>
                   </div>
                   
                   <div class="span4">
                     <div class="stats-box-title">Keracunan</div>
-                    <div class="stats-box-all-info"><i class="icon-flag"  style="color:#F30"></i> 66</div>
+                    <div class="stats-box-all-info"><i class="icon-flag"  style="color:#F30"></i> <?php echo $keracunan;?></div>
                     <div class="wrap-chart"><div id="order-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart2" class="chart-holder" height="150" width="325"></canvas></div></div>
                   </div>
                   
                   <div class="span4">
                     <div class="stats-box-title">Non</div>
-                    <div class="stats-box-all-info"><i class="icon-check" style="color:#3C3"></i> 34</div>
+                    <div class="stats-box-all-info"><i class="icon-check" style="color:#3C3"></i> <?php echo $non;?></div>
                     <div class="wrap-chart">
                     
                     <div id="user-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart3" class="chart-holder" height="150" width="325"></canvas></div>

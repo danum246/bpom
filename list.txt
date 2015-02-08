@@ -1,0 +1,6 @@
+1. query di form 1 , 2 , 3 pada menu resume icon print
+2. query di menu penyampaian klb
+3. query pada detail penyampaian klb (klik lihat pada menu penyampaian klb)
+4. query form 5 (status klb ya)
+5. query form 6 (status klb dihentikan)
+6. query form 4 pada menu penyampaian klb icon print

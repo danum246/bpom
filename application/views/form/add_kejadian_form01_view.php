@@ -47,7 +47,7 @@ $( "#datepicker" ).datepicker({ dateFormat:'yy-mm-dd' });
 										<div class="control-group">											
 											<label class="control-label">Nama Kejadian</label>
 											<div class="controls">
-												<input type="text" class="span4" id="" name="kejadian" placeholder="Nama Kejadian" value="">
+												<input type="text" class="span4" id="" name="kejadian" placeholder="Nama Kejadian" value="" required>
 											</div> <!-- /controls -->				
 										</div>
 										<div class="control-group">											
@@ -55,7 +55,9 @@ $( "#datepicker" ).datepicker({ dateFormat:'yy-mm-dd' });
 											<div class="controls">
 												<select name="kelurahan" class="span4" required>
 													<option value=""> -- Pilih -- </option>
-													
+													<?php foreach($kelurahan as $row){?>
+													<option value="<?php echo $row->id_kelurahan;?>"> <?php echo $row->kelurahan;?> </option>
+													<?php } ?>
 												</select>
 											</div> <!-- /controls -->				
 										</div>

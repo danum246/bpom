@@ -247,7 +247,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 		if(e.keyCode==13){ 
 			e.preventDefault();
 			var pangan = $('#pgn').val(); 
-			var items = "<input type='text' class='span2' id='' placeholder='Pangan' value='"+pangan+"' name='pangan[]' style='margin-top:2px'><br>"; 
+			var items = "<input type='text' class='span2' id='' placeholder='Pangan' value='"+pangan+"' name='pangan[]' style='border-radius:0px;background:whitesmoke;margin-top:2px;width:145px;margin-right:3px;float:left'>"; 
 			$("#itemlist").append(items);
 			$("#pgn").focus();
 			$("#pgn").val('');
@@ -259,12 +259,13 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 	                                        		<tr>
 	                                        			<!--td><input type="checkbox" name="lain" id="lain"> Lainnya</td-->
 	                                        			<td colspan="3">
-														<table>
+														<table border=0 cellspacing=0>
+														
 														<tr>
-															<td id="itemlist"></td>
+															<td><input type="text" class="span2" id="pgn" placeholder="Masukkan Pangan Dan Tekan Enter" value="" name="" style="width:462px;border-radius:0px"></td>
 														</tr>
 														<tr>
-															<td><input type="text" class="span2" id="pgn" placeholder="Pangan" value="" name=""><span style="color:orangered;font-size:8pt;margin-left:10px">Tekan Enter Untuk Menambah Data</span></td>
+															<td id="itemlist" style="width:525px;pading-bottom:3px"></td>
 														</tr>
 														</table>
 														</td>
