@@ -22,23 +22,17 @@ class penyampaian extends CI_Controller {
 		$this->load->view('template',$data);
 	}
 
-<<<<<<< HEAD
-	function detail($id)
-	{
-		$data['status'] = $this->app_model->getstatusklb($id)->row();
-=======
 	function detail($kode)
 	{
+		$data['status'] = $this->app_model->getstatusklb($kode)->row();
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
 		$data['kejadian'] = $this->db->query("select a.*,b.* from tbl_resume_keluhan a join tbl_lembaga b on a.lembaga_id = b.id_lembaga where a.kd_keluhan='$kode'")->row();
 		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
-		//die($data['gejala_umum']);
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
 		$data['kode'] = $kode;
 		$data['pangan'] = $this->db->query("select pangan_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->pangan_umum;
 		//$data['page'] = 'form/result_form01_view';
->>>>>>> 4c7234370edfaf68cd5662c8f4f07fe07484e955
 		$data['page'] = 'form/detail_penyampaian_view';
 		$this->load->view('template',$data);
 		
