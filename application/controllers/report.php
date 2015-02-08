@@ -13,9 +13,11 @@ class report extends CI_Controller {
 	function index()
 	{
 		$data['page'] = 'report';
-		$data['total'] = $this->db->query("select count(*) as total from tbl_keluhan_pasien")->row()->total;
-		$data['keracunan'] = $this->db->query("select count(*) as total from tbl_keluhan_pasien where status_pasien = 1 or status_pasien = 2")->row()->total;
-		$data['non'] = $this->db->query("select count(*) as total from tbl_keluhan_pasien where status_pasien = 0")->row()->total;
+		$data['total'] = $this->db->query("select count(*) as total from tbl_resume_keluhan")->row()->total;
+		$data['keracunan'] = $this->db->query("select count(*) as total from tbl_status_kejadian where status_klb = 1")->row()->total;
+		$data['non'] = $this->db->query("SELECT COUNT(a.kd_keluhan) AS total FROM tbl_resume_keluhan a LEFT JOIN tbl_status_kejadian b 
+										ON a.kd_keluhan = b.no_kejadian
+										WHERE b.status_klb IS NULL OR b.status_klb = 2")->row()->total;
 		$this->load->view('template',$data);
 	}
 
