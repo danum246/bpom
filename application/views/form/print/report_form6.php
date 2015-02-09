@@ -128,7 +128,7 @@ $pdf->Cell(3,8,'c. ',0,0,'L');
 $pdf->Cell(70,8,'Jumlah korban baru menurut umur dan jenis kelamin ...... orang',0,1,'L');
 $pdf->Cell(10);
 $pdf->Cell(3,8,'d. ',0,0,'L');
-$pdf->Cell(50,8,'Jumlah kematian ...... orang',0,1,'L');
+$pdf->Cell(50,8,'Jumlah kematian '.total($rowdata->kd_keluhan,'1').' orang',0,1,'L');
 $pdf->Cell(50,8,'dan semakin meningkatnya :',0,1,'L');
 $pdf->Cell(10);
 $pdf->Cell(3,8,'f. ',0,0,'L');
@@ -153,16 +153,16 @@ $pdf->Ln();
 
 $pdf->Cell(120,8,'Jakarta',0,0,'R');
 $pdf->Cell(2,8,'/',0,0,'C');
-$pdf->Cell(60,8,'....../....../.........',0,1,'L');
+$pdf->Cell(60,8,indodate(date('Y-m-d')),0,1,'L');
 $pdf->Cell(100);
 $pdf->Cell(60,8,'Kepala Dinas Kesehatan Kabupaten/Kota/KKP',0,1,'L');
 $pdf->Ln();
 
-$pdf->Cell(150,10,'................................',0,1,'R');
+$pdf->Cell(150,10,$rowdata->nama,0,1,'R');
 $pdf->Ln(0.1);
 $pdf->Cell(100);
 $pdf->Cell(10,10,'NIP : ',0,0,'L');
-$pdf->Cell(50,10,'...............',0,1,'L');
+$pdf->Cell(50,10,$rowdata->nik,0,1,'L');
 
 $pdf->Output('FORM 6.pdf','D');
 
