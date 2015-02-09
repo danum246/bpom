@@ -58,7 +58,7 @@ return implode(', ',$pangan);
 			
 			<div class="widget-content">
 				<div class="span11">
-					<table>
+					<table border=0>
 						<tr>
 							<td style="width:150px">Nama Kejadian</td>
 							<td>:</td>
@@ -99,6 +99,29 @@ return implode(', ',$pangan);
 							<td>:</td>
 							<td><?php echo tjns($kejadian->kd_keluhan,'Wanita');?> Orang</td>
 							
+						</tr>
+						<tr>
+							<td style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</td>
+							<td>:</td>
+							<td rowspan=2>
+							<table>
+							<?php foreach($pekerjaan as $rw){
+							$job = $rw->pekerjaan;
+							$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where pekerjaan_id='$rw->id_pekerjaan' and kd_keluhan = '$kejadian->kd_keluhan'")->row()->total;
+							if($count>=0){
+							?>
+							<tr>
+							<td><?php echo $job;?></td>
+							<td>:</td>
+							<td><?php echo $count;?> Orang</td>
+							</tr>
+							<?php } } ?>
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
 						</tr>
 						<tr>
 							<td colspan=6 style="height:5px">&nbsp;</td>
