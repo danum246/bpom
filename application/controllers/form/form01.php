@@ -255,6 +255,7 @@ class form01 extends CI_Controller {
 		$dtpangan = implode(',',$kd_pangan);
 		$data = array(
 		'pasien'		=> $this->input->post('pasien'),
+		'jns_kel'	=> $this->input->post('jk'),
 		'waktu_awal'	=> $this->input->post('awal_kejadian')." ".$this->input->post('h_awal').":".$this->input->post('m_awal'),
 		'waktu_terjadi'	=> $this->input->post('mulai_kejadian')." ".$this->input->post('h_kej').":".$this->input->post('m_kej'),
 		'kd_gejala'		=> $kd_gjl,

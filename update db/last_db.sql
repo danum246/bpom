@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2015 at 07:50 AM
+-- Generation Time: Feb 09, 2015 at 08:01 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -180,6 +180,7 @@ INSERT INTO `tbl_kecamatan` (`id_kecamatan`, `kecamatan`, `kabupaten_id`) VALUES
 CREATE TABLE IF NOT EXISTS `tbl_keluhan_pasien` (
   `id_keluhan` int(11) NOT NULL AUTO_INCREMENT,
   `pasien` varchar(100) NOT NULL,
+  `jns_kel` varchar(10) DEFAULT NULL,
   `waktu_awal` datetime NOT NULL,
   `waktu_terjadi` datetime DEFAULT NULL,
   `kd_gejala` varchar(100) NOT NULL COMMENT 'isian ny array . ex: 1,2,3,4',
@@ -200,9 +201,9 @@ CREATE TABLE IF NOT EXISTS `tbl_keluhan_pasien` (
 -- Dumping data for table `tbl_keluhan_pasien`
 --
 
-INSERT INTO `tbl_keluhan_pasien` (`id_keluhan`, `pasien`, `waktu_awal`, `waktu_terjadi`, `kd_gejala`, `organ_id`, `lokasi`, `kd_keluhan`, `lembaga_id`, `pekerjaan_id`, `kd_pangan`, `status_pasien`, `flag`, `kelurahan_id`) VALUES
-(57, 'Wita', '2015-02-09 07:44:00', '2015-02-09 07:44:00', 'ML,SKTPRT,DMM,DHDR', NULL, 'Cikarang', 'PPL-2015-MTR-02-1', 1, 2, 'PGN-4,PGN-5,PGN-6,NS,PGN-3', 1, 1, NULL),
-(56, 'Angga', '2015-02-09 07:43:00', '2015-02-09 08:43:00', 'ML,SKTPRT,PSG,LMH', NULL, 'Bekasi', 'PPL-2015-MTR-02-1', 1, 2, 'NS,Rpt,PGN-2,PGN-3', 1, 1, NULL);
+INSERT INTO `tbl_keluhan_pasien` (`id_keluhan`, `pasien`, `jns_kel`, `waktu_awal`, `waktu_terjadi`, `kd_gejala`, `organ_id`, `lokasi`, `kd_keluhan`, `lembaga_id`, `pekerjaan_id`, `kd_pangan`, `status_pasien`, `flag`, `kelurahan_id`) VALUES
+(57, 'Wita', 'Pria', '2015-02-09 07:44:00', '2015-02-09 07:44:00', 'ML,SKTPRT,DMM,DHDR', NULL, 'Cikarang', 'PPL-2015-MTR-02-1', 1, 2, 'PGN-4,PGN-5,PGN-6,NS,PGN-3', 1, 1, NULL),
+(56, 'Angga', 'Wanita', '2015-02-09 07:43:00', '2015-02-09 08:43:00', 'ML,SKTPRT,PSG,LMH', NULL, 'Bekasi', 'PPL-2015-MTR-02-1', 1, 2, 'NS,Rpt,PGN-2,PGN-3', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
