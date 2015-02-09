@@ -119,7 +119,11 @@ class form01 extends CI_Controller {
 	function result($kode){
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
-		$data['kejadian'] = $this->db->query("select a.*,b.* from tbl_resume_keluhan a join tbl_lembaga b on a.lembaga_id = b.id_lembaga where a.kd_keluhan='$kode'")->row();
+		$data['kejadian'] = $this->db->query("select a.*,b.*,c.kelurahan,d.kabupaten_kota from tbl_resume_keluhan a
+		join tbl_lembaga b on a.lembaga_id = b.id_lembaga
+		left join tbl_kelurahan c on c.id_kelurahan = b.kelurahan_id
+		left join tbl_kabupaten d on d.id_kabupaten = b.kabupaten_id
+		where a.kd_keluhan='$kode' ")->row();
 		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
 		//die($data['gejala_umum']);
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
@@ -238,8 +242,8 @@ class form01 extends CI_Controller {
 				$pangan[] = 'PGN-'.$countpg;
 				$dt = array(
 				'kd_pangan'		=> 'PGN-'.$countpg,
-				'pangan'		=> $this->input->post('panglainnya'),
-				'keterangan'	=> $this->input->post('panglainnya')
+				'pangan'		=> $pgn,
+				'keterangan'	=> $pgn
 				);
 				$this->db->insert('tbl_pangan',$dt);
 				$kd_pangan[] = 'PGN-'.$countpg;

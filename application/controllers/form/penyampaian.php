@@ -55,8 +55,9 @@ class penyampaian extends CI_Controller {
 
 	function print_form5($id)
 	{
+		$data['kode'] = $id;
 		$this->load->library('Cfpdf');
-		$this->load->view('form/print/report_form5');
+		$this->load->view('form/print/report_form5',$data);
 	}
 
 	function henti_klb()

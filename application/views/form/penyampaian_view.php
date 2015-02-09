@@ -44,7 +44,7 @@ function total($kd_keluhan,$flag){
 	                        	<td><?php echo total($row->kd_keluhan,'2');?></td>
 	                        	<!--td></td-->
 	                        	<td><a href="<?php echo base_url(); ?>form/penyampaian/detail/<?php echo $row->kd_keluhan;?>">Lihat</a></td>
-	                        	<td><a class="btn btn-success btn-small" href="<?php echo base_url(); ?>form/resume/print_form4/'kode'">
+	                        	<td><a class="btn btn-success btn-small" href="<?php echo base_url(); ?>form/resume/print_form4/<?php echo $row->kd_keluhan;?>">
 												<i class="btn-icon-only icon-print"> </i></a></td>
 	                        </tr>
 							<?php $no++;  } ?>

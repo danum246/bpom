@@ -55,7 +55,7 @@ return implode(', ',$pangan);
 							<td style="width:300px"><?php echo $kejadian->nama_kejadian;?></td>
 							<td style="width:150px">Puskesmas</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kelurahan;?></td>
 						</tr>
 						<tr>
 							<td>Jumlah Korban</td>
@@ -69,9 +69,9 @@ return implode(', ',$pangan);
 							<td>Jumlah Meninggal</td>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'2');?></td>
-							<td>Kabupaten / Provinsi</td>
+							<td style="width:200px">Kabupaten / Kota / Provinsi</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kabupaten_kota;?></td>
 						</tr>
 						<tr>
 							<td>Hasil Lab</td>

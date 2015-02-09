@@ -3,14 +3,14 @@
 $(function() {
   $( "#from" ).datepicker({
     changeMonth: true,
-    numberOfMonths: 2,
+    numberOfMonths: 1,
     onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
     }
   });
   $( "#to" ).datepicker({
     changeMonth: true,
-    numberOfMonths: 2,
+    numberOfMonths: 1,
     onClose: function( selectedDate ) {
       $( "#from" ).datepicker( "option", "maxDate", selectedDate );
     }
@@ -61,23 +61,17 @@ $(function() {
                   <div class="span4">
                     <div class="stats-box-title">Total Laporan</div>
                     <div class="stats-box-all-info"><i class="icon-inbox " style="color:#3366cc;"></i> <?php echo $total;?></div>
-                    <div class="wrap-chart"><div id="visitor-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart1" class="chart-holder" height="150" width="325"></canvas></div></div>
                   </div>
                   
                   <div class="span4">
                     <div class="stats-box-title">Keracunan</div>
                     <div class="stats-box-all-info"><i class="icon-flag"  style="color:#F30"></i> <?php echo $keracunan;?></div>
-                    <div class="wrap-chart"><div id="order-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart2" class="chart-holder" height="150" width="325"></canvas></div></div>
                   </div>
                   
                   <div class="span4">
                     <div class="stats-box-title">Non</div>
                     <div class="stats-box-all-info"><i class="icon-check" style="color:#3C3"></i> <?php echo $non;?></div>
-                    <div class="wrap-chart">
-                    
-                    <div id="user-stat" class="chart" style="padding: 0px; position: relative;"><canvas id="bar-chart3" class="chart-holder" height="150" width="325"></canvas></div>
-                    
-                    </div>
+                   
                   </div>
                </div>
                
@@ -90,47 +84,7 @@ $(function() {
           
         <!-- /row -->
   
-        <div class="row">
-          
-          <div class="span6">
-            
-            <div class="widget">
-            
-          <div class="widget-header">
-            <i class="icon-star"></i>
-            <h3>Some Stats</h3>
-          </div> <!-- /widget-header -->
-          
-          <div class="widget-content">
-            <canvas id="pie-chart" class="chart-holder" height="250" width="538"></canvas>
-          </div> <!-- /widget-content -->
-            
-        </div> <!-- /widget -->
-        
-            
-            
-            
-        </div> <!-- /span6 -->
-          
-          
-          <div class="span6">
-            
-            <div class="widget">
-              
-          <div class="widget-header">
-            <i class="icon-list-alt"></i>
-            <h3>Another Chart</h3>
-          </div> <!-- /widget-header -->
-          
-          <div class="widget-content">
-            <canvas id="bar-chart" class="chart-holder" height="250" width="538"></canvas>
-          </div> <!-- /widget-content -->
-        
-        </div> <!-- /widget -->
-                  
-          </div> <!-- /span6 -->
-          
-        </div> <!-- /row -->
+ <!-- /row -->
 
 <script src="<?php echo base_url();?>assets/js/excanvas.min.js"></script> 
 <script src="<?php echo base_url();?>assets/js/chart.min.js" type="text/javascript"></script>

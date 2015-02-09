@@ -1,7 +1,7 @@
 <script>
 function edit(id){
 $.getJSON('<?php echo base_url();?>data/lembaga/get_detail_lembaga/'+id,function(get){
-$('#kode_e').val(get.kode_lembaga);
+/*$('#kode_e').val(get.kode_lembaga);
 $('#lembaga_e').val(get.lembaga);
 $('#kabupaten_e').val();
 var lev = get.level;
@@ -19,12 +19,12 @@ $('#kabupaten_ed').hide();
 $('#kelurahan_ed').show();
 $('#puskesmas_e').attr('checked','checked');
 }
-$('#idl').val(get.id_lembaga);
+$('#idl').val(get.id_lembaga);*/
 });
 }
 </script>
 					<script>
-					$(document).ready(function(){
+					/*$(document).ready(function(){
 					$('#pusat_e').click(function(){
 					$('#kabupaten_ed').hide();
 					$('#kelurahan_ed').hide();
@@ -39,7 +39,7 @@ $('#idl').val(get.id_lembaga);
 					$('#kabupaten_ed').hide();
 					$('#kelurahan_ed').show();
 					});
-					});
+					});*/
 					</script>
 <div class="row">
 	<div class="span12">      		  		
@@ -113,7 +113,7 @@ $('#idl').val(get.id_lembaga);
                         </div>
                     </div>
 					<script>
-					$(document).ready(function(){
+					/*$(document).ready(function(){
 					$('#kabupaten').hide();
 					$('#kelurahan').hide();
 					
@@ -131,7 +131,7 @@ $('#idl').val(get.id_lembaga);
 					$('#kabupaten').hide();
 					$('#kelurahan').show();
 					});
-					});
+					});*/
 					</script>
                     <div class="control-group" id="">
                         <label class="control-label">Level</label>

@@ -28,29 +28,34 @@ class resume extends CI_Controller {
 		$this->load->view('form/print/report_form1',$data);
 	}	
 
-	function print_form2()
+	function print_form2($id)
 	{
-		$this->load->view('form/print/report_form2');
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form2',$data);
 	}
 
-	function print_form3()
+	function print_form3($id)
 	{
-		$this->load->view('form/print/report_form3');
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form3',$data);
 	}
 
-	function print_form4()
+	function print_form4($id)
 	{
-		$this->load->view('form/print/report_form4');
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form4',$data);
 	}
 
-	function print_form5()
+	function print_form5($id)
 	{
-		$this->load->view('form/print/report_form5');	
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form5',$data);	
 	}
 
-	function print_form6()
+	function print_form6($id)
 	{
-		$this->load->view('form/print/report_form6');
+		$data['kode'] = $id;
+		$this->load->view('form/print/report_form6',$data);
 	}
 
 	function print_form7()
