@@ -85,8 +85,7 @@ return implode(', ',$pangan);
 $rowdata = $this->db->query("SELECT c.lembaga,e.kabupaten_kota,d.kelurahan,a.kelurahan_id AS kelid,TIME(a.waktu_lapor) AS wkt,DAYNAME(a.waktu_lapor) AS hari,DATE(a.waktu_lapor) AS tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a 
 JOIN tbl_karyawan b ON a.`nik_pelapor` = b.`nik` 
 JOIN tbl_lembaga c ON c.`id_lembaga` = a.`lembaga_id` 
-LEFT JOIN tbl_kelurahan d ON d.id_kelurahan = a.kelurahan_id
-LEFT JOIN tbl_kabupaten e ON e.id_kabupaten = c.kabupaten_id
+join view_daerah c on c.'id_kelurahan' = a.'kelurahan_id'
 where a.kd_keluhan = '$kode'")->row();
 
 $pdf = new FPDF('P','mm','A4');
@@ -126,7 +125,7 @@ $pdf->Cell(100,10,$rowdata->kelurahan,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Kecamatan',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
-$pdf->Cell(100,10,'',0,1,'L');
+$pdf->Cell(100,10,$rowdata->kecamatan,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Kabupaten / Kota',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');

@@ -120,10 +120,9 @@ class form01 extends CI_Controller {
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
 		$data['pekerjaan'] = $this->db->query("select distinct a.pekerjaan,a.id_pekerjaan from tbl_pekerjaan a join tbl_keluhan_pasien b on a.id_pekerjaan = b.pekerjaan_id where b.kd_keluhan = '".$kode."'")->result();
-		$data['kejadian'] = $this->db->query("select a.*,b.*,c.kelurahan,d.kabupaten_kota from tbl_resume_keluhan a
+		$data['kejadian'] = $this->db->query("select a.*,b.*,c.* from tbl_resume_keluhan a
 		join tbl_lembaga b on a.lembaga_id = b.id_lembaga
-		left join tbl_kelurahan c on c.id_kelurahan = b.kelurahan_id
-		left join tbl_kabupaten d on d.id_kabupaten = b.kabupaten_id
+		join view_daerah c on c.id_kelurahan = a.kelurahan_id
 		where a.kd_keluhan='$kode' ")->row();
 		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
 		//die($data['gejala_umum']);

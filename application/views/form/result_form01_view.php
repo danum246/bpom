@@ -73,7 +73,7 @@ return implode(', ',$pangan);
 							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
 							<td>Kecamatan</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kecamatan;?></td>
 						</tr>	
 						<tr>
 							<td>Korban Sehat</td>

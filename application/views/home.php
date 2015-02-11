@@ -53,9 +53,9 @@ function total($kd_keluhan,$flag){
 				                        <tr>
 				                        	<td><?php echo $no;?></td>
 				                        	<!--td><a href="<?php echo base_url();?>form/form01/result/<?php echo $row->kd_keluhan;?>"><?php echo $row->kd_keluhan;?></a></td-->
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                                  <td><?php echo $row->kabupaten_kota;?></td>
+                                  <td><?php echo $row->kecamatan;?></td>
+                                  <td><?php echo $row->kelurahan;?></td>
 				                        	<td><?php echo $row->nama_kejadian;?></td>
 											
 				                        	<td><?php echo $row->waktu_lapor;?></td>
