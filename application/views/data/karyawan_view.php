@@ -86,7 +86,7 @@ $('#editkary').load('<?php echo base_url();?>data/karyawan/load_edit/'+idk);
                     <div class="control-group" id="">
                         <label class="control-label">Telepon</label>
                         <div class="controls">
-                            +62 ( <input type="text" class="span3" name="telepon_e" id="telepon_e" placeholder="Input Telepon" class="form-control" value="" required/> ) 
+                            +62 ( <input type="text" class="span3" name="telepon" id="telepon" placeholder="Input Telepon" class="form-control" value="" required/> ) 
                         </div>
                     </div>
                     <div class="control-group" id="">
