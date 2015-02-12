@@ -180,6 +180,18 @@ return implode(', ',$pangan);
                         </div>
                     </div> 
                     <div class="control-group" id="">
+                        <label class="control-label">Jumlah Pasien Dirawat</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="pasien_rawat" required/>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
+                        <label class="control-label">Jumlah Pasien Sembuh</label>
+                        <div class="controls">
+                            <input type="text" class="span4" name="pasien_sembuh" required/>
+                        </div>
+                    </div>
+                    <div class="control-group" id="">
                         <label class="control-label">Hasil Lab</label>
                         <div class="controls">
                             <input type="file" class="span4" name="userfile" required/>

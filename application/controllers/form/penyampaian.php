@@ -66,6 +66,8 @@ class penyampaian extends CI_Controller {
 		if ($data['status_klb'] == 2) {
 			$data['file_upload'] = $this->upload_file('./upload/');
 			$data['catatan']= $this->input->post('catatan', TRUE);
+			$data['pasien_rawat']= $this->input->post('pasien_rawat', TRUE);
+			$data['pasien_sembuh']= $this->input->post('pasien_sembuh', TRUE);
 			$data['waktu']= date('Y-m-d h:i:s');
 			$update = $this->app_model->updatedata('tbl_status_kejadian','no_kejadian',$this->input->post('no_kejadian', TRUE),$data);
 			if ($update == TRUE) {
