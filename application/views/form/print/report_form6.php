@@ -121,7 +121,8 @@ $pdf->Cell(3,8,'a. ',0,0,'L');
 $pdf->Cell(50,8,'Jumlah korban yang masih sakit '.total($rowdata->kd_keluhan,'1').' orang',0,1,'L');
 $pdf->Cell(10);
 $pdf->Cell(3,8,'b. ',0,0,'L');
-$pdf->Cell(50,8,'Jumlah korban yang masih dirawat ...... orang',0,1,'L');
+$pasien = $this->db->query("select pasien_rawat,pasien_sembuh from tbl_status_kejadian where no_kejadian = '".$rowdata->kd_keluhan."'")->row();
+$pdf->Cell(50,8,'Jumlah korban yang masih dirawat '.$pasien->pasien_sembuh.' orang',0,1,'L');
 $pdf->Cell(10);
 $pdf->Cell(3,8,'c. ',0,0,'L');
 $pdf->Cell(70,8,'Jumlah korban baru menurut umur dan jenis kelamin ...... orang',0,1,'L');
@@ -131,8 +132,9 @@ $pdf->Cell(50,8,'Jumlah kematian '.total($rowdata->kd_keluhan,'1').' orang',0,1,
 $pdf->Cell(50,8,'dan semakin meningkatnya :',0,1,'L');
 $pdf->Cell(10);
 $pdf->Cell(3,8,'f. ',0,0,'L');
-$pdf->Cell(50,8,'Jumlah dinyatakan sembuh ...... orang',0,1,'L');
+$pdf->Cell(50,8,'Jumlah dinyatakan sembuh '.$pasien->pasien_sembuh.' orang',0,1,'L');
 $pdf->Cell(50,8,'serta sudah berakhirnya : ',0,1,'L');
+
 $pdf->Cell(10);
 $pdf->Cell(3,8,'g. ',0,0,'L');
 $pdf->Cell(50,8,'penyelidikan epidemiologi KLB Keracunan Pangan , dan ',0,1,'L');
