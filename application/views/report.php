@@ -3,6 +3,7 @@
 $(function() {
   $( "#from" ).datepicker({
     changeMonth: true,
+    dateFormat : 'yy-mm-dd',
     numberOfMonths: 1,
     onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
@@ -10,6 +11,7 @@ $(function() {
   });
   $( "#to" ).datepicker({
     changeMonth: true,
+    dateFormat : 'yy-mm-dd',
     numberOfMonths: 1,
     onClose: function( selectedDate ) {
       $( "#from" ).datepicker( "option", "maxDate", selectedDate );
@@ -27,18 +29,18 @@ $(function() {
       </div> <!-- /widget-header -->
       <div class="widget-content">
         <b><center>LAPORAN</center></b><br>
-        <form id="edit-profile" class="form-horizontal" method="post" action="#">
+        <form id="edit-profile" class="form-horizontal" method="post" action="<?php echo base_url(); ?>report/filter_by_date">
           <fieldset>
             <div class="control-group pull-right" style="margin-right:270px;">                     
               <label class="control-label">TO</label>
               <div class="controls">
-                <input type="text" class="span3" id="to" placeholder="TO" value="">
+                <input type="text" class="span3" id="to" name="akhir" placeholder="TO" value="">
               </div> <!-- /controls -->       
             </div> <!-- /control-group -->
             <div class="control-group">                     
               <label class="control-label">FROM</label>
               <div class="controls">
-                <input type="text" class="span3" id="from" placeholder="FROM" value="">
+                <input type="text" class="span3" id="from" name="awal" placeholder="FROM" value="">
               </div> <!-- /controls -->       
             </div> <!-- /control-group -->
             <div class="form-actions" style="margin-bottom: -30px;">
