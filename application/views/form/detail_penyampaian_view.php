@@ -16,6 +16,16 @@ function total($kd_keluhan,$flag){
 	return $row['total'];
 }
 
+function tjns($kd_keluhan,$flag){
+	if($flag=='all'){
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
+	}else{
+		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and jns_kel='$flag'");
+	}
+	$row = mysql_fetch_array($sql);
+	return $row['total'];
+}
+
 function show_gjl($kode){
 $gjl = explode(',',$kode);
 $gjl_length = sizeof($gjl);
@@ -48,30 +58,73 @@ return implode(', ',$pangan);
 			
 			<div class="widget-content">
 				<div class="span11">
-					<table>
+					<table border=0>
 						<tr>
 							<td style="width:150px">Nama Kejadian</td>
 							<td>:</td>
 							<td style="width:300px"><?php echo $kejadian->nama_kejadian;?></td>
 							<td style="width:150px">Puskesmas</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kelurahan;?></td>
 						</tr>
 						<tr>
 							<td>Jumlah Korban</td>
 							<td>:</td>
-							<td><?php echo total($kejadian->kd_keluhan,'all');?></td>
+							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
 							<td>Kecamatan</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kecamatan;?></td>
 						</tr>	
 						<tr>
-							<td>Jumlah Meninggal</td>
+							<td>Korban Sehat</td>
 							<td>:</td>
-							<td><?php echo total($kejadian->kd_keluhan,'2');?></td>
-							<td>Kabupaten / Provinsi</td>
+							<td><?php echo total($kejadian->kd_keluhan,'0');?> Orang</td>
+							<td style="width:200px">Kabupaten / Kota / Provinsi</td>
 							<td>:</td>
-							<td></td>
+							<td><?php echo $kejadian->kabupaten_kota;?></td>
+						</tr>
+						<tr>
+							<td>Korban Sakit</td>
+							<td>:</td>
+							<td><?php echo total($kejadian->kd_keluhan,'1');?> Orang</td>
+							<td>Korban Meninggal</td>
+							<td>:</td>
+							<td><?php echo total($kejadian->kd_keluhan,'2');?> Orang</td>
+						</tr>
+						<tr>
+						<td>Korban Pria</td>
+							<td>:</td>
+							<td><?php echo tjns($kejadian->kd_keluhan,'Pria');?> Orang</td>
+							<td>Korban Wania</td>
+							<td>:</td>
+							<td><?php echo tjns($kejadian->kd_keluhan,'Wanita');?> Orang</td>
+							
+						</tr>
+						<tr>
+							<td style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</td>
+							<td>:</td>
+							<td rowspan=2>
+							<table>
+							<?php foreach($pekerjaan as $rw){
+							$job = $rw->pekerjaan;
+							$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where pekerjaan_id='$rw->id_pekerjaan' and kd_keluhan = '$kejadian->kd_keluhan'")->row()->total;
+							if($count>=0){
+							?>
+							<tr>
+							<td><?php echo $job;?></td>
+							<td>:</td>
+							<td><?php echo $count;?> Orang</td>
+							</tr>
+							<?php } } ?>
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan=6 style="height:5px">&nbsp;</td>
 						</tr>
 					</table>
 					<?php if (($status->status_klb) == '') { ?>

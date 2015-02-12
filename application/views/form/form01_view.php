@@ -25,7 +25,24 @@ $( "#date_1" ).datepicker({ dateFormat:'yy-mm-dd' });
 $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 });
 </script>
-
+	<script>
+		$(document).ready(function(){
+		
+		$('#pgn').keypress(function(e){  
+		var a = 1;
+		
+		if(e.keyCode==13){ 
+			e.preventDefault();
+			var pangan = $('#pgn').val(); 
+			var items = "<input type='text' class='span2' id='' placeholder='Pangan' value='"+pangan+"' name='pangan[]' style='border-radius:0px;background:whitesmoke;margin-top:2px;width:145px;margin-right:3px;float:left'>"; 
+			$("#itemlist").append(items);
+			$("#pgn").focus();
+			$("#pgn").val('');
+		}
+		
+	});
+		});
+	</script>
 <div class="row">
   	<div class="span12">      		
   		<div class="widget ">
@@ -130,62 +147,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											</select>
 										</div> <!-- /controls -->				
 									</div>
-											 <!-- /control-group -->
-									<!--div class="control-group">											
-										<label class="control-label">Kelurahan</label>
-										<div class="controls">
-											<select name="kelurahan">
-											<option></option>
-											<?php foreach($kelurahan as $kel){?>
-											<option value="<?php echo $kel->id_kelurahan;?>"><?php echo $kel->kelurahan;?></option>
-											<?php } ?>
-											</select>
-										</div> <!-- /controls >				
-									</div> <!-- /control-group 
-									<div class="control-group">											
-										<label class="control-label">Kecamatan</label>
-										<div class="controls">
-											<select name="kecamatan">
-											<option></option>
-											<?php foreach($kecamatan as $kec){?>
-											<option value="<?php echo $kec->id_kecamatan;?>"><?php echo $kec->kecamatan;?></option>
-											<?php } ?>
-											</select>
-										</div> <!-- /controls >				
-									</div> <!-- /control-group >
-									<div class="control-group">											
-										<label class="control-label">Kabupaten / Kota</label>
-										<div class="controls">
-											<select name="kabupaten">
-											<option></option>
-											<?php foreach($kabupaten as $kab){?>
-											<option value="<?php echo $kab->id_kabupaten;?>"><?php echo $kab->kabupaten_kota;?></option>
-											<?php } ?>
-											</select>
-										</div> <!-- /controls >				
-									</div> <!-- /control-group >
-									<div class="control-group">											
-										<label class="control-label">Provinsi</label>
-										<div class="controls">
-											<select name="provinsi">
-											<option></option>
-											<?php foreach($provinsi as $pro){?>
-											<option value="<?php echo $pro->id_provinsi;?>"><?php echo $pro->provinsi;?></option>
-											<?php } ?>
-											</select>
-										</div> <!-- /controls >				
-									</div> <!-- /control-group -->
-									<!--div class="control-group">											
-										<label class="control-label">Organ Terlibat</label>
-										<div class="controls">
-											<select name="organ">
-											<option></option>
-											<?php foreach($organ as $org){?>
-											<option value="<?php echo $org->id_organ;?>"><?php echo $org->organ_terlibat;?></option>
-											<?php } ?>
-											</select>
-										</div> <!-- /controls -->				
-									<!--/div> <!-- /control-group -->
+										
 									<div class="control-group">											
 											<label class="control-label">Status Pasien</label>
 											<div class="controls">
@@ -233,7 +195,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											<table>
 											<tr>
 												<?php $no=1; foreach($tmp_pangan as $prow){?>
-												<td style=""><input type="checkbox" name="pangan[]" value="<?php echo $prow->kd_pangan;?>" style="margin-top:-2px">&nbsp;<span style=""><?php echo $prow->pangan;?></span>&nbsp;</td>
+												<td style=""><input type="checkbox" name="pangan_cb[]" value="<?php echo $prow->kd_pangan;?>" style="margin-top:-2px">&nbsp;<span style=""><?php echo $prow->pangan;?></span>&nbsp;</td>
 												<?php if($no%4==0){?>
 												</tr>
 												<tr>
@@ -243,30 +205,16 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											<tr>
 												<td colspan=4><input type="text" class="span2" id="pgn" placeholder="Masukkan Pangan Dan Tekan Enter" value="" name="" style="width:462px;border-radius:0px"></td>
 											</tr>
+											<tr>
+												<td colspan=4 id="itemlist"></td>
+											</tr>
 											</table>
 											</div>
 											<?php }else{?>
 											<input type="hidden" name="type_pangan" value="tx">
 	                                        <div class="controls">
 	                                        	<table>
-		<script>
-		$(document).ready(function(){
-		
-		$('#pgn').keypress(function(e){  
-		var a = 1;
-		
-		if(e.keyCode==13){ 
-			e.preventDefault();
-			var pangan = $('#pgn').val(); 
-			var items = "<input type='text' class='span2' id='' placeholder='Pangan' value='"+pangan+"' name='pangan[]' style='border-radius:0px;background:whitesmoke;margin-top:2px;width:145px;margin-right:3px;float:left'>"; 
-			$("#itemlist").append(items);
-			$("#pgn").focus();
-			$("#pgn").val('');
-		}
-		
-	});
-		});
-	</script>
+	
 	                                        		<tr>
 	                                        			<td colspan="3">
 														<table border=0 cellspacing=0>

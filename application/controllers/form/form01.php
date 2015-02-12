@@ -158,7 +158,7 @@ class form01 extends CI_Controller {
 		$racun = $this->db->query("SELECT a.* , b.organ_id,b.inkubasi_pendek,b.inkubasi_tinggi FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
 		foreach($racun as $row){ 
 		//$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and (organ_id = '".$row->organ_id."') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
-		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%$row->kd_gejala%') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
+		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and ((kd_gejala like '$row->kd_gejala,%')or(kd_gejala like '%,$row->kd_gejala,%')or(kd_gejala like '%,$row->kd_gejala')) and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
 		if($count!=0){
 		$data = array(
 		'kd_keluhan'	=> $kode,
@@ -180,7 +180,7 @@ class form01 extends CI_Controller {
 		$kd_pangan = $this->db->query("select kd_pangan from tbl_pangan")->result();
 		foreach($kd_pangan as $pg){
 		$kd = $pg->kd_pangan;
-		$countp = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_pangan like '%$kd%' and kd_keluhan = '$kode'")->row()->total;
+		$countp = $this->db->query("select count(*) as total from tbl_keluhan_pasien where ((kd_pangan like '$kd,%') or (kd_pangan like '%,$kd,%') or (kd_pangan like '%,$kd')) and kd_keluhan = '$kode'")->row()->total;
 		$persen = $countp/$totpas*100;
 		if($persen >= 50){
 		$pgn[] = $kd;
@@ -195,6 +195,8 @@ class form01 extends CI_Controller {
 	
 	function save_kejadian(){
 		$sess = $this->session->userdata('sess_login');
+		$id_lembaga = $sess['lembaga_id'];
+		$location = $this->db->query("select kelurahan_id from tbl_lembaga where id_lembaga = '$id_lembaga' ")->row()->kelurahan_id;
 		//var_dump($sess);exit;
 		$data = array(
 		'kd_keluhan'		=> $this->input->post('kode'),
@@ -207,7 +209,7 @@ class form01 extends CI_Controller {
 		'total_sakit'		=> 0,
 		'total_meninggal'	=> 0,
 		'lembaga_id'		=> $sess['lembaga_id'],
-		'kelurahan_id' => $this->input->post('kelurahan'),
+		'kelurahan_id' => $location,
 		'flag'				=> 0
 		);
 		$this->db->insert('tbl_resume_keluhan',$data);
@@ -238,7 +240,7 @@ class form01 extends CI_Controller {
 		//pangan 
 		$pangan =  $this->input->post('pangan');
 		$lpgn = sizeof($pangan);
-		if($this->input->post('type_pangan')=='tx'){
+
 			for($n = 0;$n <= $lpgn-1;$n++){
 				$pgn = $pangan[$n];
 				$sql = $this->db->query("select kd_pangan from tbl_pangan where pangan = '$pgn'");
@@ -263,13 +265,14 @@ class form01 extends CI_Controller {
 				);
 				$this->db->insert('tbl_pangan_tmp',$datas);
 			}
-		}else{
-			for($no=0;$no<=$lpgn-1;$n0++){
-				$kd_pangan = $pangan[$no];
-			}
+		
+		if($this->input->post('pangan_cb')){
+			$pcb = $this->input->post('pangan_cb');
+			$lpcb = sizeof($this->input->post('pangan_cb'));
+			for($m=0;$m<=$lpcb-1;$m++){
+				$kd_pangan[$n+$m] = $pcb[$m];
+			}			
 		}
-		
-		
 		
 		$dtpangan = implode(',',$kd_pangan);
 		$data = array(

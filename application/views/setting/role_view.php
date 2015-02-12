@@ -3,10 +3,7 @@ function edit(id){
 $('#editrole').load('<?php echo base_url();?>setting/role/getdataedit/'+id);
 }
 </script>
-<?php
-function($id){
-}
-?>
+
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
