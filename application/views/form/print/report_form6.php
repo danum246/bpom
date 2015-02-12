@@ -82,7 +82,7 @@ $pangan[] = $row['pangan'];
 return implode(', ',$pangan);
 }
 
-$rowdata = $this->db->query("SELECT b.nik,c.lembaga,d.kabupaten_kota,d.kecamatan,d.kelurahan,a.kelurahan_id AS kelid,TIME(a.waktu_lapor) AS wkt,DAYNAME(a.waktu_lapor) AS hari,DATE(a.waktu_lapor) AS tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a 
+$rowdata = $this->db->query("SELECT b.nik,c.lembaga,d.provinsi,d.kabupaten_kota,d.kecamatan,d.kelurahan,a.kelurahan_id AS kelid,TIME(a.waktu_lapor) AS wkt,DAYNAME(a.waktu_lapor) AS hari,DATE(a.waktu_lapor) AS tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a 
 JOIN tbl_karyawan b ON a.`nik_pelapor` = b.`nik` 
 JOIN tbl_lembaga c ON c.`id_lembaga` = a.`lembaga_id` 
 join view_daerah d on d.`id_kelurahan` = a.`kelurahan_id`
@@ -111,7 +111,7 @@ $pdf->Cell(3,8,':',0,0,'L');
 $pdf->Cell(40,8,$rowdata->kabupaten_kota,0,0,'L');
 $pdf->Cell(30,8,'Provinsi',0,0,'L');
 $pdf->Cell(3,8,':',0,0,'L');
-$pdf->Cell(40,8,'',0,1,'L');
+$pdf->Cell(40,8,$rowdata->provinsi,0,1,'L');
 
 $pdf->MultiCell(190,8,'Pada tanggal '.indodate($rowdata->tgl).', tentang situasi KLB Keracunan Pangan sampai saat dilaporkan, yaitu sudah tidak ada lagi / semakin menurunnya : ');
 $pdf->Ln(1);
