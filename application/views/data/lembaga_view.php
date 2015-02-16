@@ -1,26 +1,6 @@
 <script>
 function edit(id){
-$.getJSON('<?php echo base_url();?>data/lembaga/get_detail_lembaga/'+id,function(get){
-/*$('#kode_e').val(get.kode_lembaga);
-$('#lembaga_e').val(get.lembaga);
-$('#kabupaten_e').val();
-var lev = get.level;
-if(lev==1){
-$('#kabupaten_ed').hide();
-$('#kelurahan_ed').hide();
-$('#pusat_e').attr('checked','checked');
-}else if(lev==2){
-$('#kabupaten_ed').show();
-$('#kelurahan_ed').hide();
-$('#dinas_e').attr('checked','checked');
-}
-else if(lev==3){
-$('#kabupaten_ed').hide();
-$('#kelurahan_ed').show();
-$('#puskesmas_e').attr('checked','checked');
-}
-$('#idl').val(get.id_lembaga);*/
-});
+$('#edit_lembaga').load('<?php echo base_url();?>data/lembaga/view_edit/'+id);
 }
 </script>
 					<script>
@@ -183,71 +163,8 @@ $('#idl').val(get.id_lembaga);*/
 </div><!-- /.modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Edit Data Lembaga</h4>
-            </div>
-            <form class ='form-horizontal' action="<?php echo base_url();?>data/lembaga/edit_lembaga" method="post" enctype="multipart/form-data">
-                <div class="modal-body" style="margin-left: -60px;">  
-					<div class="control-group" id="">
-                        <label class="control-label">Kode Lembaga</label>
-                        <div class="controls">
-                            <input type="text" class="span4" name="kode_edit" id="kode_e" placeholder="Input Kode" class="form-control" value="" required/>
-                        </div>
-                    </div>				
-                    <div class="control-group" id="">
-                        <label class="control-label">Lembaga</label>
-                        <div class="controls">
-                            <input type="text" class="span4" name="lembaga_edit" id="lembaga_e" placeholder="Input Lembaga" class="form-control" value="" required/>
-                        </div>
-                    </div>
-                    <div class="control-group" id="">
-                        <label class="control-label">Level</label>
-                        <div class="controls">
-                            <label class="radio inline">
-                                <input type="radio" name="level_edit" value="1" id="pusat_e"/>
-                                Pusat
-                            </label>
-                            <label class="radio inline">
-                                <input type="radio" name="level_edit" value="2" id="dinas_e"/>
-                                Dinas Kesehatan Kabupaten
-                            </label>
-							<label class="radio inline">
-                                <input type="radio" name="level_edit" value="3" id="puskesmas_e"/>
-                                Puskesmas
-                            </label>
-                        </div>
-                    </div>
-					<div class="control-group" id="kabupaten_ed">
-                        <label class="control-label">Kabupaten</label>
-                        <div class="controls">
-                            <select class="span4" name="kabupaten_edit" id="kabupaten_e" class="form-control" value="" required>
-                                <option> -- </option>
-								<?php foreach($kabupaten as $row){?>
-								<option value="<?php echo $row->id_kabupaten;?>"><?php echo $row->kabupaten_kota;?></option>
-								<?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="control-group" id="kelurahan_ed">
-                        <label class="control-label">Kelurahan</label>
-                        <div class="controls">
-                            <select class="span4" name="kelurahan_edit" id="kelurahan_e" class="form-control" value="" required>
-                                <option> -- </option>
-								<?php foreach($kelurahan as $row){?>
-								<option value="<?php echo $row->id_kelurahan;?>"><?php echo $row->kelurahan;?></option>
-								<?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div> 
-                <div class="modal-footer">
-				<input type="hidden" name="id_lembaga" id="idl">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-                    <input type="submit" class="btn btn-primary" value="Simpan Perubahan"/>
-                </div>
-            </form>
+        <div class="modal-content" id="edit_lembaga">
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

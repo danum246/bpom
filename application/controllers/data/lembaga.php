@@ -79,6 +79,13 @@ class lembaga extends CI_Controller {
 		document.location.href='".base_url()."data/lembaga';</script>";
 	}
 	
+	function view_edit($id){
+		$data['query'] = $this->db->query("select * from tbl_lembaga where id_lembaga = '$id'")->row();
+		$data['kelurahan'] = $this->app_model->get_kelurahan();
+		$data['kabupaten'] = $this->app_model->get_kabupaten();
+		$this->load->view('data/edit_lembaga_view',$data);
+	}
+	
 	function edit_lembaga(){
 		if($this->input->post('level_edit')==1){
 		$data = array(

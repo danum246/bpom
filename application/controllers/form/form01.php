@@ -33,13 +33,11 @@ class form01 extends CI_Controller {
 		$data['kelurahan'] = $this->db->query("select * from tbl_kelurahan")->result();
 		$this->load->view('template',$data);
 		}else{
-		$this->db->select('kd_keluhan');
-		$this->db->where('flag',0);
-		$data['kode'] = $this->db->get('tbl_resume_keluhan')->row()->kd_keluhan;
+		$data['kode'] = $this->db->query("select * from tbl_resume_keluhan where flag=0 and lembaga_id = '".$sess['lembaga_id']."'")->row()->kd_keluhan;
 		$data['isset_pangan'] = $this->db->query("select  count(*) as total from tbl_pangan_tmp where kd_keluhan = '".$data['kode'] ."'")->row()->total;
 		if($data['isset_pangan']>0){
 			$data['tmp_pangan'] = $this->db->query("SELECT a.kd_pangan,b.pangan FROM tbl_pangan_tmp a
-			JOIN tbl_pangan b ON a.`kd_pangan` = b.`kd_pangan`")->result(); 
+			JOIN tbl_pangan b ON a.`kd_pangan` = b.`kd_pangan` where a.kd_keluhan = '".$data['kode'] ."'")->result(); 
 		}
 		$data['page'] = 'form/form01_view';
 		$this->load->view('template',$data);
@@ -238,9 +236,10 @@ class form01 extends CI_Controller {
 		$kd_gjl = implode(',',$data_gjl);
 		$prow = $this->input->post('prow');
 		//pangan 
-		$pangan =  $this->input->post('pangan');
+		
+			if($this->input->post('pangan')){
+				$pangan =  $this->input->post('pangan');
 		$lpgn = sizeof($pangan);
-
 			for($n = 0;$n <= $lpgn-1;$n++){
 				$pgn = $pangan[$n];
 				$sql = $this->db->query("select kd_pangan from tbl_pangan where pangan = '$pgn'");
@@ -265,7 +264,9 @@ class form01 extends CI_Controller {
 				);
 				$this->db->insert('tbl_pangan_tmp',$datas);
 			}
-		
+			}else{
+				$n=0;
+			}
 		if($this->input->post('pangan_cb')){
 			$pcb = $this->input->post('pangan_cb');
 			$lpcb = sizeof($this->input->post('pangan_cb'));

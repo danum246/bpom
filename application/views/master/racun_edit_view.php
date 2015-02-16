@@ -2,7 +2,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Edit Data Racun</h4>
             </div>
-            <form class ='form-horizontal' action="<?php echo base_url();?>master/racun/save_racun" method="post" enctype="multipart/form-data">
+            <form class ='form-horizontal' action="<?php echo base_url();?>master/racun/update_racun" method="post" enctype="multipart/form-data">
                 <div class="modal-body">  
 					<div class="control-group" id="">
                         <label class="control-label">Kode Racun</label>
@@ -27,8 +27,8 @@
                         <div class="controls">
                             <select name="organ">
 							<option></option>
-							<?php foreach($organ as $row){?>
-							<option value="<?php echo $row->id_organ;?>"><?php echo $row->organ_terlibat;?></option>
+							<?php foreach($organ as $rows){?>
+							<option value="<?php echo $rows->id_organ;?>" <?php if($row->organ_id==$rows->id_organ){ echo 'selected'; }?>><?php echo $rows->organ_terlibat;?></option>
 							<?php } ?>
 							</select>
                         </div>
@@ -36,19 +36,19 @@
                     <div class="control-group" id="">
                         <label class="control-label">Inkubasi Rata<sup>2</sup></label>
                         <div class="controls">
-                            <input type="text" class="span3" name="in_rat" placeholder="Input Inkubasi Rata-rata" class="form-control" value="" required/> menit
+                            <input type="text" class="span3" name="in_rat" placeholder="Input Inkubasi Rata-rata" class="form-control" value="<?php echo $row->inkubasi_rata;?>" required/> menit
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Inkubasi Pendek</label>
                         <div class="controls">
-                            <input type="text" class="span3" name="in_min" placeholder="Input Inkubasi Pendek" class="form-control" value="" required/> menit
+                            <input type="text" class="span3" name="in_min" placeholder="Input Inkubasi Pendek" class="form-control" value="<?php echo $row->inkubasi_pendek;?>" required/> menit
                         </div>
                     </div>
                     <div class="control-group" id="">
                         <label class="control-label">Inkubasi Tinggi</label>
                         <div class="controls">
-                            <input type="text" class="span3" name="in_max" placeholder="Input Inkubasi Tinggi" class="form-control" value="" required/> menit
+                            <input type="text" class="span3" name="in_max" placeholder="Input Inkubasi Tinggi" class="form-control" value="<?php echo $row->inkubasi_tinggi;?>" required/> menit
                         </div>
                     </div>
                     <table id="example2" class="table table-bordered table-striped">
@@ -65,13 +65,13 @@
                                 <td><?php echo $nm;?></td>
                                 <td><?php echo $rows->gejala;?></td>
                                 <td class="td-actions">
-									<?php $sql = mysql_query("select count(*) as total from tbl_racun_gejala where kd_racun = '$kd_racun'");
+									<?php $sql = mysql_query("select count(*) as total from tbl_racun_gejala where kd_racun = '$kd_racun' and kd_gejala = '$rows->kd_gejala' ");
 									$row = mysql_fetch_array($sql);
 									$total = $row['total'];
-									if($total==0){?>
-									<input type="checkbox" name="gejala<?php echo $nm;?>" value="<?php echo $rows->kd_gejala;?>">
-									<?php }else{ ?>
+									if($total>0){?>
 									<input type="checkbox" name="gejala<?php echo $nm;?>" value="<?php echo $rows->kd_gejala;?>" checked>
+									<?php }else{ ?>
+									<input type="checkbox" name="gejala<?php echo $nm;?>" value="<?php echo $rows->kd_gejala;?>">
 									<?php } ?>
                                 </td>
                             </tr>

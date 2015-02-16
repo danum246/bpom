@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 08, 2015 at 09:40 AM
+-- Generation Time: Feb 13, 2015 at 06:27 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -29,167 +29,27 @@ CREATE TABLE IF NOT EXISTS `tbl_analisa` (
   `jml_identifikasi` int(11) DEFAULT NULL,
   `persentase` float NOT NULL,
   PRIMARY KEY (`id_analisa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=241 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=309 ;
 
 --
 -- Dumping data for table `tbl_analisa`
 --
 
 INSERT INTO `tbl_analisa` (`id_analisa`, `kd_keluhan`, `kd_racun`, `kd_gejala`, `organ_id`, `total_pasien`, `jml_identifikasi`, `persentase`) VALUES
-(39, 'PPL-2015-MTR-01-5', 'GST', 'ML', '1', 3, 2, 66.67),
-(40, 'PPL-2015-MTR-01-5', 'GST', 'MTH', '1', 3, 1, 33.33),
-(41, 'PPL-2015-MTR-01-5', 'GST', 'DRE', '1', 3, 1, 33.33),
-(42, 'PPL-2015-MTR-01-5', 'GST', 'KPRT', '1', 3, 1, 33.33),
-(43, 'PPL-2015-MTR-01-5', 'ANTMN', 'MTH', '1', 3, 1, 33.33),
-(44, 'PPL-2015-MTR-01-5', 'ANTMN', 'KPRT', '1', 3, 1, 33.33),
-(45, 'PPL-2015-MTR-01-5', 'ANTMN', 'DRE', '1', 3, 1, 33.33),
-(46, 'PPL-2015-MTR-01-5', 'KDMIUM', 'ML', '1', 3, 2, 66.67),
-(47, 'PPL-2015-MTR-01-5', 'KDMIUM', 'MTH', '1', 3, 1, 33.33),
-(48, 'PPL-2015-MTR-01-5', 'KDMIUM', 'DRE', '1', 3, 1, 33.33),
-(49, 'PPL-2015-MTR-01-5', 'KDMIUM', 'SKTPRT', '1', 3, 1, 33.33),
-(50, 'PPL-2015-MTR-01-5', 'FLRD', 'MTH', '1', 3, 1, 33.33),
-(51, 'PPL-2015-MTR-01-5', 'FLRD', 'DRE', '1', 3, 1, 33.33),
-(52, 'PPL-2015-MTR-01-5', 'FLRD', 'SKTPRT', '1', 3, 1, 33.33),
-(53, 'PPL-2015-MTR-01-5', 'FLRD', 'PSG', '1', 3, 1, 33.33),
-(54, 'PPL-2015-MTR-01-5', 'TMH', 'ML', '1', 3, 2, 66.67),
-(55, 'PPL-2015-MTR-01-5', 'TMH', 'MTH', '1', 3, 1, 33.33),
-(56, 'PPL-2015-MTR-01-5', 'TMH', 'DRE', '1', 3, 1, 33.33),
-(57, 'PPL-2015-MTR-01-5', 'TMH', 'KPRT', '1', 3, 1, 33.33),
-(58, 'PPL-2015-MTR-01-5', 'BCL', 'ML', '1', 3, 2, 66.67),
-(59, 'PPL-2015-MTR-01-5', 'BCL', 'MTH', '1', 3, 1, 33.33),
-(60, 'PPL-2015-MTR-01-5', 'BCL', 'DRE', '1', 3, 1, 33.33),
-(83, 'PPL-2015-MTR-01-7', 'GST', 'ML', '1', 1, 2, 200),
-(84, 'PPL-2015-MTR-01-7', 'GST', 'MTH', '1', 1, 1, 100),
-(85, 'PPL-2015-MTR-01-7', 'GST', 'DRE', '1', 1, 1, 100),
-(86, 'PPL-2015-MTR-01-7', 'GST', 'KPRT', '1', 1, 2, 200),
-(87, 'PPL-2015-MTR-01-7', 'ANTMN', 'MTH', '1', 1, 1, 100),
-(88, 'PPL-2015-MTR-01-7', 'ANTMN', 'KPRT', '1', 1, 2, 200),
-(89, 'PPL-2015-MTR-01-7', 'ANTMN', 'DRE', '1', 1, 1, 100),
-(90, 'PPL-2015-MTR-01-7', 'KDMIUM', 'ML', '1', 1, 2, 200),
-(91, 'PPL-2015-MTR-01-7', 'KDMIUM', 'MTH', '1', 1, 1, 100),
-(92, 'PPL-2015-MTR-01-7', 'KDMIUM', 'DRE', '1', 1, 1, 100),
-(93, 'PPL-2015-MTR-01-7', 'KDMIUM', 'SKTPRT', '1', 1, 1, 100),
-(94, 'PPL-2015-MTR-01-7', 'FLRD', 'MTH', '1', 1, 1, 100),
-(95, 'PPL-2015-MTR-01-7', 'FLRD', 'DRE', '1', 1, 1, 100),
-(96, 'PPL-2015-MTR-01-7', 'FLRD', 'SKTPRT', '1', 1, 1, 100),
-(97, 'PPL-2015-MTR-01-7', 'FLRD', 'PSG', '1', 1, 2, 200),
-(98, 'PPL-2015-MTR-01-7', 'FLRD', 'SYOK', '1', 1, 1, 100),
-(99, 'PPL-2015-MTR-01-7', 'TMH', 'ML', '1', 1, 2, 200),
-(100, 'PPL-2015-MTR-01-7', 'TMH', 'MTH', '1', 1, 1, 100),
-(101, 'PPL-2015-MTR-01-7', 'TMH', 'DRE', '1', 1, 1, 100),
-(102, 'PPL-2015-MTR-01-7', 'TMH', 'KPRT', '1', 1, 2, 200),
-(103, 'PPL-2015-MTR-01-7', 'BCL', 'ML', '1', 1, 2, 200),
-(104, 'PPL-2015-MTR-01-7', 'BCL', 'MTH', '1', 1, 1, 100),
-(105, 'PPL-2015-MTR-01-7', 'BCL', 'DRE', '1', 1, 1, 100),
-(106, 'PPL-2015-MTR-01-8', 'GST', 'ML', '1', 1, 2, 200),
-(107, 'PPL-2015-MTR-01-8', 'GST', 'MTH', '1', 1, 1, 100),
-(108, 'PPL-2015-MTR-01-8', 'GST', 'DRE', '1', 1, 2, 200),
-(109, 'PPL-2015-MTR-01-8', 'GST', 'KPRT', '1', 1, 2, 200),
-(110, 'PPL-2015-MTR-01-8', 'ANTMN', 'MTH', '1', 1, 1, 100),
-(111, 'PPL-2015-MTR-01-8', 'ANTMN', 'KPRT', '1', 1, 2, 200),
-(112, 'PPL-2015-MTR-01-8', 'ANTMN', 'DRE', '1', 1, 2, 200),
-(113, 'PPL-2015-MTR-01-8', 'KDMIUM', 'ML', '1', 1, 2, 200),
-(114, 'PPL-2015-MTR-01-8', 'KDMIUM', 'MTH', '1', 1, 1, 100),
-(115, 'PPL-2015-MTR-01-8', 'KDMIUM', 'DRE', '1', 1, 2, 200),
-(116, 'PPL-2015-MTR-01-8', 'KDMIUM', 'SKTPRT', '1', 1, 1, 100),
-(117, 'PPL-2015-MTR-01-8', 'FLRD', 'MTH', '1', 1, 1, 100),
-(118, 'PPL-2015-MTR-01-8', 'FLRD', 'DRE', '1', 1, 2, 200),
-(119, 'PPL-2015-MTR-01-8', 'FLRD', 'SKTPRT', '1', 1, 1, 100),
-(120, 'PPL-2015-MTR-01-8', 'FLRD', 'PSG', '1', 1, 3, 300),
-(121, 'PPL-2015-MTR-01-8', 'FLRD', 'SYOK', '1', 1, 1, 100),
-(122, 'PPL-2015-MTR-01-8', 'TMH', 'ML', '1', 1, 2, 200),
-(123, 'PPL-2015-MTR-01-8', 'TMH', 'MTH', '1', 1, 1, 100),
-(124, 'PPL-2015-MTR-01-8', 'TMH', 'DRE', '1', 1, 2, 200),
-(125, 'PPL-2015-MTR-01-8', 'TMH', 'KPRT', '1', 1, 2, 200),
-(126, 'PPL-2015-MTR-01-8', 'ARSNK', 'DRE', '1', 1, 1, 100),
-(127, 'PPL-2015-MTR-01-8', 'BCL', 'ML', '1', 1, 2, 200),
-(128, 'PPL-2015-MTR-01-8', 'BCL', 'MTH', '1', 1, 1, 100),
-(129, 'PPL-2015-MTR-01-8', 'BCL', 'DRE', '1', 1, 2, 200),
-(130, 'PPL-2015-MTR-01-9', 'GST', 'ML', '1', 4, 3, 75),
-(131, 'PPL-2015-MTR-01-9', 'GST', 'MTH', '1', 4, 2, 50),
-(132, 'PPL-2015-MTR-01-9', 'GST', 'DRE', '1', 4, 3, 75),
-(133, 'PPL-2015-MTR-01-9', 'GST', 'KPRT', '1', 4, 2, 50),
-(134, 'PPL-2015-MTR-01-9', 'ANTMN', 'MTH', '1', 4, 2, 50),
-(135, 'PPL-2015-MTR-01-9', 'ANTMN', 'KPRT', '1', 4, 2, 50),
-(136, 'PPL-2015-MTR-01-9', 'ANTMN', 'DRE', '1', 4, 3, 75),
-(137, 'PPL-2015-MTR-01-9', 'KDMIUM', 'ML', '1', 4, 3, 75),
-(138, 'PPL-2015-MTR-01-9', 'KDMIUM', 'MTH', '1', 4, 2, 50),
-(139, 'PPL-2015-MTR-01-9', 'KDMIUM', 'DRE', '1', 4, 3, 75),
-(140, 'PPL-2015-MTR-01-9', 'KDMIUM', 'SKTPRT', '1', 4, 1, 25),
-(141, 'PPL-2015-MTR-01-9', 'FLRD', 'MTH', '1', 4, 2, 50),
-(142, 'PPL-2015-MTR-01-9', 'FLRD', 'DRE', '1', 4, 3, 75),
-(143, 'PPL-2015-MTR-01-9', 'FLRD', 'SKTPRT', '1', 4, 1, 25),
-(144, 'PPL-2015-MTR-01-9', 'FLRD', 'PSG', '1', 4, 4, 100),
-(145, 'PPL-2015-MTR-01-9', 'FLRD', 'SYOK', '1', 4, 1, 25),
-(146, 'PPL-2015-MTR-01-9', 'TMH', 'ML', '1', 4, 3, 75),
-(147, 'PPL-2015-MTR-01-9', 'TMH', 'MTH', '1', 4, 2, 50),
-(148, 'PPL-2015-MTR-01-9', 'TMH', 'DRE', '1', 4, 3, 75),
-(149, 'PPL-2015-MTR-01-9', 'TMH', 'PRTKBG', '1', 4, 1, 25),
-(150, 'PPL-2015-MTR-01-9', 'TMH', 'KPRT', '1', 4, 2, 50),
-(151, 'PPL-2015-MTR-01-9', 'ARSNK', 'MTH', '1', 4, 1, 25),
-(152, 'PPL-2015-MTR-01-9', 'ARSNK', 'DRE', '1', 4, 2, 50),
-(153, 'PPL-2015-MTR-01-9', 'BCL', 'ML', '1', 4, 3, 75),
-(154, 'PPL-2015-MTR-01-9', 'BCL', 'MTH', '1', 4, 2, 50),
-(155, 'PPL-2015-MTR-01-9', 'BCL', 'DRE', '1', 4, 3, 75),
-(182, 'PPL-2015-MTR-01-11', 'GST', 'ML', '1', 1, 3, 300),
-(183, 'PPL-2015-MTR-01-11', 'GST', 'MTH', '1', 1, 2, 200),
-(184, 'PPL-2015-MTR-01-11', 'GST', 'DRE', '1', 1, 3, 300),
-(185, 'PPL-2015-MTR-01-11', 'GST', 'KPRT', '1', 1, 2, 200),
-(186, 'PPL-2015-MTR-01-11', 'ANTMN', 'MTH', '1', 1, 2, 200),
-(187, 'PPL-2015-MTR-01-11', 'ANTMN', 'KPRT', '1', 1, 2, 200),
-(188, 'PPL-2015-MTR-01-11', 'ANTMN', 'DRE', '1', 1, 3, 300),
-(189, 'PPL-2015-MTR-01-11', 'KDMIUM', 'ML', '1', 1, 3, 300),
-(190, 'PPL-2015-MTR-01-11', 'KDMIUM', 'MTH', '1', 1, 2, 200),
-(191, 'PPL-2015-MTR-01-11', 'KDMIUM', 'DRE', '1', 1, 3, 300),
-(192, 'PPL-2015-MTR-01-11', 'KDMIUM', 'SKTPRT', '1', 1, 1, 100),
-(193, 'PPL-2015-MTR-01-11', 'FLRD', 'MTH', '1', 1, 2, 200),
-(194, 'PPL-2015-MTR-01-11', 'FLRD', 'DRE', '1', 1, 3, 300),
-(195, 'PPL-2015-MTR-01-11', 'FLRD', 'SKTPRT', '1', 1, 1, 100),
-(196, 'PPL-2015-MTR-01-11', 'FLRD', 'PSG', '1', 1, 4, 400),
-(197, 'PPL-2015-MTR-01-11', 'FLRD', 'SYOK', '1', 1, 1, 100),
-(198, 'PPL-2015-MTR-01-11', 'TMH', 'ML', '1', 1, 3, 300),
-(199, 'PPL-2015-MTR-01-11', 'TMH', 'MTH', '1', 1, 2, 200),
-(200, 'PPL-2015-MTR-01-11', 'TMH', 'DRE', '1', 1, 3, 300),
-(201, 'PPL-2015-MTR-01-11', 'TMH', 'PRTKBG', '1', 1, 1, 100),
-(202, 'PPL-2015-MTR-01-11', 'TMH', 'KPRT', '1', 1, 2, 200),
-(203, 'PPL-2015-MTR-01-11', 'ARSNK', 'MTH', '1', 1, 1, 100),
-(204, 'PPL-2015-MTR-01-11', 'ARSNK', 'DRE', '1', 1, 2, 200),
-(205, 'PPL-2015-MTR-01-11', 'BCL', 'ML', '1', 1, 3, 300),
-(206, 'PPL-2015-MTR-01-11', 'BCL', 'MTH', '1', 1, 2, 200),
-(207, 'PPL-2015-MTR-01-11', 'BCL', 'DRE', '1', 1, 3, 300),
-(208, 'PPL-2015-MTR-01-12', 'GST', 'ML', '1', 1, 3, 300),
-(209, 'PPL-2015-MTR-01-12', 'GST', 'MTH', '1', 1, 2, 200),
-(210, 'PPL-2015-MTR-01-12', 'GST', 'DRE', '1', 1, 3, 300),
-(211, 'PPL-2015-MTR-01-12', 'GST', 'KPRT', '1', 1, 2, 200),
-(212, 'PPL-2015-MTR-01-12', 'ANTMN', 'MTH', '1', 1, 2, 200),
-(213, 'PPL-2015-MTR-01-12', 'ANTMN', 'KPRT', '1', 1, 2, 200),
-(214, 'PPL-2015-MTR-01-12', 'ANTMN', 'DRE', '1', 1, 3, 300),
-(215, 'PPL-2015-MTR-01-12', 'KDMIUM', 'ML', '1', 1, 3, 300),
-(216, 'PPL-2015-MTR-01-12', 'KDMIUM', 'MTH', '1', 1, 2, 200),
-(217, 'PPL-2015-MTR-01-12', 'KDMIUM', 'DRE', '1', 1, 3, 300),
-(218, 'PPL-2015-MTR-01-12', 'KDMIUM', 'SKTPRT', '1', 1, 1, 100),
-(219, 'PPL-2015-MTR-01-12', 'FLRD', 'MTH', '1', 1, 2, 200),
-(220, 'PPL-2015-MTR-01-12', 'FLRD', 'DRE', '1', 1, 3, 300),
-(221, 'PPL-2015-MTR-01-12', 'FLRD', 'SKTPRT', '1', 1, 1, 100),
-(222, 'PPL-2015-MTR-01-12', 'FLRD', 'PSG', '1', 1, 4, 400),
-(223, 'PPL-2015-MTR-01-12', 'FLRD', 'SYOK', '1', 1, 1, 100),
-(224, 'PPL-2015-MTR-01-12', 'TMH', 'ML', '1', 1, 3, 300),
-(225, 'PPL-2015-MTR-01-12', 'TMH', 'MTH', '1', 1, 2, 200),
-(226, 'PPL-2015-MTR-01-12', 'TMH', 'DRE', '1', 1, 3, 300),
-(227, 'PPL-2015-MTR-01-12', 'TMH', 'PRTKBG', '1', 1, 1, 100),
-(228, 'PPL-2015-MTR-01-12', 'TMH', 'KPRT', '1', 1, 2, 200),
-(229, 'PPL-2015-MTR-01-12', 'ARSNK', 'MTH', '1', 1, 1, 100),
-(230, 'PPL-2015-MTR-01-12', 'ARSNK', 'DRE', '1', 1, 2, 200),
-(231, 'PPL-2015-MTR-01-12', 'BCL', 'ML', '1', 1, 3, 300),
-(232, 'PPL-2015-MTR-01-12', 'BCL', 'MTH', '1', 1, 2, 200),
-(233, 'PPL-2015-MTR-01-12', 'BCL', 'DRE', '1', 1, 3, 300),
-(234, 'PPL-2015-MTR-02-11', 'GST', 'ML', '1', 1, 1, 100),
-(235, 'PPL-2015-MTR-02-11', 'KDMIUM', 'ML', '1', 1, 1, 100),
-(236, 'PPL-2015-MTR-02-11', 'KDMIUM', 'SKTPRT', '1', 1, 1, 100),
-(237, 'PPL-2015-MTR-02-11', 'FLRD', 'SKTPRT', '1', 1, 1, 100),
-(238, 'PPL-2015-MTR-02-11', 'FLRD', 'PSG', '1', 1, 1, 100),
-(239, 'PPL-2015-MTR-02-11', 'TMH', 'ML', '1', 1, 1, 100),
-(240, 'PPL-2015-MTR-02-11', 'BCL', 'ML', '1', 1, 1, 100);
+(248, 'PPL-2015-MTR-02-1', 'GST', 'ML', '1', 2, 1, 50),
+(249, 'PPL-2015-MTR-02-1', 'KDMIUM', 'ML', '1', 2, 1, 50),
+(250, 'PPL-2015-MTR-02-1', 'KDMIUM', 'SKTPRT', '1', 2, 1, 50),
+(251, 'PPL-2015-MTR-02-1', 'FLRD', 'SKTPRT', '1', 2, 1, 50),
+(252, 'PPL-2015-MTR-02-1', 'FLRD', 'PSG', '1', 2, 1, 50),
+(253, 'PPL-2015-MTR-02-1', 'TMH', 'ML', '1', 2, 1, 50),
+(254, 'PPL-2015-MTR-02-1', 'BCL', 'ML', '1', 2, 1, 50),
+(302, 'PPL-2015-MTR-02-5', 'GST', 'ML', '1', 3, 3, 100),
+(303, 'PPL-2015-MTR-02-5', 'KDMIUM', 'ML', '1', 3, 3, 100),
+(304, 'PPL-2015-MTR-02-5', 'KDMIUM', 'SKTPRT', '1', 3, 3, 100),
+(305, 'PPL-2015-MTR-02-5', 'FLRD', 'SKTPRT', '1', 3, 3, 100),
+(306, 'PPL-2015-MTR-02-5', 'FLRD', 'PSG', '1', 3, 2, 66.67),
+(307, 'PPL-2015-MTR-02-5', 'TMH', 'ML', '1', 3, 3, 100),
+(308, 'PPL-2015-MTR-02-5', 'BCL', 'ML', '1', 3, 3, 100);
 
 -- --------------------------------------------------------
 
@@ -210,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gejala` (
 --
 
 INSERT INTO `tbl_gejala` (`id_gejala`, `kd_gejala`, `gejala`) VALUES
-(13, 'ML', 'Mual'),
+(13, 'ML', 'Muals'),
 (14, 'MTH', 'Muntah'),
 (15, 'KPRT', 'Kejang Perut'),
 (16, 'DRE', 'Diare'),
@@ -237,16 +97,17 @@ CREATE TABLE IF NOT EXISTS `tbl_jabatan` (
   `jabatan` varchar(100) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_jabatan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tbl_jabatan`
 --
 
 INSERT INTO `tbl_jabatan` (`id_jabatan`, `jabatan`, `lembaga_id`) VALUES
-(1, 'Superadmin', 1),
+(1, 'Superadmins', 1),
 (3, 'baru', 3),
-(4, 'Operator', 4);
+(4, 'Operator', 4),
+(5, 'Operator', 7);
 
 -- --------------------------------------------------------
 
@@ -287,16 +148,17 @@ CREATE TABLE IF NOT EXISTS `tbl_karyawan` (
   `pictures` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`nik`),
   KEY `id_kary` (`id_kary`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_karyawan`
 --
 
 INSERT INTO `tbl_karyawan` (`id_kary`, `nik`, `nama`, `jns_kel`, `alamat`, `hp`, `email`, `jabatan_id`, `status`, `pictures`) VALUES
-(1, '201110225043', 'Superadmin', '', 'matraman', '+6287781042439', 'danum246@gmail.com', 1, 1, NULL),
-(2, '11111111111', 'Danu Mahendra', '', 'alamat', '+621212121212', 'email@email.com', 3, 1, NULL),
-(3, '213897281947', 'Fata Aisy Salim', '', 'alamat', '+621212121212', 'email@email.com', 4, 1, NULL);
+(1, '201110225043', 'Superadmin', 'P', 'matramans', '+62', 'danum246@gmail.com', 1, 1, NULL),
+(2, '11111111111', 'Danu Mahendra', 'P', 'alamat', '+621212121212', 'email@email.com', 3, 1, NULL),
+(3, '213897281947', 'Fata Aisy Salim', 'P', 'alamats', '+621212121212', 'email@email.com', 5, 1, '20150213060617_'),
+(4, '20123456788', 'Operator', 'P', 'palmeriam', '+62', 'danum246@gmail.com', 5, 1, '20150211044159_big_5466884e2ff9eab7d900148b604b495c5d404e82.jpg');
 
 -- --------------------------------------------------------
 
@@ -327,6 +189,7 @@ INSERT INTO `tbl_kecamatan` (`id_kecamatan`, `kecamatan`, `kabupaten_id`) VALUES
 CREATE TABLE IF NOT EXISTS `tbl_keluhan_pasien` (
   `id_keluhan` int(11) NOT NULL AUTO_INCREMENT,
   `pasien` varchar(100) NOT NULL,
+  `jns_kel` varchar(10) DEFAULT NULL,
   `waktu_awal` datetime NOT NULL,
   `waktu_terjadi` datetime DEFAULT NULL,
   `kd_gejala` varchar(100) NOT NULL COMMENT 'isian ny array . ex: 1,2,3,4',
@@ -341,26 +204,25 @@ CREATE TABLE IF NOT EXISTS `tbl_keluhan_pasien` (
   `kelurahan_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_keluhan`),
   KEY `id_keluhan` (`id_keluhan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
 -- Dumping data for table `tbl_keluhan_pasien`
 --
 
-INSERT INTO `tbl_keluhan_pasien` (`id_keluhan`, `pasien`, `waktu_awal`, `waktu_terjadi`, `kd_gejala`, `organ_id`, `lokasi`, `kd_keluhan`, `lembaga_id`, `pekerjaan_id`, `kd_pangan`, `status_pasien`, `flag`, `kelurahan_id`) VALUES
-(35, 'fdgdfg', '2015-01-16 10:20:00', '2015-01-16 10:51:00', 'ML,SKTPRT,PSG,MGGL,LMH', 1, 'dfgdfg', 'PPL-2015-MTR-01-5', 1, 0, '0', 0, 1, NULL),
-(36, '', '2015-01-16 10:53:00', '2015-01-16 20:49:00', 'ML,MTH,KPRT,DRE,SKTPRT,PRTKBG', 2, '', 'PPL-2015-MTR-01-5', 1, 0, '0', 0, 1, NULL),
-(37, '', '2015-01-16 10:40:00', '2015-01-16 13:53:00', 'ML,DRE,PRTKBG,DMM,LMH', 2, '', 'PPL-2015-MTR-01-5', 1, 0, '0', 0, 1, NULL),
-(38, 'assdxscdsc', '2015-01-16 11:02:00', '2015-01-30 11:02:00', 'KPRT,SYOK,PSG,DMM', 1, '', 'PPL-2015-MTR-01-7', 1, 0, '0', 0, 1, NULL),
-(39, 'fvdsvfdgsdf', '2015-01-16 11:12:00', '2015-01-29 11:12:00', 'DRE,KJG,PSG,DMM,LMH,DHDR', 1, 'dffdfdf', 'PPL-2015-MTR-01-8', 1, 0, '0', 0, 1, NULL),
-(40, '', '2015-01-16 11:12:00', '2015-01-16 20:12:00', 'ML,MTH,KPRT,DRE,SKTPRT,PRTKBG,KJG,DHDR,SKTLBG', 1, '', 'PPL-2015-MTR-01-8', 1, 0, '0', 0, 0, NULL),
-(41, 'sfgdsfgdsf', '2015-01-16 11:15:00', '2015-01-29 11:15:00', 'PRTKBG,PSG,DMM,LMH,DHDR', 1, '', 'PPL-2015-MTR-01-9', 1, 0, '0', 0, 1, NULL),
-(42, '', '2015-01-16 11:16:00', '2015-01-31 11:16:00', 'KPRT,DRE,SYOK,KJG,DMM', 2, '', 'PPL-2015-MTR-01-9', 1, 0, '0', 0, 1, NULL),
-(43, '', '2015-01-16 20:16:00', '2015-01-29 11:16:00', 'ML,MTH,DRE,MGGL,LMH', 1, '', 'PPL-2015-MTR-01-9', 1, 0, '0', 0, 1, NULL),
-(44, '', '2015-01-16 11:16:00', '2015-01-16 20:18:00', 'MTH,KPRT,DRE,PRTKBG', 1, '', 'PPL-2015-MTR-01-9', 1, 0, '0', 0, 1, NULL),
-(45, 'nscknsla', '2015-01-16 03:52:00', '2015-01-16 04:46:00', 'ML,MTH,KPRT,DRE', 1, 'dsfcdsf', 'PPL-2015-MTR-01-11', 1, 0, '0', 0, 1, NULL),
-(46, ',mnknk', '2015-01-16 05:51:00', '2015-01-16 20:51:00', 'SKTPRT,PSG,DMM,LMH,DHDR', 1, 'mlnmnj', 'PPL-2015-MTR-01-12', 1, 0, '0', 0, 1, NULL),
-(53, 'asd', '2015-02-08 08:48:00', '2015-02-08 09:20:00', 'ML,SKTPRT,PSG,LMH', NULL, 'asda', 'PPL-2015-MTR-02-11', 1, 1, 'NS,PGN-2,Bbr', 1, 1, NULL);
+INSERT INTO `tbl_keluhan_pasien` (`id_keluhan`, `pasien`, `jns_kel`, `waktu_awal`, `waktu_terjadi`, `kd_gejala`, `organ_id`, `lokasi`, `kd_keluhan`, `lembaga_id`, `pekerjaan_id`, `kd_pangan`, `status_pasien`, `flag`, `kelurahan_id`) VALUES
+(57, 'Wita', 'Pria', '2015-02-09 07:44:00', '2015-02-09 07:44:00', 'ML,SKTPRT,DMM,DHDR', NULL, 'Cikarang', 'PPL-2015-MTR-02-1', 1, 2, 'PGN-4,PGN-5,PGN-6,NS,PGN-3', 1, 1, NULL),
+(56, 'Angga', 'Wanita', '2015-02-09 07:43:00', '2015-02-09 08:43:00', 'ML,SKTPRT,PSG,LMH', NULL, 'Bekasi', 'PPL-2015-MTR-02-1', 1, 2, 'NS,Rpt,PGN-2,PGN-3', 1, 1, NULL),
+(58, 'asasa', 'Pria', '2015-02-09 06:43:00', '2015-02-09 06:43:00', 'SKTPRT,PSG,LMH', NULL, 'asasa', 'PPL-2015-MTR-02-2', 1, 1, 'PGN-7,PGN-7', 1, 1, NULL),
+(59, 'danu', 'Pria', '2015-02-11 10:44:00', '2015-02-28 10:44:00', 'ML,MTH,SKTPRT,PRTKBG', NULL, 'sd', 'PPL-2015-MTR-02-3', 7, 5, 'NS,PGN-9,PGN-10', 1, 1, NULL),
+(60, 'destra', 'Pria', '2015-02-14 10:46:00', '2015-02-14 10:46:00', 'MTH,KPRT,SKTPRT,SYOK', NULL, 'sd', 'PPL-2015-MTR-02-3', 7, 1, 'NS,PGN-9,PGN-11', 1, 1, NULL),
+(61, 'ilham', 'Pria', '2015-02-18 10:47:00', '2015-02-18 10:47:00', 'ML,PRTKBG', NULL, 'sd', 'PPL-2015-MTR-02-3', 7, 4, 'NS,PGN-9,PGN-12', 0, 1, NULL),
+(62, 'ika', 'Pria', '2015-02-11 10:47:00', '2015-02-11 10:47:00', 'MTH,KPRT,SKTPRT,PRTKBG', NULL, 'sd', 'PPL-2015-MTR-02-3', 7, 2, 'NS,PGN-2,PGN-12', 1, 1, NULL),
+(63, 'irna', 'Wanita', '2015-02-11 10:48:00', '2015-02-11 10:48:00', 'ML,DRE,SKTPRT', NULL, 'sd', 'PPL-2015-MTR-02-3', 7, 5, 'PGN-12,PGN-13', 1, 1, NULL),
+(64, 'sasa', '0', '2015-02-11 10:56:00', '2015-02-11 10:56:00', 'ML,SKTPRT,PSG,LMH', NULL, 'sd', 'PPL-2015-MTR-02-4', 1, 2, 'NS', 1, 1, NULL),
+(65, 'Desi', 'Pria', '2015-02-13 02:11:00', '2015-02-13 03:11:00', 'ML,SKTPRT,PSG,LMH', NULL, 'Bekasi', 'PPL-2015-MTR-02-5', 1, 2, 'NS,PGN-14,PGN-15,PGN-16,Bbr', 1, 1, NULL),
+(66, 'Rani', 'Wanita', '2015-02-13 02:42:00', '2015-02-13 03:42:00', 'ML,SKTPRT,PSG,LMH', NULL, 'Bekasi', 'PPL-2015-MTR-02-5', 1, 3, 'NS,PGN-18,PGN-16,PGN-19,PGN-20', 1, 1, NULL),
+(67, 'Indra', 'Pria', '2015-02-11 02:42:00', '2015-02-11 03:42:00', 'ML,SKTPRT,DMM,DHDR', NULL, 'Bekasi', 'PPL-2015-MTR-02-5', 1, 4, 'PGN-5,PGN-6,PGN-20,PGN-19', 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -400,18 +262,17 @@ CREATE TABLE IF NOT EXISTS `tbl_lembaga` (
   `alamat` text,
   PRIMARY KEY (`kode_lembaga`),
   KEY `id_lembaga` (`id_lembaga`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tbl_lembaga`
 --
 
 INSERT INTO `tbl_lembaga` (`id_lembaga`, `kode_lembaga`, `lembaga`, `level`, `kelurahan_id`, `kabupaten_id`, `pusat`, `telepon`, `alamat`) VALUES
-(1, 'Superadmin', 'Superadmin', 1, NULL, NULL, 0, NULL, NULL),
-(3, 'Puskesmas', 'Puskesmas', 3, 1, 1, 0, NULL, NULL),
-(4, 'DK-Jaktim', 'Dinas Kesehatan Jakarta Timur', 2, 0, 1, 0, NULL, NULL),
-(5, 'BPOM', 'Badan Pengawasan Obat dan Makanan', 1, NULL, NULL, 1, NULL, NULL),
-(6, 'dks', 'Din Kes', 2, 0, 1, 0, NULL, NULL);
+(1, 'Superadmin', 'Superadmins', 1, 1, 1, 1, NULL, NULL),
+(4, 'DK-Jaktim', 'Dinas Kesehatan Jakarta Timur', 2, 1, 1, 0, NULL, NULL),
+(5, 'BPOM', 'Badan Pengawasan Obat dan Makanan', 1, 1, 1, 1, NULL, NULL),
+(7, 'PKM-Palmeriam', 'Puskesmas Palmeriam', 3, 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -444,7 +305,6 @@ INSERT INTO `tbl_menu` (`id_menu`, `menu`, `url`, `parent_menu`, `icon`) VALUES
 (9, 'Report', 'report', 0, 'icon-list-alt'),
 (10, 'Menu', 'setting/menu', 3, NULL),
 (11, 'Inputan KLB', 'form/form01', 2, NULL),
-(12, 'Form 2', '#', 2, NULL),
 (13, 'Region', 'setting/region', 3, NULL),
 (20, 'Gejala', 'master/gejala', 25, NULL),
 (19, 'Racun', 'master/racun', 25, NULL),
@@ -487,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `tbl_pangan` (
   `keterangan` text,
   PRIMARY KEY (`kd_pangan`),
   KEY `id_pangan` (`id_pangan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `tbl_pangan`
@@ -498,9 +358,54 @@ INSERT INTO `tbl_pangan` (`id_pangan`, `kd_pangan`, `pangan`, `keterangan`) VALU
 (4, 'Bbr', 'Bubur', 'Bubur Ayam'),
 (5, 'Kcg', 'Kacang', 'Kacang Tanah'),
 (6, 'My', 'Mie', 'Mie Instant'),
-(7, 'Rpt', 'Pumput', 'Rumput Ilalang'),
+(7, 'Rpt', 'Rumput', 'Rumput Ilalang'),
 (8, 'PGN-1', 'Pete', 'Pete'),
-(12, 'PGN-2', '0', '0');
+(18, 'PGN-3', 'Kacang Panjang', 'Kacang Panjang'),
+(17, 'PGN-2', 'Telur', 'Telur'),
+(19, 'PGN-4', 'Sapi', 'Sapi'),
+(20, 'PGN-5', 'Baut', 'Baut'),
+(21, 'PGN-6', 'Mur', 'Mur'),
+(22, 'PGN-7', 'asasa', 'asasa'),
+(23, 'PGN-8', NULL, NULL),
+(24, 'PGN-9', 'makaroni', 'makaroni'),
+(25, 'PGN-10', 'es jeruk', 'es jeruk'),
+(26, 'PGN-11', 'air putih', 'air putih'),
+(27, 'PGN-12', 'es teh', 'es teh'),
+(28, 'PGN-13', 'risol', 'risol'),
+(29, 'PGN-14', 'Kue', 'Kue'),
+(30, 'PGN-15', 'Roti', 'Roti'),
+(31, 'PGN-16', 'Ayam', 'Ayam'),
+(32, 'PGN-17', 'tai', 'tai'),
+(33, 'PGN-18', 'Daging', 'Daging'),
+(34, 'PGN-19', 'Kopi', 'Kopi'),
+(35, 'PGN-20', 'Susu', 'Susu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pangan_tmp`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_pangan_tmp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_keluhan` varchar(30) NOT NULL,
+  `kd_pangan` varchar(10) NOT NULL,
+  `flag` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `tbl_pangan_tmp`
+--
+
+INSERT INTO `tbl_pangan_tmp` (`id`, `kd_keluhan`, `kd_pangan`, `flag`) VALUES
+(10, 'PPL-2015-MTR-02-5', 'PGN-20', 0),
+(9, 'PPL-2015-MTR-02-5', 'PGN-19', 0),
+(8, 'PPL-2015-MTR-02-5', 'PGN-16', 0),
+(7, 'PPL-2015-MTR-02-5', 'PGN-18', 0),
+(6, 'PPL-2015-MTR-02-5', 'NS', 0),
+(11, 'PPL-2015-MTR-02-5', 'PGN-5', 0),
+(12, 'PPL-2015-MTR-02-5', 'PGN-6', 0);
 
 -- --------------------------------------------------------
 
@@ -577,7 +482,7 @@ INSERT INTO `tbl_racun` (`id_racun`, `kd_racun`, `racun`, `keterangan`, `inkubas
 (17, 'BCL', 'Bacillus cereus\r\n', NULL, NULL, 30, 300, 1),
 (18, 'CLSR', 'Clostridium prefringens enteritis\r\n', NULL, 600, 480, 1320, 2),
 (19, 'VBRCL', 'Vibrio cholerae\r\n', NULL, 2880, 360, 7200, 2),
-(20, 'VBRCL-M', 'Vibrio cholerae menyerupai\r\n', NULL, 1440, 360, 7200, 2),
+(20, 'VBRCL-M', 'Vibrio cholerae menyerupai', 'Racun', 1440, 360, 7200, 2),
 (21, 'SLMNL', 'Salmonella Enteritidis\r\n', NULL, NULL, 720, 4320, 2),
 (22, 'VBRPRH', 'Vibrio parahaemolyticus\r\n', NULL, 720, 120, 2880, 2);
 
@@ -592,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `tbl_racun_gejala` (
   `kd_racun` varchar(50) DEFAULT NULL,
   `kd_gejala` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
 
 --
 -- Dumping data for table `tbl_racun_gejala`
@@ -635,7 +540,6 @@ INSERT INTO `tbl_racun_gejala` (`no`, `kd_racun`, `kd_gejala`) VALUES
 (59, 'VBRCL', 'ML'),
 (60, 'VBRCL', 'SYOK'),
 (61, 'VBRCL', 'DHDR'),
-(62, 'VBRCL-M', 'DRE'),
 (63, 'SLMNL', 'KPRT'),
 (64, 'SLMNL', 'DRE'),
 (65, 'SLMNL', 'DMM'),
@@ -648,7 +552,8 @@ INSERT INTO `tbl_racun_gejala` (`no`, `kd_racun`, `kd_gejala`) VALUES
 (72, 'VBRPRH', 'DMM'),
 (73, 'VBRPRH', 'DRE'),
 (74, 'VBRPRH', 'MGGL'),
-(75, 'VBRPRH', 'SKTKPL');
+(75, 'VBRPRH', 'SKTKPL'),
+(78, 'VBRCL-M', 'DRE');
 
 -- --------------------------------------------------------
 
@@ -673,25 +578,18 @@ CREATE TABLE IF NOT EXISTS `tbl_resume_keluhan` (
   `flag` int(2) NOT NULL COMMENT '0 = belum selesai, 1 = selesai',
   `file` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_resume`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `tbl_resume_keluhan`
 --
 
 INSERT INTO `tbl_resume_keluhan` (`id_resume`, `kd_keluhan`, `nama_kejadian`, `nik_pelapor`, `waktu_lapor`, `gejala_umum`, `pangan_umum`, `total_pasien`, `total_normal`, `total_sakit`, `total_meninggal`, `lembaga_id`, `kelurahan_id`, `flag`, `file`) VALUES
-(13, 'PPL-2015-MTR-01-5', 'Kejadian Baru', '201110225043', '2015-01-16 10:52:18', 'ML', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(15, 'PPL-2015-MTR-01-7', 'SASASASA', '201110225043', '2015-01-16 11:02:12', 'ML,MTH,DRE,KPRT,SKTPRT,PSG,SYOK', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(16, 'PPL-2015-MTR-01-8', 'Keracunan Di Matraman', '201110225043', '2015-01-16 11:12:16', 'ML,MTH,DRE,KPRT,SKTPRT,PSG,SYOK', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(17, 'PPL-2015-MTR-01-9', 'asdsasad', '201110225043', '2015-01-16 11:15:37', 'ML,MTH,DRE,KPRT,PSG', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(19, 'PPL-2015-MTR-01-11', 'sdcmsdkvfskv', '201110225043', '2015-01-16 03:52:38', 'ML,MTH,DRE,KPRT,SKTPRT,PSG,SYOK,PRTKBG', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(20, 'PPL-2015-MTR-01-12', 'Keracunan Di Matraman', '201110225043', '2015-01-16 05:51:12', 'ML,MTH,DRE,KPRT,SKTPRT,PSG,SYOK,PRTKBG', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(26, 'PPL-2015-MTR-02-10', 'asd', '201110225043', '2015-02-05 01:44:47', '', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(25, 'PPL-2015-MTR-02-9', 'asd', '201110225043', '2015-02-03 09:59:35', '', 'NS,Rpt', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(23, 'PPL-2015-MTR-01-13', 'scfsadfd', '201110225043', '2015-01-20 07:52:01', 'ML,MTH,DRE,KPRT,SKTPRT,PSG,SYOK,PRTKBG', '', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(24, 'PPL-2015-MTR-01-14', 'Kejadian', '201110225043', '2015-01-24 07:02:46', 'ML,MTH,DRE,KPRT,PSG', 'Bbr,NS,Rpt', 0, 0, 0, 0, 1, NULL, 1, '20150205022023_tbl_pekerjaan.sql'),
-(27, 'PPL-2015-MTR-02-11', 'asdasd', '201110225043', '2015-02-08 08:22:42', 'ML,SKTPRT,PSG', 'Bbr,NS,PGN-2', 0, 0, 0, 0, 1, NULL, 1, NULL),
-(28, 'PPL-2015-MTR-02-12', 'asd', '201110225043', '2015-02-08 09:34:00', NULL, '', 0, 0, 0, 0, 1, '1', 0, NULL);
+(30, 'PPL-2015-MTR-02-1', 'Kasus Palmeriam', '201110225043', '2015-02-09 07:43:11', 'ML,SKTPRT,PSG', 'NS,PGN-2,PGN-3,PGN-4,PGN-5,PGN-6,Rpt', 0, 0, 0, 0, 1, '1', 1, '20150209124426_Format Petty cash.docx'),
+(31, 'PPL-2015-MTR-02-2', 'Danu', '201110225043', '2015-02-09 12:43:38', '', 'PGN-7', 0, 0, 0, 0, 1, '1', 1, '20150209124426_Format Petty cash.docx'),
+(32, 'PPL-2015-MTR-02-3', 'Keracunan SDN Palmeriam 02 Petang', '20123456788', '2015-02-11 04:44:36', '', 'NS,PGN-1,PGN-12,PGN-9', 0, 0, 0, 0, 7, '1', 1, NULL),
+(33, 'PPL-2015-MTR-02-4', 'cv', '201110225043', '2015-02-11 04:56:39', '', 'NS', 0, 0, 0, 0, 1, '1', 1, NULL),
+(34, 'PPL-2015-MTR-02-5', 'KLB BKS', '201110225043', '2015-02-13 02:08:25', 'ML,SKTPRT,PSG', 'NS,PGN-16,PGN-19,PGN-20', 0, 0, 0, 0, 1, '1', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -704,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `tbl_role_access` (
   `menu_id` int(11) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=141 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=147 ;
 
 --
 -- Dumping data for table `tbl_role_access`
@@ -731,7 +629,41 @@ INSERT INTO `tbl_role_access` (`id_role`, `menu_id`, `lembaga_id`) VALUES
 (125, 26, 1),
 (124, 12, 1),
 (27, 11, 3),
-(123, 11, 1);
+(123, 11, 1),
+(141, 11, 7),
+(142, 26, 7),
+(143, 20, 7),
+(144, 19, 7),
+(145, 2, 7),
+(146, 9, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_status_kejadian`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_status_kejadian` (
+  `id_status_kj` int(11) NOT NULL AUTO_INCREMENT,
+  `no_kejadian` varchar(100) DEFAULT NULL,
+  `status_klb` int(11) DEFAULT NULL COMMENT '1 = klb , 2 = berhenti , 0 = bukan',
+  `catatan` text,
+  `file_upload` varchar(255) DEFAULT NULL,
+  `waktu` datetime DEFAULT NULL,
+  `pasien_rawat` int(11) DEFAULT NULL,
+  `pasien_sembuh` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_status_kj`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `tbl_status_kejadian`
+--
+
+INSERT INTO `tbl_status_kejadian` (`id_status_kj`, `no_kejadian`, `status_klb`, `catatan`, `file_upload`, `waktu`, `pasien_rawat`, `pasien_sembuh`) VALUES
+(2, 'PPL-2015-MTR-02-1', 0, 'asasasa', NULL, '2015-02-09 12:44:55', NULL, NULL),
+(3, 'PPL-2015-MTR-02-2', 1, 'asasa', NULL, '2015-02-12 01:28:39', NULL, NULL),
+(5, 'PPL-2015-MTR-02-3', 1, 'gfd', NULL, '2015-02-13 03:32:55', NULL, NULL),
+(14, 'PPL-2015-MTR-02-5', 2, 'asda', 'formulir_pendaftaran_a4_ed.pdf', '2015-02-13 03:53:34', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -764,7 +696,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_login` (
   `nik` varchar(50) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1 = aktif , 0 = tidak',
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_user_login`
@@ -773,7 +705,8 @@ CREATE TABLE IF NOT EXISTS `tbl_user_login` (
 INSERT INTO `tbl_user_login` (`id_user`, `username`, `password`, `password_plain`, `nik`, `status`) VALUES
 (1, 'admin', '4b024ea6d105498e1b261507edff2f482ffd1660', '123456', '201110225043', 1),
 (4, 'admin-pkm', '4b024ea6d105498e1b261507edff2f482ffd1660', '123456', '11111111111', 1),
-(5, 'admin-dk', '4b024ea6d105498e1b261507edff2f482ffd1660', '123456', '213897281947', 1);
+(5, 'admin-dk', '4b024ea6d105498e1b261507edff2f482ffd1660', '123456', '213897281947', 1),
+(6, 'operator', '4b024ea6d105498e1b261507edff2f482ffd1660', '123456', '20123456788', 1);
 
 -- --------------------------------------------------------
 
