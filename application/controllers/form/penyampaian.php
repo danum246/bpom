@@ -24,7 +24,7 @@ class penyampaian extends CI_Controller {
 
 	function detail($kode)
 	{
-		$data['status'] = $this->app_model->getstatusklb($kode)->row();
+		/*$data['status'] = $this->app_model->getstatusklb($kode)->row();
 		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
 		$data['racun'] = $sql->result();
 		$data['kejadian'] = $this->db->query("select a.*,b.* from tbl_resume_keluhan a join tbl_lembaga b on a.lembaga_id = b.id_lembaga where a.kd_keluhan='$kode'")->row();
@@ -32,7 +32,20 @@ class penyampaian extends CI_Controller {
 		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
 		$data['kode'] = $kode;
 		$data['pangan'] = $this->db->query("select pangan_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->pangan_umum;
-		//$data['page'] = 'form/result_form01_view';
+		//$data['page'] = 'form/result_form01_view';*/
+		$data['status'] = $this->app_model->getstatusklb($kode)->row();
+		$sql = $this->db->query("select a.kd_racun as kd_racun,b.racun as racun from tbl_analisa a join tbl_racun b on a.kd_racun = b.kd_racun where kd_keluhan = '$kode' and persentase >= 50 group by a.kd_racun,b.racun");
+		$data['racun'] = $sql->result();
+		$data['pekerjaan'] = $this->db->query("select distinct a.pekerjaan,a.id_pekerjaan from tbl_pekerjaan a join tbl_keluhan_pasien b on a.id_pekerjaan = b.pekerjaan_id where b.kd_keluhan = '".$kode."'")->result();
+		$data['kejadian'] = $this->db->query("select a.*,b.*,c.* from tbl_resume_keluhan a
+		join tbl_lembaga b on a.lembaga_id = b.id_lembaga
+		join view_daerah c on c.id_kelurahan = a.kelurahan_id
+		where a.kd_keluhan='$kode' ")->row();
+		$data['gjl_umum'] = $this->db->query("select gejala_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->gejala_umum;
+		//die($data['gejala_umum']);
+		$data['totrow'] = $this->db->query("select count(*) as total from tbl_analisa where kd_keluhan = '$kode' and persentase >= 50")->row()->total;
+		$data['kode'] = $kode;
+		$data['pangan'] = $this->db->query("select pangan_umum from tbl_resume_keluhan where kd_keluhan = '$kode'")->row()->pangan_umum;
 		$data['page'] = 'form/detail_penyampaian_view';
 		$this->load->view('template',$data);
 		
@@ -47,7 +60,9 @@ class penyampaian extends CI_Controller {
 		$data['waktu']= date('Y-m-d h:i:s');
 		$insert = $this->app_model->insertdata('tbl_status_kejadian',$data);
 		if ($insert == TRUE) {
-			echo "<script>alert('Berhasil');document.location.href='".base_url()."form/penyampaian/print_form5/".$data['no_kejadian']."';</script>";
+			echo "<script>alert('Berhasil'); 
+			document.location.href='".base_url()."form/penyampaian';
+			window.open('".base_url()."form/penyampaian/print_form5/".$data['no_kejadian']."','_blank');</script>";
 		} else {
 			echo "<script>alert('Gagal Simpan Data');history.go(-1);</script>";
 		}
@@ -71,7 +86,9 @@ class penyampaian extends CI_Controller {
 			$data['waktu']= date('Y-m-d h:i:s');
 			$update = $this->app_model->updatedata('tbl_status_kejadian','no_kejadian',$this->input->post('no_kejadian', TRUE),$data);
 			if ($update == TRUE) {
-				echo "<script>alert('Berhasil');document.location.href='".base_url()."form/penyampaian/print_form6/".$this->input->post('no_kejadian', TRUE)."';</script>";
+				echo "<script>alert('Berhasil');
+				document.location.href='".base_url()."form/penyampaian';
+				window.open('".base_url()."form/penyampaian/print_form6/".$this->input->post('no_kejadian', TRUE)."');</script>";
 				//$this->load->library('Cfpdf');
 				//$this->load->view('form/print/report_form6');
 			} else {
@@ -84,8 +101,9 @@ class penyampaian extends CI_Controller {
 
 	function print_form6($id)
 	{
+		$data['kode'] = $id;
 		$this->load->library('Cfpdf');
-		$this->load->view('form/print/report_form6');
+		$this->load->view('form/print/report_form6',$data);
 	}
 
 	//upload function

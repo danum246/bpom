@@ -11,7 +11,8 @@ class form01 extends CI_Controller {
 	}
 
 	function index()
-	{	$this->db->select('a.*,b.nama as pelapor');
+	{	
+		$this->db->select('a.*,b.nama as pelapor');
 		$this->db->where('flag',1);
 		$this->db->from('tbl_resume_keluhan a');
 		$this->db->join('tbl_karyawan b','a.nik_pelapor = b.nik');
@@ -25,15 +26,19 @@ class form01 extends CI_Controller {
 		$this->db->from('tbl_resume_keluhan');
 		$data['count'] = (int)$this->db->get()->row()->total+1;
 		// Cek Status Kejadian
-		$check_kejadian = $this->db->query("select count(*) as total from tbl_resume_keluhan where flag = 0")->row()->total;
+		$sess = $this->session->userdata('sess_login');
+		$check_kejadian = $this->db->query("select count(*) as total from tbl_resume_keluhan where flag = 0 and lembaga_id = '".$sess['lembaga_id']."'")->row()->total;
 		if($check_kejadian == 0){
 		$data['page'] = 'form/add_kejadian_form01_view';
 		$data['kelurahan'] = $this->db->query("select * from tbl_kelurahan")->result();
 		$this->load->view('template',$data);
 		}else{
-		$this->db->select('kd_keluhan');
-		$this->db->where('flag',0);
-		$data['kode'] = $this->db->get('tbl_resume_keluhan')->row()->kd_keluhan;
+		$data['kode'] = $this->db->query("select * from tbl_resume_keluhan where flag=0 and lembaga_id = '".$sess['lembaga_id']."'")->row()->kd_keluhan;
+		$data['isset_pangan'] = $this->db->query("select  count(*) as total from tbl_pangan_tmp where kd_keluhan = '".$data['kode'] ."'")->row()->total;
+		if($data['isset_pangan']>0){
+			$data['tmp_pangan'] = $this->db->query("SELECT a.kd_pangan,b.pangan FROM tbl_pangan_tmp a
+			JOIN tbl_pangan b ON a.`kd_pangan` = b.`kd_pangan` where a.kd_keluhan = '".$data['kode'] ."'")->result(); 
+		}
 		$data['page'] = 'form/form01_view';
 		$this->load->view('template',$data);
 		}
@@ -151,7 +156,7 @@ class form01 extends CI_Controller {
 		$racun = $this->db->query("SELECT a.* , b.organ_id,b.inkubasi_pendek,b.inkubasi_tinggi FROM tbl_racun_gejala a JOIN tbl_racun b ON a.kd_racun = b.kd_racun")->result();
 		foreach($racun as $row){ 
 		//$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%".$row->kd_gejala."%') and (organ_id = '".$row->organ_id."') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
-		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and (kd_gejala like '%$row->kd_gejala%') and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
+		$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where (kd_keluhan = '$kode') and ((kd_gejala like '$row->kd_gejala,%')or(kd_gejala like '%,$row->kd_gejala,%')or(kd_gejala like '%,$row->kd_gejala')) and ( TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))>= '".$row->inkubasi_pendek."' and  TIMESTAMPDIFF(MINUTE,(waktu_awal), (waktu_terjadi))<= '".$row->inkubasi_tinggi."')")->row()->total;
 		if($count!=0){
 		$data = array(
 		'kd_keluhan'	=> $kode,
@@ -173,7 +178,7 @@ class form01 extends CI_Controller {
 		$kd_pangan = $this->db->query("select kd_pangan from tbl_pangan")->result();
 		foreach($kd_pangan as $pg){
 		$kd = $pg->kd_pangan;
-		$countp = $this->db->query("select count(*) as total from tbl_keluhan_pasien where kd_pangan like '%$kd%' and kd_keluhan = '$kode'")->row()->total;
+		$countp = $this->db->query("select count(*) as total from tbl_keluhan_pasien where ((kd_pangan like '$kd,%') or (kd_pangan like '%,$kd,%') or (kd_pangan like '%,$kd')) and kd_keluhan = '$kode'")->row()->total;
 		$persen = $countp/$totpas*100;
 		if($persen >= 50){
 		$pgn[] = $kd;
@@ -188,6 +193,8 @@ class form01 extends CI_Controller {
 	
 	function save_kejadian(){
 		$sess = $this->session->userdata('sess_login');
+		$id_lembaga = $sess['lembaga_id'];
+		$location = $this->db->query("select kelurahan_id from tbl_lembaga where id_lembaga = '$id_lembaga' ")->row()->kelurahan_id;
 		//var_dump($sess);exit;
 		$data = array(
 		'kd_keluhan'		=> $this->input->post('kode'),
@@ -200,7 +207,7 @@ class form01 extends CI_Controller {
 		'total_sakit'		=> 0,
 		'total_meninggal'	=> 0,
 		'lembaga_id'		=> $sess['lembaga_id'],
-		'kelurahan_id' => $this->input->post('kelurahan'),
+		'kelurahan_id' => $location,
 		'flag'				=> 0
 		);
 		$this->db->insert('tbl_resume_keluhan',$data);
@@ -229,28 +236,44 @@ class form01 extends CI_Controller {
 		$kd_gjl = implode(',',$data_gjl);
 		$prow = $this->input->post('prow');
 		//pangan 
-		$pangan =  $this->input->post('pangan');
+		
+			if($this->input->post('pangan')){
+				$pangan =  $this->input->post('pangan');
 		$lpgn = sizeof($pangan);
-		for($n = 0;$n <= $lpgn-1;$n++){
-			$pgn = $pangan[$n];
-			$sql = $this->db->query("select kd_pangan from tbl_pangan where pangan = '$pgn'");
-			$cek = $sql->num_rows();
-			if($cek>0){
-				$kd_pangan[] = $sql->row()->kd_pangan;
-			}else{
-				$countpg = $this->db->query("select count(*) as total from tbl_pangan where kd_pangan like 'PGN%'")->row()->total+1;
-				$pangan[] = 'PGN-'.$countpg;
-				$dt = array(
-				'kd_pangan'		=> 'PGN-'.$countpg,
-				'pangan'		=> $pgn,
-				'keterangan'	=> $pgn
+			for($n = 0;$n <= $lpgn-1;$n++){
+				$pgn = $pangan[$n];
+				$sql = $this->db->query("select kd_pangan from tbl_pangan where pangan = '$pgn'");
+				$cek = $sql->num_rows();
+				if($cek>0){
+					$kd_pangan[$n] = $sql->row()->kd_pangan;
+				}else{
+					$countpg = $this->db->query("select count(*) as total from tbl_pangan where kd_pangan like 'PGN%'")->row()->total+1;
+					$pangan[] = 'PGN-'.$countpg;
+					$dt = array(
+					'kd_pangan'		=> 'PGN-'.$countpg,
+					'pangan'		=> $pgn,
+					'keterangan'	=> $pgn
+					);
+					$this->db->insert('tbl_pangan',$dt);
+					$kd_pangan[$n] = 'PGN-'.$countpg;
+				}
+				$datas = array(
+				'kd_keluhan'		=> $this->input->post('kode'),
+				'kd_pangan'		=> $kd_pangan[$n],
+				'flag'					=> 0
 				);
-				$this->db->insert('tbl_pangan',$dt);
-				$kd_pangan[] = 'PGN-'.$countpg;
+				$this->db->insert('tbl_pangan_tmp',$datas);
 			}
+			}else{
+				$n=0;
+			}
+		if($this->input->post('pangan_cb')){
+			$pcb = $this->input->post('pangan_cb');
+			$lpcb = sizeof($this->input->post('pangan_cb'));
+			for($m=0;$m<=$lpcb-1;$m++){
+				$kd_pangan[$n+$m] = $pcb[$m];
+			}			
 		}
-		
-		
 		
 		$dtpangan = implode(',',$kd_pangan);
 		$data = array(

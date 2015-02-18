@@ -1,6 +1,6 @@
 <?php 
 function total($kd_keluhan,$flag){
-	if($flag=='all'){
+	if($flag=='All'){
 		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
 	}else{
 		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan' and status_pasien='$flag'");
@@ -37,7 +37,7 @@ function total($kd_keluhan,$flag){
                            <?php $no = 1; foreach($keluhan as $row){?>
 						   <tr>
 	                        	<td><?php echo $no;?></td>
-	                        	<td><?php echo $row->nama_kejadian;?></td>
+	                        	<td><?php echo $row->kd_keluhan;?></td>
 	                        	<td><?php echo $row->kelurahan;?></td>
 	                        	<td></td>
 	                        	<td><?php echo total($row->kd_keluhan,'All');?></td>

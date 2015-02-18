@@ -19,7 +19,11 @@ class karyawan extends CI_Controller {
 	}
 	
 	function load_edit($idk){
-		$data['row'] = $this->db->query("select * from tbl_karyawan where id_kary = '$idk'")->row();
+		$data['lembaga'] = $this->app_model->get_lembaga();
+		$data['row'] = $this->db->query("select a.*,c.id_lembaga from tbl_karyawan a
+		join tbl_jabatan b on a.jabatan_id = b.id_jabatan
+		join tbl_lembaga c on b.lembaga_id = c.id_lembaga
+		where id_kary = '$idk'")->row();
 		$this->load->view('data/karyawan_edit',$data);
 	}
 	
@@ -31,7 +35,7 @@ class karyawan extends CI_Controller {
 	}
 	
 	function get_listjab($id){
-		$data = $this->app_model->getlistjab($id);
+		$data = $this->db->query("select * from tbl_jabatan where lembaga_id = '$id'")->result();
 		$list = "<option> -- </option>";
 		foreach($data as $row){
 		$list .= "<option value='".$row->id_jabatan."'>".$row->jabatan."</option>";
@@ -54,6 +58,26 @@ class karyawan extends CI_Controller {
 		'pictures'	  => $photo
 		);
 		$this->app_model->insertdata('tbl_karyawan',$data);
+		echo "<script>alert('Sukses');
+		document.location.href='".base_url()."data/karyawan';</script>";
+	}
+	
+	function update_karyawan(){
+		$photo = date('Ymdhis').'_'.$_FILES['foto']['name'];
+		$this->upload_photo($_FILES['foto'],$photo);
+		$data = array(
+		'nik'		  => $this->input->post('nik'),
+		'nama'		  => $this->input->post('nama'),
+		'jns_kel'	  => $this->input->post('jk'),
+		'alamat'      => $this->input->post('alamat'),
+		'hp'		  => '+62'.$this->input->post('telepon'),
+		'email'		  => $this->input->post('email'),
+		'jabatan_id'  => $this->input->post('jabatan'),
+		'status'	  => $this->input->post('status'),
+		'pictures'	  => $photo
+		);
+		$this->db->where('id_kary',$this->input->post('id_karyawan'));
+		$this->db->update('tbl_karyawan',$data);
 		echo "<script>alert('Sukses');
 		document.location.href='".base_url()."data/karyawan';</script>";
 	}
