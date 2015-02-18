@@ -48,12 +48,13 @@ $pangan[] = $row['pangan'];
 return implode(', ',$pangan);
 }
 ?>
+
 <div class="row">
 	<div class="span12">      		  		
   		<div class="widget ">
   			<div class="widget-header">
   				<i class="icon-user"></i>
-  				<h3>HASIL ANALISA RACUN</h3>
+  				<h3>HASIL ANALISA</h3>
 			</div> <!-- /widget-header -->
 			
 			<div class="widget-content">
@@ -126,49 +127,248 @@ return implode(', ',$pangan);
 						<tr>
 							<td colspan=6 style="height:5px">&nbsp;</td>
 						</tr>
-						<tr style="background:whitesmoke">
+					</table>
+
+					<div class="tabbable">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a href="#analisaracun" data-toggle="tab">Analisa Racun & Gejala</a></li>
+						  <li><a href="#inkubasi" data-toggle="tab">Masa Inkubasi</a></li>
+						  <li><a href="#attack" data-toggle="tab">Attack Rate</a></li>
+						  <li><a href="#desc" data-toggle="tab">Deskripsi</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="analisaracun">
+								<table id="example1" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Kode Racun</th>
+			                                <th>Nama Racun</th>
+			                                <th>Persentase Kemungkinan Racun</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+										<?php $no = 1; foreach($racun as $row){?>
+				                        <tr>
+				                        	<td><?php echo $no;?></td>
+				                        	<td><?php echo $row->kd_racun;?></td>
+				                        	<td><?php echo $row->racun;?></td>
+			                                <td><?php echo persentase($row->kd_racun,$totrow,$kode);?>&nbsp; %</td>
+				                        </tr>
+										<?php $no++; } ?>
+										<tr>
+				                        	<th>Gejala Umum</th>
+				                        	<td colspan=3><?php echo show_gjl($gjl_umum);?></td>
+				                        </tr>
+										<tr>
+				                        	<th>Pangan Umum</th>
+				                        	<td colspan=3>
+											<?php echo show_pgn($pangan);?>
+											</td>
+				                        </tr>
+				                    </tbody>
+				               	</table>
+							</div>							
+							<div class="tab-pane" id="inkubasi">
+								<div class="widget">
+		                            <div class="widget-header">
+		                                <i class="icon-bar-chart"></i>
+		                                <h3>
+		                                    Bar Chart</h3>
+		                            </div>
+		                            <!-- /widget-header -->
+		                            <div class="widget-content">
+		                                <canvas id="bar-chart" class="chart-holder" width="538" height="250">
+		                                </canvas>
+		                                <!-- /bar-chart -->
+		                            </div>
+		                            <!-- /widget-content -->
+		                        </div>
+								<table id="analisa4" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Inkubasi</th>
+			                                <th>Waktu</th>
+			                                <th>Total</th>
+			                                <th>Persentase</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <tr>
+				                        	<td>1</td>
+				                        	<td>Inkubasi Pendek</td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                        <tr>
+				                        	<td>2</td>
+				                        	<td>Inkubasi Tinggi</td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                        <tr>
+				                        	<td>3</td>
+				                        	<td>Inkubasi Rata - Rata</td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                    </tbody>
+				               	</table>
+							</div>
+							<div class="tab-pane" id="attack">
+								<table id="analisa1" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Kategori TPM</th>
+			                                <th>Total</th>
+			                                <th>Sakit</th>
+			                                <th>Persentase</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <tr>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                    </tbody>
+				               	</table>
+				               	<hr>
+				               	<table id="analisa2" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Kategori Jenis Kelamin</th>
+			                                <th>Total</th>
+			                                <th>Sakit</th>
+			                                <th>Persentase</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <tr>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                    </tbody>
+				               	</table>
+				               	<hr>
+				               	<table id="analisa3" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Kategori Umur</th>
+			                                <th>Total</th>
+			                                <th>Sakit</th>
+			                                <th>Persentase</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <tr>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+				                        	<td></td>
+			                                <td></td>
+				                        </tr>
+				                    </tbody>
+				               	</table>
+							</div>
+							<div class="tab-pane" id="desc">
+								<p>asasasasasassssssssssssssssssssssssssssssssssssssss</p>
+							</div>
+						</div>
+					</div>
+
+					<br><hr>
+
+	               	<table>
+	               		<tr style="background:whitesmoke">
 							<td>Hasil Lab</td>
 							<td>:</td>
 							<td><a href="<?php echo base_url();?>assets/upload/data/<?php echo $kejadian->file;?>"><?php echo $kejadian->file;?></a></td>
 							<td colspan=3>&nbsp;</td>
 						</tr>
-					</table>
-					<a data-toggle="modal" href="#myModal" class="pull-right btn btn-primary"> Upload Hasil Lab </a><br><hr>
-					<table id="example1" class="table table-bordered table-striped">
-	                	<thead>
-	                        <tr> 
-	                        	<th>No</th>
-                                <th>Kode Racun</th>
-                                <th>Nama Racun</th>
-                                <th>Persentase Kemungkinan Racun</th>
-	                        </tr>
-	                    </thead>
-	                    <tbody>
-							<?php $no = 1; foreach($racun as $row){?>
-	                        <tr>
-	                        	<td><?php echo $no;?></td>
-	                        	<td><?php echo $row->kd_racun;?></td>
-	                        	<td><?php echo $row->racun;?></td>
-                                <td><?php echo persentase($row->kd_racun,$totrow,$kode);?>&nbsp; %</td>
-	                        </tr>
-							<?php $no++; } ?>
-							<tr>
-	                        	<th>Gejala Umum</th>
-	                        	<td colspan=3><?php echo show_gjl($gjl_umum);?></td>
-	                        </tr>
-							<tr>
-	                        	<th>Pangan Umum</th>
-	                        	<td colspan=3>
-								<?php echo show_pgn($pangan);?>
-								</td>
-	                        </tr>
-	                    </tbody>
 	               	</table>
+	               	<a data-toggle="modal" href="#myModal" class="pull-right btn btn-primary"> Upload Hasil Lab </a><br>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script src="<?php echo base_url();?>assets/js/excanvas.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/chart.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets/js/base.js"></script>
+<script>
+    var barChartData = {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [
+			{
+			    fillColor: "rgba(220,220,220,0.5)",
+			    strokeColor: "rgba(220,220,220,1)",
+			    data: [65, 59, 90, 81, 56, 55, 40]
+			},
+			{
+			    fillColor: "rgba(151,187,205,0.5)",
+			    strokeColor: "rgba(151,187,205,1)",
+			    data: [28, 48, 40, 19, 96, 27, 100]
+			}
+		]
+
+    }
+
+    var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
+
+</script>
+<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
+<script src="<?php echo base_url();?>assets/js/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets/js/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#analisa1").dataTable({
+        	"bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa2").dataTable({
+        	"bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa3").dataTable({
+        	"bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa4").dataTable({
+        	"bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+    });
+</script>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

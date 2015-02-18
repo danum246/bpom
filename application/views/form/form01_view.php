@@ -101,10 +101,24 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 											</div> <!-- /controls -->				
 										</div>
 										<div class="control-group">											
+											<label class="control-label">Usia</label>
+											<div class="controls">
+												<input type="number" class="span3" id="" name="" placeholder="Usia Pasien" value="" style="width:200px" required/>
+											</div> <!-- /controls -->				
+										</div>
+										<div class="control-group">											
+										<label class="control-label">Pendidikan</label>
+										<div class="controls">
+											<select name="" required>
+												<option> -- Pilih Pendidikan -- </option>
+											</select>
+										</div> <!-- /controls -->
+										</div>
+										<div class="control-group">											
 											<label class="control-label">Pekerjaan</label>
 											<div class="controls">
-												<select name="pekerjaan">
-												<option></option>
+												<select name="pekerjaan" required>
+												<option> -- Pilih Pekerjaan -- </option>
 												<?php foreach($pekerjaan as $row){?>
 												<option value="<?php echo $row->id_pekerjaan;?>"><?php echo $row->pekerjaan;?></option>
 												<?php } ?>
@@ -180,9 +194,26 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 	                                        </div>		<!-- /controls -->		
 										</div> <!-- /control-group -->
 										<div class="control-group">											
+										<label class="control-label">Kategori TPM</label>
+										<div class="controls">
+											<select class="span3" id="" name="">
+												<option> -- Pilih Kategori TPM -- </option>
+											</select>
+										</div> <!-- /controls -->
+										</div>
+										<div class="control-group">											
 										<label class="control-label">Sumber TPM</label>
 										<div class="controls">
-											<input type="text" class="span3" id="" name="lokasi" placeholder="Sumber TPM" value="">
+											<table>
+													<tr>
+	                                        			<td><input type="checkbox" name="" value="" style="margin-top:-2px">&nbsp;<span style="">Data 1</span>&nbsp;</td>
+	                                        			<td><input type="checkbox" name="" value="" style="margin-top:-2px">&nbsp;<span style="">Data 2</span>&nbsp;</td>
+													</tr>
+	                                        		<tr>
+	                                        			<td colspan="3"><input type="text" id="" name="lokasi" placeholder="Sumber TPM" value=""></td>
+	                                        		</tr>
+													<input type="hidden" name="grow" value="<?php echo $no-1;?>">
+	                                        	</table>
 										</div> <!-- /controls -->				
 									</div>
 										</div>
