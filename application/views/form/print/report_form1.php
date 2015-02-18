@@ -82,10 +82,10 @@ $pangan[] = $row['pangan'];
 return implode(', ',$pangan);
 }
 
-$rowdata = $this->db->query("SELECT c.lembaga,e.kabupaten_kota,d.kelurahan,a.kelurahan_id AS kelid,TIME(a.waktu_lapor) AS wkt,DAYNAME(a.waktu_lapor) AS hari,DATE(a.waktu_lapor) AS tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a 
+$rowdata = $this->db->query("SELECT c.lembaga,d.kabupaten_kota,d.kelurahan,d.provinsi,d.kecamatan,d.id_kelurahan AS kelid,TIME(a.waktu_lapor) AS wkt,DAYNAME(a.waktu_lapor) AS hari,DATE(a.waktu_lapor) AS tgl,b.nama,b.hp,b.alamat,a.* FROM tbl_resume_keluhan a 
 JOIN tbl_karyawan b ON a.`nik_pelapor` = b.`nik` 
 JOIN tbl_lembaga c ON c.`id_lembaga` = a.`lembaga_id` 
-join view_daerah c on c.'id_kelurahan' = a.'kelurahan_id'
+join view_daerah d on d.`id_kelurahan` = a.`kelurahan_id`
 where a.kd_keluhan = '$kode'")->row();
 
 $pdf = new FPDF('P','mm','A4');
@@ -133,7 +133,7 @@ $pdf->Cell(100,10,$rowdata->kabupaten_kota,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Provinsi',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
-$pdf->Cell(100,10,'',0,1,'L');
+$pdf->Cell(100,10,$rowdata->provinsi,0,1,'L');
 $pdf->Ln(0.1);
 $pdf->Cell(70,10,'Pangan Diduga Penyebab',0,0,'L');
 $pdf->Cell(5,10,':',0,0,'C');
