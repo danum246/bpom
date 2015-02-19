@@ -274,7 +274,34 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									
 									<div class="form-actions">
 										<input type="submit" class="btn btn-primary" value="Simpan"/> 
-										<a href="<?php echo base_url();?>form/form01/generate_result"><input type="button" class="btn btn-warning" value="Selesai / Tampilkan Hasil"/></a>
+										<a data-toggle="modal" href="#myModal" class="btn btn-primary"> Selesai / Tampilkan Hasil </a>
+
+
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										    <div class="modal-dialog">
+										        <div class="modal-content">
+										            <div class="modal-header">
+										                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										                <h4 class="modal-title">Deskripsi</h4>
+										            </div>
+										            <form class ='form-horizontal' action="#" method="post">
+										                <div class="modal-body">  
+															<div class="control-group" id="">
+										                        <label class="control-label">Deskripsi</label>
+										                        <div class="controls">
+										                            <textarea class="span3" name="" class="form-control" required></textarea>
+										                        </div>
+										                    </div>	
+										                <div class="modal-footer">
+										                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+										                    <!--input type="submit" class="btn btn-primary" value="Simpan"/-->
+										                    <a href="<?php echo base_url();?>form/form01/generate_result"><input type="button" class="btn btn-warning" value="Tampilkan Hasil"/></a>
+										                </div>
+										            </form>
+										        </div><!-- /.modal-content -->
+										    </div><!-- /.modal-dialog -->
+										</div><!-- /.modal -->
+
 									</div> <!-- /form-actions -->
 								</fieldset>
 							</form>
