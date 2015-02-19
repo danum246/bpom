@@ -308,7 +308,6 @@ return implode(', ',$pangan);
 
 <script src="<?php echo base_url();?>assets/js/excanvas.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/chart.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url();?>assets/js/base.js"></script>
 <script>
     var barChartData = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -330,45 +329,7 @@ return implode(', ',$pangan);
     var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
 
 </script>
-<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
-<script src="<?php echo base_url();?>assets/js/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="<?php echo base_url();?>assets/js/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $("#analisa1").dataTable({
-        	"bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "bAutoWidth": true
-        });
-        $("#analisa2").dataTable({
-        	"bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "bAutoWidth": true
-        });
-        $("#analisa3").dataTable({
-        	"bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "bAutoWidth": true
-        });
-        $("#analisa4").dataTable({
-        	"bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "bAutoWidth": true
-        });
-    });
-</script>
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

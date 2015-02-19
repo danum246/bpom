@@ -274,7 +274,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 									
 									<div class="form-actions">
 										<input type="submit" class="btn btn-primary" value="Simpan"/> 
-										<a data-toggle="modal" href="#myModal" class="btn btn-primary"> Selesai / Tampilkan Hasil </a>
+										<a data-toggle="modal" href="#myModal" class="btn btn-success"> Selesai / Tampilkan Hasil </a>
 
 
 										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -292,6 +292,7 @@ $( "#date_2" ).datepicker({ dateFormat:'yy-mm-dd' });
 										                            <textarea class="span3" name="" class="form-control" required></textarea>
 										                        </div>
 										                    </div>	
+										                </div>
 										                <div class="modal-footer">
 										                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 										                    <!--input type="submit" class="btn btn-primary" value="Simpan"/-->

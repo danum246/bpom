@@ -127,6 +127,42 @@
         });
     });
 </script>
+<!--script type="text/javascript">
+    $(function() {
+        $("#analisa1").dataTable({
+          "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa2").dataTable({
+          "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa3").dataTable({
+          "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+        $("#analisa4").dataTable({
+          "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true
+        });
+    });
+</script-->
 
 </body>
 </html>
