@@ -12,12 +12,13 @@ class penyampaian extends CI_Controller {
 
 	function index()
 	{	
-		$data['keluhan'] = $this->db->query("SELECT a.*,e.kelurahan,f.kabupaten_kota FROM tbl_resume_keluhan a 
+		$data['keluhan'] = $this->db->query("SELECT a.*,e.kelurahan,g.kecamatan,f.kabupaten_kota FROM tbl_resume_keluhan a 
 		JOIN tbl_karyawan b ON a.`nik_pelapor` = b.`nik`
 		JOIN tbl_jabatan c ON c.`id_jabatan` = b.`jabatan_id`
 		JOIN tbl_lembaga d ON d.`id_lembaga` = c.`lembaga_id`
-		LEFT JOIN tbl_kelurahan e ON e.`id_kelurahan` = d.`kelurahan_id`
-		LEFT JOIN tbl_kabupaten f ON f.`id_kabupaten` = d.`kabupaten_id`")->result();
+		JOIN tbl_kelurahan e ON e.`id_kelurahan` = d.`kelurahan_id`
+		JOIN tbl_kabupaten f ON f.`id_kabupaten` = d.`kabupaten_id`
+		JOIN tbl_kecamatan g ON g.`id_kecamatan` = e.`kecamatan_id`")->result();
 		$data['page'] = 'form/penyampaian_view';
 		$this->load->view('template',$data);
 	}

@@ -16,6 +16,27 @@ function total($kd_keluhan,$flag){
 	return $row['total'];
 }
 
+function total_stpm($kd_keluhan,$where){
+	
+		$sql = mysql_query("SELECT COUNT(*) AS total FROM tbl_sumbertpm b JOIN tbl_keluhan_pasien a ON a.`flag_form` = b.`flag_form` WHERE a.`kd_keluhan` = '$kd_keluhan' $where");
+	
+	$row = mysql_fetch_array($sql);
+	return $row['total'];
+}
+
+function persen_gejala($totpas,$gjl,$kode){
+	$query = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan = '$kode' and (kd_gejala like '$gjl,%' or kd_gejala like '%,$gjl,%' or kd_gejala like '%,$gjl')");
+	$row = mysql_fetch_array($query);
+	return $row['total']/$totpas*100;
+}
+
+function persen_pangan($total,$kd,$kode){
+	$query = mysql_query("select count(*) as total from tbl_keluhan_pasien  a join tbl_sumbertpm b on a.flag_form = b.flag_form where ((b.kd_pangan like '$kd,%') or (b.kd_pangan like '%,$kd,%') or (b.kd_pangan like '%,$kd')) and a.kd_keluhan = '$kode'");
+	$row = mysql_fetch_array($query);
+	$tot_pgn = $row['total'];
+	return $tot_pgn/$total*100;
+}
+
 function tjns($kd_keluhan,$flag){
 	if($flag=='all'){
 		$sql = mysql_query("select count(*) as total from tbl_keluhan_pasien where kd_keluhan='$kd_keluhan'");
@@ -47,6 +68,12 @@ $pangan[] = $row['pangan'];
 }
 return implode(', ',$pangan);
 }
+
+function getdata($select,$as,$kode,$where){
+	$query = mysql_query("select $select as $as from tbl_keluhan_pasien where kd_keluhan = '$kode' $where");
+	$row = mysql_fetch_array($query);
+	return $row[$as];
+}
 ?>
 
 <div class="row">
@@ -59,54 +86,60 @@ return implode(', ',$pangan);
 			
 			<div class="widget-content">
 				<div class="span11">
-					<table border=0>
+					<h4 style="background:whitesmoke;padding:10px;border:1px solid lightgray" align="center"><?php echo $kejadian->descs;?></h4>
+					<br>
+					<table  class="table table-bordered table-striped">
 						<tr>
-							<td style="width:150px">Nama Kejadian</td>
+							<th style="width:150px">Nama Kejadian</th>
 							<td>:</td>
 							<td style="width:300px"><?php echo $kejadian->nama_kejadian;?></td>
-							<td style="width:150px">Puskesmas</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kelurahan;?></td>
-						</tr>
-						<tr>
-							<td>Jumlah Korban</td>
-							<td>:</td>
-							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
-							<td>Kecamatan</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kecamatan;?></td>
-						</tr>	
-						<tr>
-							<td>Korban Sehat</td>
+							<th>Korban Sehat</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'0');?> Orang</td>
-							<td style="width:200px">Kabupaten / Kota / Provinsi</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kabupaten_kota;?></td>
 						</tr>
 						<tr>
-							<td>Korban Sakit</td>
+							<th style="width:150px">Puskesmas</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kelurahan;?></td>
+							<th>Korban Sakit</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'1');?> Orang</td>
-							<td>Korban Meninggal</td>
+							
+						</tr>	
+						<tr><th>Kecamatan</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kecamatan;?></td>
+							<th>Korban Pria</th>
+							<td>:</td>
+							<td><?php echo tjns($kejadian->kd_keluhan,'Pria');?> Orang</td>
+							
+							
+						</tr>
+						<tr><th style="width:200px">Kabupaten / Kota / Provinsi</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kabupaten_kota;?></td>
+							
+							<th>Korban Meninggal</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'2');?> Orang</td>
 						</tr>
-						<tr>
-						<td>Korban Pria</td>
+						<tr><th>Jumlah Korban</th>
 							<td>:</td>
-							<td><?php echo tjns($kejadian->kd_keluhan,'Pria');?> Orang</td>
-							<td>Korban Wania</td>
+							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
+						
+							<th>Korban Wanita</th>
 							<td>:</td>
 							<td><?php echo tjns($kejadian->kd_keluhan,'Wanita');?> Orang</td>
 							
 						</tr>
 						<tr>
-							<td style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</td>
-							<td>:</td>
-							<td rowspan=2>
-							<table>
-							<?php foreach($pekerjaan as $rw){
+							<th style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</th>
+							<th>:</th>
+							<th colspan=4>
+							&nbsp;
+							</th>
+						</tr>
+						<?php foreach($pekerjaan as $rw){
 							$job = $rw->pekerjaan;
 							$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where pekerjaan_id='$rw->id_pekerjaan' and kd_keluhan = '$kejadian->kd_keluhan'")->row()->total;
 							if($count>=0){
@@ -114,16 +147,9 @@ return implode(', ',$pangan);
 							<tr>
 							<td><?php echo $job;?></td>
 							<td>:</td>
-							<td><?php echo $count;?> Orang</td>
+							<td colspan=4><?php echo $count;?> Orang</td>
 							</tr>
 							<?php } } ?>
-							</table>
-							</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
 						<tr>
 							<td colspan=6 style="height:5px">&nbsp;</td>
 						</tr>
@@ -134,7 +160,6 @@ return implode(', ',$pangan);
 						  <li class="active"><a href="#analisaracun" data-toggle="tab">Analisa Racun & Gejala</a></li>
 						  <li><a href="#inkubasi" data-toggle="tab">Masa Inkubasi</a></li>
 						  <li><a href="#attack" data-toggle="tab">Attack Rate</a></li>
-						  <li><a href="#desc" data-toggle="tab">Deskripsi</a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="analisaracun">
@@ -156,25 +181,79 @@ return implode(', ',$pangan);
 			                                <td><?php echo persentase($row->kd_racun,$totrow,$kode);?>&nbsp; %</td>
 				                        </tr>
 										<?php $no++; } ?>
-										<tr>
+										<!--tr>
 				                        	<th>Gejala Umum</th>
-				                        	<td colspan=3><?php echo show_gjl($gjl_umum);?></td>
+				                        	<td colspan=3><?php echo $gjl_umum;?></td>
 				                        </tr>
-										<tr>
+										<!--tr>
 				                        	<th>Pangan Umum</th>
 				                        	<td colspan=3>
 											<?php echo show_pgn($pangan);?>
 											</td>
-				                        </tr>
+				                        </tr-->
 				                    </tbody>
 				               	</table>
+								<hr>
+								<table class="table table-bordered table-striped">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>Gejala</th>
+									<th>Persentase</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php
+								$gjlm = explode(',',$gjl_umum);
+								$lgjl = sizeof($gjlm);
+								$nmbr = 0;
+								$no = 1;
+								for($nmbr;$nmbr<=$lgjl-1;$nmbr++){?>
+									
+									<tr>
+										<td><?php echo $no;?></td>
+										<td><?php echo show_gjl($gjlm[$nmbr]) ;?></td>
+										<td><?php echo persen_gejala($totpas,$gjlm[$nmbr],$kode);?> %</td>
+									</tr>
+									
+								<?php $no++; }
+								?>
+								</tbody>
+								</table>
+								<hr>
+								<table class="table table-bordered table-striped">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>Pangan</th>
+									<th>Persentase</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php
+								$pgn = explode(',',$pangan);
+								$lpgn = sizeof($pgn);
+								$nmbr = 0;
+								$no = 1;
+								for($nmbr;$nmbr<=$lpgn-1;$nmbr++){?>
+									
+									<tr>
+										<td><?php echo $no;?></td>
+										<td><?php echo show_pgn($pgn[$nmbr]) ;?></td>
+										<td><?php echo persen_pangan($totstpm,$pgn[$nmbr],$kode) ?> %</td>
+									</tr>
+									
+								<?php $no++; }
+								?>
+								</tbody>
+								</table>
 							</div>							
 							<div class="tab-pane" id="inkubasi">
 								<div class="widget">
 		                            <div class="widget-header">
 		                                <i class="icon-bar-chart"></i>
 		                                <h3>
-		                                    Bar Chart</h3>
+		                                    Grafik Masa Inkubasi</h3>
 		                            </div>
 		                            <!-- /widget-header -->
 		                            <div class="widget-content">
@@ -189,32 +268,24 @@ return implode(', ',$pangan);
 				                        <tr> 
 				                        	<th>No</th>
 			                                <th>Inkubasi</th>
-			                                <th>Waktu</th>
-			                                <th>Total</th>
-			                                <th>Persentase</th>
+			                                <th>Waktu ( Menit )</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
 				                        <tr>
 				                        	<td>1</td>
 				                        	<td>Inkubasi Pendek</td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
+				                        	<td><?php echo (int)$inkubasi->MIN;?></td>
 				                        </tr>
 				                        <tr>
 				                        	<td>2</td>
 				                        	<td>Inkubasi Tinggi</td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
+				                        	<td><?php echo (int)$inkubasi->MAX;?></td>
 				                        </tr>
 				                        <tr>
 				                        	<td>3</td>
 				                        	<td>Inkubasi Rata - Rata</td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
+				                        	<td><?php echo (int)$inkubasi->AVG;?></td>
 				                        </tr>
 				                    </tbody>
 				               	</table>
@@ -224,68 +295,180 @@ return implode(', ',$pangan);
 				                	<thead>
 				                        <tr> 
 				                        	<th>No</th>
-			                                <th>Kategori TPM</th>
+			                                <th>Sumber TPM</th>
 			                                <th>Total</th>
-			                                <th>Sakit</th>
+			                                <th>Kasus</th>
 			                                <th>Persentase</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
+									<?php $n = 1; foreach($sumbertpm as $row){?>
 				                        <tr>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
+				                        	<td><?php echo $n;?></td>
+				                        	<td><?php echo $row->sumber_tpm;?></td>
+											<td><?php echo total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."'");?></td>
+				                        	<td><?php echo total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."' and (a.status_pasien=1 or a.status_pasien=2)");?></td>
+			                                <td>
+											<?php 
+											if(total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."'")!=0 and total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."' and (a.status_pasien=1 or a.status_pasien=2)")!=0){
+											echo total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."'")/total_stpm($kode,"and b.sumber_tpm = '".$row->sumber_tpm."' and (a.status_pasien=1 or a.status_pasien=2)")*100;
+											}else{
+												echo '-';
+											} ?> %</td>
 				                        </tr>
+									<?php $n++; } ?>
 				                    </tbody>
 				               	</table>
-				               	<hr>
-				               	<table id="analisa2" class="table table-bordered table-striped">
-				                	<thead>
-				                        <tr> 
-				                        	<th>No</th>
-			                                <th>Kategori Jenis Kelamin</th>
-			                                <th>Total</th>
-			                                <th>Sakit</th>
-			                                <th>Persentase</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-				                        <tr>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
-				                        </tr>
-				                    </tbody>
-				               	</table>
+				               	
 				               	<hr>
 				               	<table id="analisa3" class="table table-bordered table-striped">
 				                	<thead>
 				                        <tr> 
 				                        	<th>No</th>
-			                                <th>Kategori Umur</th>
+			                                <th>Jenis Kelamin</th>
 			                                <th>Total</th>
-			                                <th>Sakit</th>
+			                                <th>Kasus</th>
 			                                <th>Persentase</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
 				                        <tr>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-				                        	<td></td>
-			                                <td></td>
+				                        	<td>1</td>
+				                        	<td>Pria</td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Pria'")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Pria'");
+											}else{
+												echo '-';
+											}?></td>
+				                        	<td><?php
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Pria' and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Pria' and (flag = 1 or flag = 2)");
+											}else{
+												echo '-';
+											}?></td>
+			                                <td><?php 
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Pria'")!=0 and getdata('count(*)','total',$kode,"and jns_kel = 'Pria' and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Pria'")/getdata('count(*)','total',$kode,"and jns_kel = 'Pria'")*100;
+											}else{
+												echo '-';
+											}?> %</td>
 				                        </tr>
+										<tr>
+				                        	<td>2</td>
+				                        	<td>Wanita</td>
+				                        	<td><?php
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'");
+											}else{
+												echo '-';
+											}?></td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Wanita' and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Wanita' and (flag = 1 or flag = 2)");
+											}else{
+												echo '-';
+											}?></td>
+			                                <td><?php 
+											if(getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")!=0 and getdata('count(*)','total',$kode,"and jns_kel = 'Wanita' and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")/getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")*100;
+											}else{
+												echo '-';
+											}?> %</td>
+				                        </tr>
+										<!--tr>
+				                        	<td colspan=2>Total</td>
+				                        	<td><?php echo getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")+getdata('count(*)','total',$kode,"and jns_kel = 'Pria'");?></td>
+				                        	<td><?php echo getdata('count(*)','total',$kode,"and jns_kel = 'Wanita' and (flag = 1 or flag = 2)")+getdata('count(*)','total',$kode,"and jns_kel = 'Pria' and (flag = 1 or flag = 2)");?></td>
+			                                <td><?php echo (getdata('count(*)','total',$kode,"and jns_kel = 'Wanita'")+getdata('count(*)','total',$kode,"and jns_kel = 'Pria'"))/((getdata('count(*)','total',$kode,"and jns_kel = 'Wanita' and (flag = 1 or flag = 2)"))+(getdata('count(*)','total',$kode,"and jns_kel = 'Pria' and (flag = 1 or flag = 2)")))*100;?> %</td>
+				                        </tr-->
+				                    </tbody>
+				               	</table>
+								<hr>
+				               	<table id="analisa2" class="table table-bordered table-striped">
+				                	<thead>
+				                        <tr> 
+				                        	<th>No</th>
+			                                <th>Umur ( Tahun )</th>
+			                                <th>Total</th>
+			                                <th>Kasus</th>
+			                                <th>Persentase</th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <tr>
+				                        	<td>1</td>
+				                        	<td>&lt; 11</td>
+				                        	<td>
+											<?php 
+											if(getdata('count(*)','total',$kode,"and usia < 11")!=0){
+											echo getdata('count(*)','total',$kode,"and usia < 11");
+											}else{
+												echo '-';
+											}?></td>
+				                        	<td>
+											<?php 
+											if(getdata('count(*)','total',$kode,"and usia < 11 and (flag = 1 or flag = 2)")!=0){
+												echo getdata('count(*)','total',$kode,"and usia < 11 and (flag = 1 or flag = 2)");
+											}else{
+												echo '-';
+											}?></td>
+			                                <td><?php 
+											if(getdata('count(*)','total',$kode,"and usia < 11")!=0 and getdata('count(*)','total',$kode,"and usia < 11 and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and usia < 11")/getdata('count(*)','total',$kode,"and usia < 11 and (flag = 1 or flag = 2)")*100;
+											}else{
+												echo '-';
+											}?> %</td>
+				                        </tr>
+										<tr>
+				                        	<td>2</td>
+				                        	<td>11 - 15</td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) ")!=0){
+											echo getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) ");
+											}else{
+												echo '-';
+											}?></td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) and (flag = 1 or flag=2)")!=0){
+												echo getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) and (flag = 1 or flag=2)");
+											}else{
+												echo '-';
+											}?></td>
+			                                <td><?php 
+											if(getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) ")!=0 and getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) and (flag = 1 or flag=2)")!=0){
+											echo getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) ")/getdata('count(*)','total',$kode,"and (usia >= 11 and usia <= 15) and (flag = 1 or flag=2)")*100;
+											}else{
+												echo '-';
+											}?> %</td>
+				                        </tr>
+										<tr>
+				                        	<td>3</td>
+				                        	<td>16+</td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and usia >= 16 ")!=0){
+											echo getdata('count(*)','total',$kode,"and usia >= 16");
+											}else{
+												echo '-';
+											}?></td>
+				                        	<td><?php 
+											if(getdata('count(*)','total',$kode,"and usia >=16 and (flag = 1 or flag = 2)")!=0){
+												echo getdata('count(*)','total',$kode,"and usia >=16 and (flag = 1 or flag = 2)");
+											}else{
+												echo '-';
+											}?></td>
+			                                <td><?php 
+											if(getdata('count(*)','total',$kode,"and usia >= 16")!=0 and getdata('count(*)','total',$kode,"and usia >=16 and (flag = 1 or flag = 2)")!=0){
+											echo getdata('count(*)','total',$kode,"and usia >=16")/getdata('count(*)','total',$kode,"and usia >=16 and (flag = 1 or flag = 2)")*100;
+											}else{
+												echo '-';
+											}?> %</td>
+				                        </tr>
+										
 				                    </tbody>
 				               	</table>
 							</div>
-							<div class="tab-pane" id="desc">
-								<p>asasasasasassssssssssssssssssssssssssssssssssssssss</p>
-							</div>
+							
 						</div>
 					</div>
 
@@ -310,17 +493,17 @@ return implode(', ',$pangan);
 <script src="<?php echo base_url();?>assets/js/chart.min.js" type="text/javascript"></script>
 <script>
     var barChartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["Inkubasi Pendek", "Inkubasi Tinggi", "Inkubasi Rata-rata"],
         datasets: [
-			{
+			/*{
 			    fillColor: "rgba(220,220,220,0.5)",
 			    strokeColor: "rgba(220,220,220,1)",
-			    data: [65, 59, 90, 81, 56, 55, 40]
-			},
+			    data: [65,63]
+			},*/
 			{
 			    fillColor: "rgba(151,187,205,0.5)",
 			    strokeColor: "rgba(151,187,205,1)",
-			    data: [28, 48, 40, 19, 96, 27, 100]
+			    data: [<?php echo (int)$inkubasi->MIN;?>, <?php echo (int)$inkubasi->MAX;?>, <?php echo (int)$inkubasi->AVG;?>]
 			}
 		]
 

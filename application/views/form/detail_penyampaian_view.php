@@ -53,59 +53,65 @@ return implode(', ',$pangan);
   		<div class="widget ">
   			<div class="widget-header">
   				<i class="icon-user"></i>
-  				<h3>HASIL ANALISA RACUN</h3>
+  				<h3>HASIL ANALISA</h3>
 			</div> <!-- /widget-header -->
 			
 			<div class="widget-content">
 				<div class="span11">
-					<table border=0>
+				<h4 style="background:whitesmoke;padding:10px;border:1px solid lightgray" align="center"><?php echo $kejadian->descs;?></h4>
+					<br>
+					<table  class="table table-bordered table-striped">
 						<tr>
-							<td style="width:150px">Nama Kejadian</td>
+							<th style="width:150px">Nama Kejadian</th>
 							<td>:</td>
 							<td style="width:300px"><?php echo $kejadian->nama_kejadian;?></td>
-							<td style="width:150px">Puskesmas</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kelurahan;?></td>
-						</tr>
-						<tr>
-							<td>Jumlah Korban</td>
-							<td>:</td>
-							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
-							<td>Kecamatan</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kecamatan;?></td>
-						</tr>	
-						<tr>
-							<td>Korban Sehat</td>
+							<th>Korban Sehat</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'0');?> Orang</td>
-							<td style="width:200px">Kabupaten / Kota / Provinsi</td>
-							<td>:</td>
-							<td><?php echo $kejadian->kabupaten_kota;?></td>
 						</tr>
 						<tr>
-							<td>Korban Sakit</td>
+							<th style="width:150px">Puskesmas</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kelurahan;?></td>
+							<th>Korban Sakit</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'1');?> Orang</td>
-							<td>Korban Meninggal</td>
+							
+						</tr>	
+						<tr><th>Kecamatan</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kecamatan;?></td>
+							<th>Korban Pria</th>
+							<td>:</td>
+							<td><?php echo tjns($kejadian->kd_keluhan,'Pria');?> Orang</td>
+							
+							
+						</tr>
+						<tr><th style="width:200px">Kabupaten / Kota / Provinsi</th>
+							<td>:</td>
+							<td><?php echo $kejadian->kabupaten_kota;?></td>
+							
+							<th>Korban Meninggal</th>
 							<td>:</td>
 							<td><?php echo total($kejadian->kd_keluhan,'2');?> Orang</td>
 						</tr>
-						<tr>
-						<td>Korban Pria</td>
+						<tr><th>Jumlah Korban</th>
 							<td>:</td>
-							<td><?php echo tjns($kejadian->kd_keluhan,'Pria');?> Orang</td>
-							<td>Korban Wania</td>
+							<td><?php echo total($kejadian->kd_keluhan,'all');?> Orang</td>
+						
+							<th>Korban Wanita</th>
 							<td>:</td>
 							<td><?php echo tjns($kejadian->kd_keluhan,'Wanita');?> Orang</td>
 							
 						</tr>
 						<tr>
-							<td style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</td>
-							<td>:</td>
-							<td rowspan=2>
-							<table>
-							<?php foreach($pekerjaan as $rw){
+							<th style="width:200px;height:25px" >Korban Berdasarkan Pekerjaan</th>
+							<th>:</th>
+							<th colspan=4>
+							&nbsp;
+							</th>
+						</tr>
+						<?php foreach($pekerjaan as $rw){
 							$job = $rw->pekerjaan;
 							$count = $this->db->query("select count(*) as total from tbl_keluhan_pasien where pekerjaan_id='$rw->id_pekerjaan' and kd_keluhan = '$kejadian->kd_keluhan'")->row()->total;
 							if($count>=0){
@@ -113,16 +119,9 @@ return implode(', ',$pangan);
 							<tr>
 							<td><?php echo $job;?></td>
 							<td>:</td>
-							<td><?php echo $count;?> Orang</td>
+							<td colspan=4><?php echo $count;?> Orang</td>
 							</tr>
 							<?php } } ?>
-							</table>
-							</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
 						<tr>
 							<td colspan=6 style="height:5px">&nbsp;</td>
 						</tr>

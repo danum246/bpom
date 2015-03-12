@@ -39,7 +39,7 @@ function total($kd_keluhan,$flag){
 	                        	<td><?php echo $no;?></td>
 	                        	<td><?php echo $row->kd_keluhan;?></td>
 	                        	<td><?php echo $row->kelurahan;?></td>
-	                        	<td></td>
+	                        	<td><?php echo $row->kecamatan;?></td>
 	                        	<td><?php echo total($row->kd_keluhan,'All');?></td>
 	                        	<td><?php echo total($row->kd_keluhan,'2');?></td>
 	                        	<!--td></td-->
